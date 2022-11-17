@@ -161,13 +161,4 @@ public class DataLayer {
             return null;
         }
     }
-
-    
-    public static void main(String[] args) {
-        DataLayer dataLayer = new DataLayer();
-        dataLayer.connect();
-        for (String topic : dataLayer.selectUpdateEntry(101)) {
-            System.out.println(topic);
-        }
-    }
 }
