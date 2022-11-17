@@ -1,5 +1,7 @@
-DROP DATABASE IF EXISTS  StudentFaculty; 
+DROP DATABASE IF EXISTS  StudentFaculty;
 
+-- ISTE 330
+-- Group Project 01
 -- Created by Alex Leute, Evan Reighter, Michael McIntosh, Teo Luciani, Adrian Marquez
 
 -- Creates a database for Faculties and User Interests in order to encourage future collaboration between students, faculty, and the public.

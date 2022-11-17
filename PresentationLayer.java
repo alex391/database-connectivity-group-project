@@ -1,12 +1,9 @@
-// Michael McIntosh
-// ISTE 330
-// 9/27/2022
-// Homework: 02
-// Java Class Named PresentationHW2.
-// This code is the Presentation Layer.
-
-// Prerequisite
-// SOURCE D:\ISTE330\SOURCES\TravelNew29.sql
+/*
+ * ISTE 330
+ * Alex Leute, Evan Reighter, Michael McIntosh, Teo Luciani, Adrian Marquez
+ * 11/15/22
+ * Group Project 01 StudentFaculty Project DataLayer
+ */
 
 import java.sql.*;
 import javax.swing.*;
