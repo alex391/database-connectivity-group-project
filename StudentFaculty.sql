@@ -39,7 +39,7 @@ CREATE TABLE UserInterests(
 
 DROP TABLE IF EXISTS Entries;
 CREATE TABLE Entries(
-	entryId INT UNSIGNED NOT NULL,
+	entryId INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	userID INT UNSIGNED NOT NULL,
 	topic TEXT NOT NULL,
 	CONSTRAINT userIDFK   FOREIGN KEY (userID)    
@@ -61,18 +61,17 @@ userID INT UNSIGNED NOT NULL,
             ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET= utf8mb4;
 
-SET FOREIGN_KEY_CHECKS=0;
 INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('jHabermas','test123','F','Jim','Habermas');
 INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('bBabermas','test123','F','Bim','Babermas');
 INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('DDabermas','test123','F','Dim','Dabermas');
 INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('fFabermas','test123','F','Fim','Fabermas');
 INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('gGabermas','test123','F','Gim','Gabermas');
 
-INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('jHabermas','test123','F','Alice','Networker');
-INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('bBabermas','test123','F','Bob','Networker');
-INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('DDabermas','test123','F','Newton','Cradle');
-INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('fFabermas','test123','F','Adam','Fabermas');
-INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('gGabermas','test123','F','Eve','Gabermas');
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('aNetworker','test123','S','Alice','Networker');
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('bNetworker','test123','S','Bob','Networker');
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('nCradle','test123','S','Newton','Cradle');
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('aSmith','test123','S','Adam','Smith');
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('eSmith','test123','S','Eve','Smith');
 
 INSERT INTO Interests(interest) VALUES ('Java');
 INSERT INTO Interests(interest) VALUES ('Anthropology');
@@ -96,54 +95,33 @@ INSERT INTO UserInterests(userID, interestID) VALUES ('107','7');
 INSERT INTO UserInterests(userID, interestID) VALUES ('108','8');
 INSERT INTO UserInterests(userID, interestID) VALUES ('109','9');
 
+INSERT INTO UserInterests(userID, interestID) VALUES ('100','2');
+INSERT INTO UserInterests(userID, interestID) VALUES ('101','2');
+INSERT INTO UserInterests(userID, interestID) VALUES ('102','3');
+INSERT INTO UserInterests(userID, interestID) VALUES ('103','4');
+INSERT INTO UserInterests(userID, interestID) VALUES ('104','5');
+INSERT INTO UserInterests(userID, interestID) VALUES ('105','6');
+INSERT INTO UserInterests(userID, interestID) VALUES ('106','7');
+INSERT INTO UserInterests(userID, interestID) VALUES ('107','8');
+INSERT INTO UserInterests(userID, interestID) VALUES ('108','9');
+INSERT INTO UserInterests(userID, interestID) VALUES ('109','1');
 
+INSERT INTO Faculty(userID,buildNumber,officeNumber,email) VALUES (100,175,211,'jHabermas@rit.edu');
+INSERT INTO Faculty(userID,buildNumber,officeNumber,email) VALUES (101,176,212,'bBabermas@rit.edu');
+INSERT INTO Faculty(userID,buildNumber,officeNumber,email) VALUES (102,177,213,'DDabermas@rit.edu');
+INSERT INTO Faculty(userID,buildNumber,officeNumber,email) VALUES (103,178,214,'fFabermas@rit.edu');
+INSERT INTO Faculty(userID,buildNumber,officeNumber,email) VALUES (104,179,215,'gGabermas@rit.edu');
 
-/*
-SET FOREIGN_KEY_CHECKS=0;
-
-
-
-
-INSERT INTO Users VALUES(100,'SUser1','SPass1','Student',1); 
-INSERT INTO Users VALUES(101,'SUser1','SPass1','Student',3); 
-INSERT INTO Users VALUES(103,'SUser2','SPass2','Student',2); 
-INSERT INTO Users VALUES(102,'SUser3','SPass3','Student',2); 
-INSERT INTO Users VALUES(104,'SUser4','SPass4','Student',1);  
-INSERT INTO Users VALUES(105,'SUser2','SPass2','Student',2); 
-INSERT INTO Users VALUES(106,'SUser2','SPass2','Student',6); 
-
-
-
-INSERT INTO Users VALUES(201,'FUser1','FPass1','Faculty',1); 
-INSERT INTO Users VALUES(202,'FUser1','FPass1','Faculty',3); 
-INSERT INTO Users VALUES(203,'FUser2','FPass2','Faculty',2);
-INSERT INTO Users VALUES(204,'FUser3','FPass3','Faculty',7); 
-INSERT INTO Users VALUES(205,'FUser4','FPass4','Faculty',2); 
-INSERT INTO Users VALUES(206,'FUser5','FPass5','Faculty',7); 
-INSERT INTO Users VALUES(207,'FUser6','FPass6','Faculty',1); 
-INSERT INTO Users VALUES(208,'FUser7','FPass7','Faculty',9); 
-INSERT INTO Users VALUES(209,'FUser4','FPass4','Faculty',2); 
-INSERT INTO Users VALUES(210,'FUser5','FPass5','Faculty',7); 
-INSERT INTO Users VALUES(211,'FUser6','FPass6','Faculty',1); 
-INSERT INTO Users VALUES(212,'FUser7','FPass7','Faculty',9); 
-
-
-
-
-INSERT INTO Entries VALUES('Jim','Habermas','All about Java',201);
-INSERT INTO Entries VALUES('Jim','Habermas','Is it ethical to restirict internet access in low income families',201);
-INSERT INTO Entries VALUES('Bim','Babermas','Cultural groups around the world',202);
-INSERT INTO Entries VALUES('Vim','Vabermas','All about biochemical Engineering',203);
-INSERT INTO Entries VALUES('Tim','Tabermas','Cultural Melting Pots',204);
-INSERT INTO Entries VALUES('Rim','Rabermas','The specifics of biochemical engineering',205);
-INSERT INTO Entries VALUES('Sim','Sabermas','Java vs C++',206);
-INSERT INTO Entries VALUES('Gim','Gabermas','About abstract Art',207);
-INSERT INTO Entries VALUES('Zim','Zabermas','Cultural Melting Pots',208);
-INSERT INTO Entries VALUES('Wim','Wabermas','The specifics of biochemical engineering',209);
-INSERT INTO Entries VALUES('Cim','Cabermas','Java vs C++',210);
-INSERT INTO Entries VALUES('Kim','Kabermas','About abstract Art',211);
-
-*/
+INSERT INTO Entries(topic, userID) VALUES('All about Java',100);
+INSERT INTO Entries(topic, userID) VALUES('Is it ethical to restirict internet access in low income families',100);
+INSERT INTO Entries(topic, userID) VALUES('Cultural groups around the world',101);
+INSERT INTO Entries(topic, userID) VALUES('All about biochemical Engineering',101);
+INSERT INTO Entries(topic, userID) VALUES('Cultural Melting Pots',102);
+INSERT INTO Entries(topic, userID) VALUES('The specifics of biochemical engineering',102);
+INSERT INTO Entries(topic, userID) VALUES('Java vs C++',103);
+INSERT INTO Entries(topic, userID) VALUES('About abstract Art',103);
+INSERT INTO Entries(topic, userID) VALUES('Cultural Melting Pots',104);
+INSERT INTO Entries(topic, userID) VALUES('About abstract Art',104);
 
 
 
