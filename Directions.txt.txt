@@ -1,0 +1,35 @@
+--------------------------------------------------------------------
+-------- Faculty Research Database Application -------- 
+--------------------------------------------------------------------
+
+The goal of this application isto allow guests, faculty 
+and students to find common interests between 
+eachother. The application has different 
+functionalities depending on the type of user.
+All users can search for entries, while faculty are
+able to create, edit, and remove entries. 
+
+---------------------------------------------------------------------
+--------------------------- Directions ---------------------------
+---------------------------------------------------------------------
+
+Students and Guests
+
+* Use the search function to filter certain
+interests, names, etc to find to the faculty you are 
+looking for. The application will display results
+according to how the user applys filters.
+
+                                    
+Faculty
+
+* Use the insert. update and delete buttons to edit 
+your current entries in the database. Select the 
+button you want and a prompt appear.
+
+* Use the search function to filter certain
+interests, names, etc to find to the faculty you are 
+looking for. The application will display results
+according to how the user applys filters.
+
+
