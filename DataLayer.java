@@ -95,7 +95,13 @@ public class DataLayer {
     }
 
     
-
+    public static void main(String[] args) {
+        DataLayer dataLayer = new DataLayer();
+        dataLayer.connect();
+        for (String topic : dataLayer.selectUpdateEntry(101)) {
+            System.out.println(topic);
+        }
+    }
     /*
      * public string searchUsers(interest String, userType int){
      * usertype is 1=student, 2=faculty, 3=both
