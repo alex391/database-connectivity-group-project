@@ -5,71 +5,63 @@ USE StudentFaculty;
 
 DROP TABLE IF EXISTS Interests;
 CREATE TABLE Interests(
-  interest_ID INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  interestID INT UNSIGNED NOT NULL AUTO_INCREMENT,
   interest VARCHAR(45) NOT NULL,
-  PRIMARY KEY (interest_ID)
+  PRIMARY KEY (interestID)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users(
   UserID INT UNSIGNED NOT NULL ,
-  UserName VARCHAR(45) NOT NULL,
-  UserPassword VARCHAR(20) NOT NULL,
-  UserType VARCHAR(20) NOT NULL,
-  interest_ID INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (UserID),
-
-   CONSTRAINT Users_Interest_FK FOREIGN KEY (interest_ID)    
-       REFERENCES Interests(interest_ID)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE
-
+  UserName VARCHAR(100) NOT NULL,
+  UserPassword VARCHAR(100) NOT NULL,
+  UserType CHAR(1) NOT NULL,
+  FirstName VARCHAR(100),
+  LastName VARCHAR(100),
+  PRIMARY KEY (UserID)
   )ENGINE=InnoDB DEFAULT CHARSET= utf8mb4;
-  ALTER TABLE Users AUTO_INCREMENT = 100;  
-
-DROP TABLE IF EXISTS Student;
-CREATE TABLE Student(
-UserID INT UNSIGNED NOT NULL AUTO_INCREMENT,
-firstName VARCHAR(45) NOT NULL,
-lastName VARCHAR(45) NOT NULL,
-PRIMARY KEY (UserID),
- CONSTRAINT Student_UserID_FK   FOREIGN KEY (UserID)    
-       REFERENCES Users(UserID)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE
-)ENGINE=InnoDB DEFAULT CHARSET= utf8mb4;
-ALTER TABLE Student AUTO_INCREMENT = 100;  
+  ALTER TABLE Users AUTO_INCREMENT = 100;
+  
+DROP TABLE IF EXISTS UserInterests;
+CREATE TABLE UserInterests(
+	UserID INT UNSIGNED NOT NULL,
+	interestID INT UNSIGNED NOT NULL,
+	CONSTRAINT UserInterests_UserID_FK   FOREIGN KEY (UserID)    
+		REFERENCES Users(UserID)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	CONSTRAINT UserInterests_interestID_FK   FOREIGN KEY (interestID)    
+		REFERENCES Interests(interestID)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+  )ENGINE=InnoDB DEFAULT CHARSET= utf8mb4;
 
 DROP TABLE IF EXISTS Entries;
 CREATE TABLE Entries(
-firstName VARCHAR(45) NOT NULL,
-lastName VARCHAR(45) NOT NULL,
-topicTitle VARCHAR(95) NOT NULL,
-UserID INT UNSIGNED NOT NULL,
- CONSTRAINT Entries_UserID_FK   FOREIGN KEY (UserID)    
-       REFERENCES Users(UserID)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE
+	EntryId INT UNSIGNED NOT NULL,
+	UserID INT UNSIGNED NOT NULL,
+	Topic TEXT NOT NULL,
+	CONSTRAINT UserID_FK   FOREIGN KEY (UserID)    
+		REFERENCES Users(UserID)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	PRIMARY KEY (EntryId)
 )ENGINE=InnoDB DEFAULT CHARSET= utf8mb4;
 
 DROP TABLE IF EXISTS Faculty;
 CREATE TABLE Faculty(
-firstName VARCHAR(45) NOT NULL,
-lastName VARCHAR(45) NOT NULL,
 buildNumber INT,
 officeNumber INT,
 email VARCHAR(45) NOT NULL,
-UserID INT UNSIGNED NOT NULL AUTO_INCREMENT,
+UserID INT UNSIGNED NOT NULL,
  CONSTRAINT Faculty_UserID_FK   FOREIGN KEY (UserID)    
        REFERENCES Users(UserID)
             ON DELETE CASCADE
             ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET= utf8mb4;
-ALTER TABLE Faculty AUTO_INCREMENT = 200;  
 
-
-
+/*
 SET FOREIGN_KEY_CHECKS=0;
 INSERT INTO Faculty(firstName,lastName,buildNumber,officeNumber,email) VALUES ('Jim','Habermas',175,211,'jih@rit.edu');
 INSERT INTO Faculty(firstName,lastName,buildNumber,officeNumber,email) VALUES ('Bim','Babermas',176,231,'bib@rit.edu');
@@ -147,7 +139,7 @@ INSERT INTO Entries VALUES('Wim','Wabermas','The specifics of biochemical engine
 INSERT INTO Entries VALUES('Cim','Cabermas','Java vs C++',210);
 INSERT INTO Entries VALUES('Kim','Kabermas','About abstract Art',211);
 
-
+*/
 
 
 
