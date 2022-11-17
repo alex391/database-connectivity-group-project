@@ -23,7 +23,7 @@ public class DataLayer {
          * url line below at the end identifies the database name
          * /* Define Data Source
          */
-        String url = "jdbc:mysql://localhost/travel";
+        String url = "jdbc:mysql://localhost/studentfaculty";
         url = url + "?serverTimezone=UTC"; // added 9/12
 
         String user = new String();
