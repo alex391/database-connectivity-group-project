@@ -13,25 +13,25 @@ CREATE TABLE Interests(
 
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users(
-  UserID INT UNSIGNED NOT NULL ,
-  UserName VARCHAR(100) NOT NULL,
-  UserPassword VARCHAR(100) NOT NULL,
-  UserType CHAR(1) NOT NULL,
-  FirstName VARCHAR(100),
-  LastName VARCHAR(100),
-  PRIMARY KEY (UserID)
+  userID INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  userName VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(100) NOT NULL,
+  userType CHAR(1) NOT NULL,
+  firstName VARCHAR(100) NOT NULL,
+  lastName VARCHAR(100) NOT NULL,
+  PRIMARY KEY (userID)
   )ENGINE=InnoDB DEFAULT CHARSET= utf8mb4;
   ALTER TABLE Users AUTO_INCREMENT = 100;
   
 DROP TABLE IF EXISTS UserInterests;
 CREATE TABLE UserInterests(
-	UserID INT UNSIGNED NOT NULL,
+	userID INT UNSIGNED NOT NULL,
 	interestID INT UNSIGNED NOT NULL,
-	CONSTRAINT UserInterests_UserID_FK   FOREIGN KEY (UserID)    
-		REFERENCES Users(UserID)
+	CONSTRAINT userInterestsUserIDFK   FOREIGN KEY (userID)    
+		REFERENCES Users(userID)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	CONSTRAINT UserInterests_interestID_FK   FOREIGN KEY (interestID)    
+	CONSTRAINT userInterestsinterestIDFK   FOREIGN KEY (interestID)    
 		REFERENCES Interests(interestID)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
@@ -39,14 +39,14 @@ CREATE TABLE UserInterests(
 
 DROP TABLE IF EXISTS Entries;
 CREATE TABLE Entries(
-	EntryId INT UNSIGNED NOT NULL,
-	UserID INT UNSIGNED NOT NULL,
-	Topic TEXT NOT NULL,
-	CONSTRAINT UserID_FK   FOREIGN KEY (UserID)    
-		REFERENCES Users(UserID)
+	entryId INT UNSIGNED NOT NULL,
+	userID INT UNSIGNED NOT NULL,
+	topic TEXT NOT NULL,
+	CONSTRAINT userIDFK   FOREIGN KEY (userID)    
+		REFERENCES Users(userID)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	PRIMARY KEY (EntryId)
+	PRIMARY KEY (entryId)
 )ENGINE=InnoDB DEFAULT CHARSET= utf8mb4;
 
 DROP TABLE IF EXISTS Faculty;
@@ -54,49 +54,53 @@ CREATE TABLE Faculty(
 buildNumber INT,
 officeNumber INT,
 email VARCHAR(45) NOT NULL,
-UserID INT UNSIGNED NOT NULL,
- CONSTRAINT Faculty_UserID_FK   FOREIGN KEY (UserID)    
-       REFERENCES Users(UserID)
+userID INT UNSIGNED NOT NULL,
+ CONSTRAINT facultyUserIDFK FOREIGN KEY (userID)    
+       REFERENCES Users(userID)
             ON DELETE CASCADE
             ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET= utf8mb4;
 
+SET FOREIGN_KEY_CHECKS=0;
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('jHabermas','test123','F','Jim','Habermas');
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('bBabermas','test123','F','Bim','Babermas');
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('DDabermas','test123','F','Dim','Dabermas');
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('fFabermas','test123','F','Fim','Fabermas');
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('gGabermas','test123','F','Gim','Gabermas');
+
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('jHabermas','test123','F','Alice','Networker');
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('bBabermas','test123','F','Bob','Networker');
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('DDabermas','test123','F','Newton','Cradle');
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('fFabermas','test123','F','Adam','Fabermas');
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('gGabermas','test123','F','Eve','Gabermas');
+
+INSERT INTO Interests(interest) VALUES ('Java');
+INSERT INTO Interests(interest) VALUES ('Anthropology');
+INSERT INTO Interests(interest) VALUES ('Ethics in Computing');
+INSERT INTO Interests(interest) VALUES ('Calculus');
+INSERT INTO Interests(interest) VALUES ('Mobile Design');
+INSERT INTO Interests(interest) VALUES ('Python');
+INSERT INTO Interests(interest) VALUES ('Biochemical Engineering');
+INSERT INTO Interests(interest) VALUES ('Biology');
+INSERT INTO Interests(interest) VALUES ('Art');
+INSERT INTO Interests(interest) VALUES ('Film and Animation');
+
+INSERT INTO UserInterests(userID, interestID) VALUES ('100','1');
+INSERT INTO UserInterests(userID, interestID) VALUES ('101','1');
+INSERT INTO UserInterests(userID, interestID) VALUES ('102','2');
+INSERT INTO UserInterests(userID, interestID) VALUES ('103','3');
+INSERT INTO UserInterests(userID, interestID) VALUES ('104','4');
+INSERT INTO UserInterests(userID, interestID) VALUES ('105','5');
+INSERT INTO UserInterests(userID, interestID) VALUES ('106','6');
+INSERT INTO UserInterests(userID, interestID) VALUES ('107','7');
+INSERT INTO UserInterests(userID, interestID) VALUES ('108','8');
+INSERT INTO UserInterests(userID, interestID) VALUES ('109','9');
+
+
+
 /*
 SET FOREIGN_KEY_CHECKS=0;
-INSERT INTO Faculty(firstName,lastName,buildNumber,officeNumber,email) VALUES ('Jim','Habermas',175,211,'jih@rit.edu');
-INSERT INTO Faculty(firstName,lastName,buildNumber,officeNumber,email) VALUES ('Bim','Babermas',176,231,'bib@rit.edu');
-INSERT INTO Faculty(firstName,lastName,buildNumber,officeNumber,email) VALUES ('Vim','Vabermas',177,312,'viv@rit.edu');
-INSERT INTO Faculty(firstName,lastName,buildNumber,officeNumber,email) VALUES ('Tim','Tabermas',179,222,'tih@rit.edu');
-INSERT INTO Faculty(firstName,lastName,buildNumber,officeNumber,email) VALUES ('Rim','Rabermas',179,333,'rir@rit.edu');
-INSERT INTO Faculty(firstName,lastName,buildNumber,officeNumber,email) VALUES ('Sim','Sabermas',180,213,'sis@rit.edu');
-INSERT INTO Faculty(firstName,lastName,buildNumber,officeNumber,email) VALUES ('Gim','Gabermas',182,313,'gig@rit.edu');
-INSERT INTO Faculty(firstName,lastName,buildNumber,officeNumber,email) VALUES ('Zim','Zabermas',182,110,'ziz@rit.edu');
-INSERT INTO Faculty(firstName,lastName,buildNumber,officeNumber,email) VALUES ('Wim','Wabermas',180,121,'wiw@rit.edu');
-INSERT INTO Faculty(firstName,lastName,buildNumber,officeNumber,email) VALUES ('Cim','Cabermas',181,365,'cic@rit.edu');
-INSERT INTO Faculty(firstName,lastName,buildNumber,officeNumber,email) VALUES ('kim','Kabermas',181,309,'kik@rit.edu');
-SET FOREIGN_KEY_CHECKS=1;
 
-
-SET FOREIGN_KEY_CHECKS=0;
-INSERT INTO Student(lastName,firstName) VALUES('Bob','Johns');
-INSERT INTO Student(lastName,firstName)  VALUES('Rob','Jones');
-INSERT INTO Student(lastName,firstName)  VALUES('Dob','Bradey');
-INSERT INTO Student(lastName,firstName)  VALUES('Sob','Pantucket');
-INSERT INTO Student(lastName,firstName)  VALUES('Mob','Griffin');
-INSERT INTO Student(lastName,firstName)  VALUES('Nob','Parker');
-INSERT INTO Student(lastName,firstName)  VALUES('Jerry','Wayne');
-SET FOREIGN_KEY_CHECKS=1;
-
-INSERT INTO Interests VALUES (1,'Java');
-INSERT INTO Interests VALUES (2,'Anthropology');
-INSERT INTO Interests VALUES (3,'Ethics in Computing');
-INSERT INTO Interests VALUES (4,'Calculus');
-INSERT INTO Interests VALUES (5,'Mobile Design');
-INSERT INTO Interests VALUES (6,'Python');
-INSERT INTO Interests VALUES (7,'Biochemical Engineering');
-INSERT INTO Interests VALUES (8,'Biology');
-INSERT INTO Interests VALUES (9,'Art');
-INSERT INTO Interests VALUES (10,'Film and Animation');
 
 
 
