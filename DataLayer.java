@@ -1,9 +1,10 @@
-
 /*
+ * ISTE 330
  * Alex Leute, Evan Reighter, Michael McIntosh, Teo Luciani, Adrian Marquez
  * 11/15/22
- * Project 01 StudentFaculty project DataLayer
+ * Group Project 01 StudentFaculty Project DataLayer
  */
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
