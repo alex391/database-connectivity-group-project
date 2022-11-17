@@ -26,7 +26,7 @@ public class DataLayer {
          * url line below at the end identifies the database name
          * /* Define Data Source
          */
-        String url = "jdbc:mysql://localhost/travel";
+        String url = "jdbc:mysql://localhost/studentfaculty";
         url = url + "?serverTimezone=UTC"; // added 9/12
 
         String user = new String();
@@ -161,24 +161,4 @@ public class DataLayer {
             return null;
         }
     }
-
-    
-    public static void main(String[] args) {
-        DataLayer dataLayer = new DataLayer();
-        dataLayer.connect();
-        for (String topic : dataLayer.selectUpdateEntry(101)) {
-            System.out.println(topic);
-        }
-    }
-    /*
-     * public string searchUsers(interest String, userType int){
-     * usertype is 1=student, 2=faculty, 3=both
-     * 
-     * Query FName, LName,(where interest like interest) interests of person,
-     * topictitle,
-     * send result set to string]
-     * 
-     * return string
-     * }
-     */
 }
