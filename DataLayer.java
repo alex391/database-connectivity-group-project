@@ -1,5 +1,5 @@
 /*
- * ISTE 330
+ * ISTE 330 Jim Habermas
  * Alex Leute, Evan Reighter, Michael McIntosh, Teo Luciani, Adrian Marquez
  * 11/15/22
  * Group Project 01 StudentFaculty Project DataLayer
