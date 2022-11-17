@@ -25,7 +25,7 @@ public class DataLayer {
          * url line below at the end identifies the database name
          * /* Define Data Source
          */
-        String url = "jdbc:mysql://localhost/studentfaculty";
+        String url = "jdbc:mysql://localhost/travel";
         url = url + "?serverTimezone=UTC"; // added 9/12
 
         String user = new String();
@@ -87,7 +87,7 @@ public class DataLayer {
             }
             return topics.toArray(new String[0]);
         } catch (SQLException e) {
-            System.out.println("There was an error in the delete");
+            System.out.println("There was an error in selecting entries");
             e.printStackTrace();
             System.exit(1);
             return null;
