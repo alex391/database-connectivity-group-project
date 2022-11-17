@@ -5,6 +5,8 @@
  * Project 01 StudentFaculty project DataLayer
  */
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.io.Console;
 
 public class DataLayer {
@@ -70,65 +72,29 @@ public class DataLayer {
         return true;
     }
 
+    
     /**
-     * Add a passenger.
-     * 
-     * @param id
-     * @param args FName, LName, Street, Zip
-     * @return the number of records inserted
+     * Takes in username
+     * @return an array of formatted entries that match user's id
      */
-    public int addPassenger(int id, String... agrs) {
-        PreparedStatement stmt;
+    public String[] selectUpdateEntry(int userID) {
         try {
-            stmt = conn.prepareStatement("INSERT INTO passenger VALUES (?, ?, ?, ?, ?);");
-            stmt.setInt(1, id);
-            int index = 2;
-            for (String string : agrs) {
-                stmt.setString(index++, string);
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT topic FROM Entries WHERE userID = " + Integer.toString(userID));
+            List<String> topics = new ArrayList<>();
+            while (rs.next()) {
+                topics.add(rs.getString("topic"));
             }
-            return stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("There was an error in the insert");
-            e.printStackTrace();
-            System.exit(1);
-            return 0; // Unreachable, but the compiler doesn't (can't) know that
-        }
-    }
-
-    /**
-     * Delete a passenger
-     * 
-     * @param id
-     * @return the number of records deleted
-     */
-    public int deletePassenger(int id) {
-        PreparedStatement stmt;
-        try {
-            stmt = conn.prepareStatement("DELETE FROM passenger WHERE PassengerId = ?;");
-            stmt.setInt(1, id);
-            return stmt.executeUpdate();
+            return topics.toArray(new String[0]);
         } catch (SQLException e) {
             System.out.println("There was an error in the delete");
             e.printStackTrace();
             System.exit(1);
-            return 0; // Unreachable, but the compiler doesn't (can't) know that
+            return null;
         }
     }
 
-    public int updatePassenger(int id, String street) {
-        PreparedStatement stmt;
-        try {
-            stmt = conn.prepareStatement("UPDATE passenger SET Street = ? WHERE PassengerId = ?;");
-            stmt.setString(1, street);
-            stmt.setInt(2, id);
-            return stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("There was an error in the update");
-            e.printStackTrace();
-            System.exit(1);
-            return 0; // Unreachable, but the compiler doesn't (can't) know that
-        }
-    }
+    
 
     /*
      * public string searchUsers(interest String, userType int){
