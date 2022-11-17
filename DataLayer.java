@@ -1,5 +1,5 @@
 /*
- * ISTE 330
+ * ISTE 330 Jim Habermas
  * Alex Leute, Evan Reighter, Michael McIntosh, Teo Luciani, Adrian Marquez
  * 11/15/22
  * Group Project 01 StudentFaculty Project DataLayer
@@ -72,6 +72,73 @@ public class DataLayer {
         }
         return true;
     }
+    
+    // Faculty Add Function
+    // - Takes in the userID from sign in and topic from input
+    // - User will input the topic and other entry data into GUI,
+    // System already knows their userID, entryID is assigned automatically.
+    
+    public int addEntry(int userid, String topic){
+        int result = 0;
+        try {
+        
+            PreparedStatement stmt;
+            stmt = conn.prepareStatement("INSERT INTO entries(userID, topic) VALUES (?, ?);");
+            stmt.setInt(1,userid);
+            stmt.setString(2,topic);
+         
+            result = stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("There was an error in the insert");
+            System.out.println("Error = " + e);
+            e.printStackTrace();      
+        }
+        return (result);
+    }
+    
+    
+    // Faculty Delete Function
+    // - Takes in the entryid from GUI
+    // User will choose which entry to delete (to be implemented later). Deletes 
+    // the unique entryID 
+    
+    public int deleteEntry(int entryid){
+        PreparedStatement stmt;
+        try {
+            stmt = conn.prepareStatement("DELETE FROM entries WHERE entryID = ?;");
+            stmt.setInt(1,entryid);
+            return stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("There was an error in the delete");
+            e.printStackTrace();
+            System.exit(1);
+            return 0; 
+        }
+    }
+    
+    
+
+     // Faculty Update Function
+     // - update the entry topic based on the entryid
+     // - Will take in the entryid from searching method, and user
+     // inputs whatever edits they make to topic. Method will
+     // update the entry when user is done
+     
+    public int updateEntry(int entryid, String topic){
+        PreparedStatement stmt;
+        try {
+            stmt = conn.prepareStatement("UPDATE entries SET topic = ? WHERE entryId = ?;");
+            stmt.setInt(1,entryid);
+            stmt.setString(2,topic);
+            return stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("There was an error in the update");
+            e.printStackTrace();
+            System.exit(1);
+            return 0; 
+        }
+    }
+    
 
     
     /**
