@@ -103,15 +103,4 @@ public class DataLayer {
             System.out.println(topic);
         }
     }
-    /*
-     * public string searchUsers(interest String, userType int){
-     * usertype is 1=student, 2=faculty, 3=both
-     * 
-     * Query FName, LName,(where interest like interest) interests of person,
-     * topictitle,
-     * send result set to string]
-     * 
-     * return string
-     * }
-     */
 }
