@@ -1,11 +1,10 @@
 
 /*
- * Alex Leute
- * 10/2/22
- * HW02
+ * Alex Leute, Evan Reighter, Michael McIntosh, Teo Luciani, Adrian Marquez
+ * 11/15/22
+ * Project 01 StudentFaculty project DataLayer
  */
 import java.sql.*;
-
 import java.io.Console;
 
 public class DataLayer {
@@ -54,7 +53,6 @@ public class DataLayer {
             return false;
         }
         return true;
-
     }
 
     /**
@@ -69,7 +67,6 @@ public class DataLayer {
             e.printStackTrace();
             return false;
         }
-
         return true;
     }
 
@@ -116,7 +113,6 @@ public class DataLayer {
             System.exit(1);
             return 0; // Unreachable, but the compiler doesn't (can't) know that
         }
-
     }
 
     public int updatePassenger(int id, String street) {
@@ -145,9 +141,4 @@ public class DataLayer {
      * return string
      * }
      */
-
-    /*
-    
-    */
-
 }
