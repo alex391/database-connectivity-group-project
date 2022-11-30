@@ -11,9 +11,11 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Console;
 
 public class DataLayer {
     private Connection conn;
+    private Console console = System.console();
 
     /**
      * Connect to the database
@@ -149,9 +151,14 @@ public class DataLayer {
         }
     }
 
+    public String[] appLoginDL(){
+        String[] result = new String[0];
+        return result;
+    }
+
     /**
      * Hash a string
-     * 
+     *
      * @param plain - the plaintext string to hash
      * @return the hash of that string
      */
