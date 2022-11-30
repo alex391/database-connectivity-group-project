@@ -147,4 +147,9 @@ public class DataLayer {
             return null;
         }
     }
+
+    public String[] appLoginDL(){
+        String[] result = new String[0];
+        return result;
+    }
 }
