@@ -18,7 +18,7 @@ public class PresentationLayer {
 	private int rows;
 
 	public static Font myFontForOutput = new Font("Courier", Font.BOLD, 20);
-
+   
 	public PresentationLayer() {
 		System.out.println("Connecting to the database . . .");
 
@@ -28,15 +28,11 @@ public class PresentationLayer {
 		JTextField tfUser = new JTextField("root");
 		// JTextField tfPassword = new JTextField("");
 		JTextField tfPassword = new JPasswordField("");
-		JLabel lblDatabase = new JLabel("Database ->");
-		JTextField tfDatabase = new JTextField("");
 
 		Inputbox.add(lblUser);
 		Inputbox.add(tfUser);
 		Inputbox.add(lblPassword);
 		Inputbox.add(tfPassword);
-		Inputbox.add(lblDatabase);
-		Inputbox.add(tfDatabase);
 
 		lblUser.setFont(myFontForOutput);
 		tfUser.setFont(myFontForOutput);
@@ -44,15 +40,11 @@ public class PresentationLayer {
 		lblPassword.setFont(myFontForOutput);
 		tfPassword.setFont(myFontForOutput);
 		tfPassword.setForeground(Color.BLUE);
-		lblDatabase.setFont(myFontForOutput);
-		tfDatabase.setFont(myFontForOutput);
-		tfDatabase.setForeground(Color.BLUE);
 
 		JOptionPane.showMessageDialog(null, Inputbox,
-				"Input    Default password is \"student\"", JOptionPane.QUESTION_MESSAGE);
+				"Default password is \"student\" - This logs into system studentfaculty DB", JOptionPane.QUESTION_MESSAGE);
 
 		String userName = tfUser.getText();
-		String database = tfDatabase.getText();
 
 		String password = new String();
 		String passwordInput = new String();
@@ -66,72 +58,31 @@ public class PresentationLayer {
 			password = passwordInput;
 		}
 
-		dl.connect(); // Call DataLayer
-
-		// System.out.println("You have connected to the database!");
-		// System.out.println("\nGoing to fetch the result set...\n Attempting to gather metadata...");
-
-		// columns = dl.getResultSet(); // getColumnCount() is what this method performs
-		// System.out.println("\nThe number of columns returned from the sql statment is -->  " + columns);
-
-		// rows = dl.geNumberOfRows_passenger_table();
-		// System.out.println("\nThe number of rows returned from the sql statment is ----->  " + rows);
-
-		// System.out.print("\nPlease enter new zip code -> ");
-		// String zipcode = GetInput.readLine();
-
-		// System.out.print("Please enter city ---------> ");
-		// String city = GetInput.readLine();
-
-		// System.out.print("Please enter state --------> ");
-		// String state = GetInput.readLine();
-
-		// int result = dl.addZipCode(zipcode, city, state);
-
-		// System.out.println("\nThe result of adding a zip code is -> " + result + " <-");
-
-		// //Adding a Passenger.
-		// System.out.println("\n   * * *    Adding a Passenger    * * *");
-		// System.out.print("\nPlease enter passenger ID -------> ");
-		// int passengerID = GetInput.readLineInt();
-
-		// System.out.print("Please enter first name ---------> ");
-		// String fname = GetInput.readLine();
-
-		// System.out.print("Please enter last name ----------> ");
-		// String lname = GetInput.readLine();
-
-		// System.out.print("Please enter street -------------> ");
-		// String street = GetInput.readLine();
-
-		// System.out.print("Please enter Zip Code -----------> ");
-		// String zipcode = GetInput.readLine();
-
-		// int result = dl.addPassenger(passengerID, fname, lname, street, zipcode);
-		// System.out.println("\nThe result of adding a passenger is -> " + result + " <-");
-
-		// //Deleting a Passenger
-		// System.out.println("\n   * * *    Deleting a Passenger    * * *");
-		// System.out.print("\nPlease enter passenger ID -------> ");
-		// passengerID = GetInput.readLineInt();
-
-		// result = dl.deletePassenger(passengerID);
-		// System.out.println("\nThe result of deleting a passenger is -> " + result + " <-");
-
-		// //Updating a Passenger
-		// System.out.println("\n   * * *    Updating a Passenger    * * *");
-		// System.out.print("\nPlease enter passenger ID -------> ");
-		// passengerID = GetInput.readLineInt();
-
-		// System.out.print("Please enter street -------------> ");
-		// street = GetInput.readLine();
-
-		// result = dl.updatePassenger(passengerID, street);
-		// System.out.println("\nThe result of updating a passenger is -> " + result + " <-");
-
-		// String msg = dl.retrievePassengers();
-		// JOptionPane.showMessageDialog(null, msg,
-		// 		"Passengers In Travel", JOptionPane.PLAIN_MESSAGE);
+		dl.connect(userName, password); // Call DataLayer
+      
+      //loop 1 login
+         //case Student v Faculty
+            //loop Student/guest
+               //Who is logged in somewhere
+               //exit button
+               //options to
+                  //edit interests
+                  //search by interests
+                  //search by userID
+                  //or browse entries
+            //loop faculty
+               //Who is logged in somewhere
+               //exit button
+               //options to
+                  //edit interests
+                  //search by interests
+                  //search by userID
+                  //or browse entries
+                  //entries
+                     //add
+                     //update
+                     //delete
+            
 
 		//Closing all connections to database
 		System.out.println("\nClosing all connections to database...\n");
@@ -142,8 +93,10 @@ public class PresentationLayer {
 		System.out.println("\nProgram terminated @ " + today);
 	} // End of Constructor
 
+
+
 	public static void main(String[] args) {
-		System.out.println("McIntosh, Michael");
+		System.out.println("Group 4");
 		new PresentationLayer(); // Create a new object. An Instantiation
 		System.out.println("EOJ");
 		System.exit(0);

@@ -19,7 +19,7 @@ public class DataLayer {
      * 
      * @return true if the connection is successful, else false
      */
-    public boolean connect() {
+    public boolean connect(String username, String password) {
         // get a connection
 
         /*
@@ -29,26 +29,12 @@ public class DataLayer {
         String url = "jdbc:mysql://localhost/studentfaculty";
         url = url + "?serverTimezone=UTC"; // added 9/12
 
-        String user = new String();
-        String password;
-        System.out.print("MySQL username (default root): ");
-        user = console.readLine();
-        if (user.equalsIgnoreCase("")) {
-            user = "root";
-        }
-        password = new String(console.readPassword("Password (Default is \"student\") (typing hidden):"));
-
-        // set the default password to "student"
-        if (password.equalsIgnoreCase("")) {
-            password = "student";
-        }
-
         // 2) Create a connection
         try {
             // This statement below returns connections to the URL.
             // SQLException will be thrown, if database access occurs or url is null.
 
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url, username, password);
         } catch (SQLException sqle) {
             sqle.printStackTrace();
             System.out.println("There was a connection error");
