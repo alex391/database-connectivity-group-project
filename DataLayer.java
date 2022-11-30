@@ -5,14 +5,15 @@
  * Group Project 01 StudentFaculty Project DataLayer
  */
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.Console;
 
 public class DataLayer {
     private Connection conn;
-    private Console console = System.console();
 
     /**
      * Connect to the database
@@ -142,6 +143,24 @@ public class DataLayer {
             return topics.toArray(new String[0]);
         } catch (SQLException e) {
             System.out.println("There was an error in selecting entries");
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+        }
+    }
+
+    /**
+     * Hash a string
+     * 
+     * @param plain - the plaintext string to hash
+     * @return the hash of that string
+     */
+    String hashString(String plain) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] digest = md.digest(plain.getBytes(StandardCharsets.UTF_8));
+            return new String(digest, StandardCharsets.UTF_8);
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             System.exit(1);
             return null;
