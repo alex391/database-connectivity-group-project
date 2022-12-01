@@ -18,7 +18,7 @@ public class PresentationLayer {
 	private int rows;
 
 	public static Font myFontForOutput = new Font("Courier", Font.BOLD, 20);
-
+   
 	public PresentationLayer() {
 		System.out.println("Connecting to the database . . .");
 
@@ -28,15 +28,11 @@ public class PresentationLayer {
 		JTextField tfUser = new JTextField("root");
 		// JTextField tfPassword = new JTextField("");
 		JTextField tfPassword = new JPasswordField("");
-		JLabel lblDatabase = new JLabel("Database ->");
-		JTextField tfDatabase = new JTextField("");
 
 		Inputbox.add(lblUser);
 		Inputbox.add(tfUser);
 		Inputbox.add(lblPassword);
 		Inputbox.add(tfPassword);
-		Inputbox.add(lblDatabase);
-		Inputbox.add(tfDatabase);
 
 		lblUser.setFont(myFontForOutput);
 		tfUser.setFont(myFontForOutput);
@@ -44,15 +40,11 @@ public class PresentationLayer {
 		lblPassword.setFont(myFontForOutput);
 		tfPassword.setFont(myFontForOutput);
 		tfPassword.setForeground(Color.BLUE);
-		lblDatabase.setFont(myFontForOutput);
-		tfDatabase.setFont(myFontForOutput);
-		tfDatabase.setForeground(Color.BLUE);
 
 		JOptionPane.showMessageDialog(null, Inputbox,
-				"Input    Default password is \"student\"", JOptionPane.QUESTION_MESSAGE);
+				"Default password is \"student\" - This logs into system studentfaculty DB", JOptionPane.QUESTION_MESSAGE);
 
 		String userName = tfUser.getText();
-		String database = tfDatabase.getText();
 
 		String password = new String();
 		String passwordInput = new String();
@@ -66,7 +58,31 @@ public class PresentationLayer {
 			password = passwordInput;
 		}
 
-		dl.connect(); // Call DataLayer
+		dl.connect(userName, password); // Call DataLayer
+      
+      //loop 1 login
+         //case Student v Faculty
+            //loop Student/guest
+               //Who is logged in somewhere
+               //exit button
+               //options to
+                  //edit interests
+                  //search by interests
+                  //search by userID
+                  //or browse entries
+            //loop faculty
+               //Who is logged in somewhere
+               //exit button
+               //options to
+                  //edit interests
+                  //search by interests
+                  //search by userID
+                  //or browse entries
+                  //entries
+                     //add
+                     //update
+                     //delete
+            
 
 		//Closing all connections to database
 		System.out.println("\nClosing all connections to database...\n");
@@ -77,8 +93,10 @@ public class PresentationLayer {
 		System.out.println("\nProgram terminated @ " + today);
 	} // End of Constructor
 
+
+
 	public static void main(String[] args) {
-		System.out.println("McIntosh, Michael");
+		System.out.println("Group 4");
 		new PresentationLayer(); // Create a new object. An Instantiation
 		System.out.println("EOJ");
 		System.exit(0);

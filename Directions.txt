@@ -2,7 +2,7 @@
 -------- Faculty Research Database Application -------- 
 --------------------------------------------------------------------
 
-The goal of this application isto allow guests, faculty 
+The goal of this application is to allow guests, faculty 
 and students to find common interests between 
 eachother. The application has different 
 functionalities depending on the type of user.
