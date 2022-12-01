@@ -5,10 +5,10 @@
  * Group Project 01 StudentFaculty Project DataLayer
  */
 
+import java.io.Console;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.Console;
 
 public class DataLayer {
     private Connection conn;
@@ -59,10 +59,52 @@ public class DataLayer {
         return true;
     }
     
+    // student search Entries Function
+    // - Takes in the interestID  from input
+    // System will display entries from faculty members with that interest
+
+    public int searchEntries(int interestid){
+        int result=0;
+        try{
+        PreparedStatement stmt;
+        stmt =conn.prepareStatement("SELECT entries.topic AS “email” ,interestID From userinterests JOIN entries USING(userID) WHERE entries.userID = userinterests.userID AND interestID = ? GROUP BY entries.userID;");
+        stmt.setInt(1,interestid);
+        result = stmt.executeUpdate();
+        }catch(SQLException e){
+            System.out.println("There was an error in the insert");
+            System.out.println("Error = " + e);
+            e.printStackTrace();      
+          }
+         return result;
+        }
+
+    // student search faculty Function
+    // - Takes in the interestID  from input
+    // System will display the email address from faculty members with that interest
+
+    public int searchFaculty(int interestid){
+    int result=0;
+    try{
+    PreparedStatement stmt;
+    stmt =conn.prepareStatement("SELECT faculty.email AS 'email', faculty.officeNumber as 'Office Number'From faculty JOIN userinterests USING(userID) WHERE faculty.userID = userID AND interestID = ? GROUP BY faculty.userID;");
+    stmt.setInt(1,interestid);
+    result = stmt.executeUpdate();
+    }catch(SQLException e){
+        System.out.println("There was an error in the insert");
+        System.out.println("Error = " + e);
+        e.printStackTrace();      
+      }
+     return result;
+    }
+
+
     // Faculty Add Function
     // - Takes in the userID from sign in and topic from input
     // - User will input the topic and other entry data into GUI,
     // System already knows their userID, entryID is assigned automatically.
+    
+
+    
     
     public int addEntry(int userid, String topic){
         int result = 0;
