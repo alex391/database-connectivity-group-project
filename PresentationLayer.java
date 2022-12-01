@@ -1,3 +1,4 @@
+
 /*
  * ISTE 330 Jim Habermas
  * Alex Leute, Evan Reighter, Michael McIntosh, Teo Luciani, Adrian Marquez
@@ -19,51 +20,153 @@ public class PresentationLayer {
 
 	public static Font myFontForOutput = new Font("Courier", Font.BOLD, 20);
    
-   public String[] appLoginPL() {
-      //user login
-      //returns String[] as [username, usertype]
-      JPanel Inputbox = new JPanel(new GridLayout(3, 2));
-		JLabel lblUser = new JLabel("Username -> ");
-		JLabel lblPassword = new JLabel("Password -> ");
-		JTextField tfUser = new JTextField("guest");
-		JTextField tfPassword = new JPasswordField("");
 
-		Inputbox.add(lblUser);
-		Inputbox.add(tfUser);
-		Inputbox.add(lblPassword);
-		Inputbox.add(tfPassword);
-
-		lblUser.setFont(myFontForOutput);
-		tfUser.setFont(myFontForOutput);
-		tfUser.setForeground(Color.BLUE);
-		lblPassword.setFont(myFontForOutput);
-		tfPassword.setFont(myFontForOutput);
-		tfPassword.setForeground(Color.BLUE);
-
-		JOptionPane.showMessageDialog(null, Inputbox,
-				"Default password is \"guest\" - This logs into interest search application", JOptionPane.QUESTION_MESSAGE);
-
-		String userName = tfUser.getText();
-
-		String password = new String();
-		String passwordInput = new String();
-
-		passwordInput = tfPassword.getText();
-
-		// set the default password to "student"
-		if (passwordInput.equalsIgnoreCase("")) {
-			password = "guest"; // CHANGE TO guest
-		} else {
-			password = passwordInput;
-		}
+   public void StudentBox() {
+      // Student Box Frame Setup
+      JFrame f = new JFrame();
+      f.setSize(400,400);
       
-      //returns [username, usertype]
-      return dl.appLoginDL(username, password);
+      // Label
+      JLabel label = new JLabel(" Student/Guest Features");
+      label.setBounds(100,50,150,30);
+      f.add(label);
+      // Edit interests
+      JButton editButton = new JButton("Edit Interests");
+      editButton.setBounds(100,80,150,50);
+      f.add(editButton);
+      // Search Interests
+      JButton searchIntButton = new JButton("Search Interests");
+      searchIntButton.setBounds(100,130,150,50);
+      f.add(searchIntButton);
+      // Search UserID
+      JButton searchUserButton = new JButton("Search User ID");
+      searchUserButton.setBounds(100,180,150,50);
+      f.add(searchUserButton);
+      // Browse
+      JButton browseButton = new JButton("Browse Entries");
+      browseButton.setBounds(100,230,150,50);
+      f.add(browseButton);
+      // Exit Button
+      JButton exitButton = new JButton("Exit");
+      exitButton.setBounds(100,280,150,50);
+      f.add(exitButton);
+   
+      f.setLayout(null); // using no layout managers
+      f.setVisible(true); // making the frame visible
    }
    
+      public void FacultyBox() {
+      // Faculty Box Frame Setup
+      JFrame f = new JFrame();
+      f.setSize(600,400);
+      
+      // Label
+      JLabel label = new JLabel(" Student/Guest Features");
+      label.setBounds(125,50,150,30);
+      f.add(label);
+      // Edit interests
+      JButton editButton = new JButton("Edit Interests");
+      editButton.setBounds(125,80,150,50);
+      f.add(editButton);
+      // Search Interests
+      JButton searchIntButton = new JButton("Search Interests");
+      searchIntButton.setBounds(125,130,150,50);
+      f.add(searchIntButton);
+      // Search UserID
+      JButton searchUserButton = new JButton("Search User ID");
+      searchUserButton.setBounds(125,180,150,50);
+      f.add(searchUserButton);
+      // Browse
+      JButton browseButton = new JButton("Browse Entries");
+      browseButton.setBounds(125,230,150,50);
+      f.add(browseButton);
+      // Exit Button
+      JButton exitButton = new JButton("Exit");
+      exitButton.setBounds(125,280,150,50);
+      f.add(exitButton);
+      
+      
+      // Faculty Buttons
+      
+      // Label
+      JLabel label2 = new JLabel(" Faculty Features");
+      label2.setBounds(320,100,150,30);
+      f.add(label2);
+      
+      JButton addEntry = new JButton("Add Entry");
+      addEntry.setBounds(300,130,150,50);
+      f.add(addEntry);
+      
+      JButton update = new JButton("Update Entry");
+      update.setBounds(300,180,150,50);
+      f.add(update);
+      
+      JButton delete = new JButton("Delete Entry");
+      delete.setBounds(300,230,150,50);
+      f.add(delete);
+     
+      
+      f.setLayout(null); // using no layout managers
+      f.setVisible(true); // making the frame visible
+   }
+
+    /**
+     * user login
+     *
+     * @return String[] as [username, usertype]
+     */
+    public String[] appLoginPL() {
+        JPanel Inputbox = new JPanel(new GridLayout(3, 2));
+        JLabel lblUser = new JLabel("Username -> ");
+        JLabel lblPassword = new JLabel("Password -> ");
+        JTextField tfUser = new JTextField("guest");
+        JTextField tfPassword = new JPasswordField("");
+
+        Inputbox.add(lblUser);
+        Inputbox.add(tfUser);
+        Inputbox.add(lblPassword);
+        Inputbox.add(tfPassword);
+
+        lblUser.setFont(myFontForOutput);
+        tfUser.setFont(myFontForOutput);
+        tfUser.setForeground(Color.BLUE);
+        lblPassword.setFont(myFontForOutput);
+        tfPassword.setFont(myFontForOutput);
+        tfPassword.setForeground(Color.BLUE);
+
+        JOptionPane.showMessageDialog(null, Inputbox,
+                "Default password is \"guest\" - This logs into interest search application", JOptionPane.QUESTION_MESSAGE);
+
+        String userName = tfUser.getText();
+
+        String password = new String();
+        String passwordInput = new String();
+
+        passwordInput = tfPassword.getText();
+
+        // set the default password to "student"
+        if (passwordInput.equalsIgnoreCase("")) {
+            password = "guest"; // CHANGE TO guest
+        } else {
+            password = passwordInput;
+        }
+
+          //returns [username, usertype]
+
+        return new String[]{userName, dl.getUserType(userName)};
+    }
+   
+
 	public PresentationLayer() {
 		System.out.println("Connecting to the database . . .");
 
+     
+     
+     // BOX TESTS
+     StudentBox();
+     FacultyBox();
+     
+     
 		JPanel Inputbox = new JPanel(new GridLayout(3, 2));
 		JLabel lblUser = new JLabel("Username -> ");
 		JLabel lblPassword = new JLabel("Password -> ");
@@ -101,42 +204,50 @@ public class PresentationLayer {
 		}
 
 		dl.connect(userName, password); // Call DataLayer
-      
-      //loop 1 login
-      while(true){
-         String usertype = appLoginPL()[1];
-		 //case Student v Faculty
-         switch (usertype){
-			case "student":
-			//loop Student/guest
-               //Who is logged in somewhere
-               //exit button
-               //options to
-                  //edit interests
-                  //search by interests
-                  //search by userID
-                  //or browse entries
-			case "faculty":
-			//loop faculty
-               //Who is logged in somewhere
-               //exit button
-               //options to
-                  //edit interests
-                  //search by interests
-                  //search by userID
-                  //or browse entries
-                  //entries
-                     //add
-                     //update
-                     //delete
-		 }
-         break;
-         
-            
-            
-      }
+
+        //loop 1 login
+        while(true){
+            String usertype = appLoginPL()[1];
+            //case Student v Faculty
+            switch (usertype){
+                case "F":  //Faculty
+                //loop faculty
+                   //Who is logged in somewhere
+                   //exit button
+                   //options to
+                      //edit interests
+                      //search by interests
+                      //search by userID
+                      //or browse entries
+                      //entries
+                         //add
+                         //update
+                         //delete
+                    break;
+
+                case "S": // Student
+                case "G": //Guest - currently both students and guests are the same.
+                    //loop Student/guest
+                    //Who is logged in somewhere
+                    //exit button
+                    //options to
+                    //edit interests
+                    //search by interests
+                    //search by userID
+                    //or browse entries
+                    break;
+                default:
+                    System.err.println("Invalid user type!");
+                    break;
+            }
+            break;
+        }
 
 		//Closing all connections to database
+      
+     
+      
+      
 		System.out.println("\nClosing all connections to database...\n");
 		dl.close();
 
@@ -149,8 +260,9 @@ public class PresentationLayer {
 
 	public static void main(String[] args) {
 		System.out.println("Group 4");
+      
 		new PresentationLayer(); // Create a new object. An Instantiation
 		System.out.println("EOJ");
-		System.exit(0);
 	} // End of main method
 } // End of Class
+
