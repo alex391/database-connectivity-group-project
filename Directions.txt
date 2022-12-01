@@ -13,19 +13,31 @@ able to create, edit, and remove entries.
 --------------------------- Directions ---------------------------
 ---------------------------------------------------------------------
 
-Students and Guests
+- Students and Guests -
 
-* Use the search function to filter certain
+* Use the search Interest function to filter certain
 interests to find to the faculty you are 
 looking for. The application will display results
 according to how the user applys filters.
 
+* Use the search User ID function to filter certain
+users to find to the faculty you are 
+looking for. The application will display results
+according to how the user applys filters.
+
+* Use the edit Interests function to update your own
+interests in systems.
+
+* Use the browse Interests function to see a collection of 
+all entries in the system.
+
+
                                     
-Faculty
+- Faculty -
 
 * Use the INSERT entry function to add a new entry to the 
-database. You will only need to add the topic and other
-revelant info.
+database. You will need to add the topic and other
+relevant info.
 
 * Use the UPDATE entry function to edit an existing 
 entry to the database. You will need to edit the topic
@@ -35,9 +47,7 @@ and other revelant info.
 entry from the database. You will need to specify which
 entry in the GUI.
 
-* Use the search function to filter certain
-interests to find to the faculty you are 
-looking for. The application will display results
-according to how the user applys filters.
+* Faculty has access to all of the  features Student/Guest
+accounts have.
 
 

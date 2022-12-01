@@ -162,8 +162,13 @@ public class PresentationLayer {
 
 	public PresentationLayer() {
 		System.out.println("Connecting to the database . . .");
+     
+     
+     // BOX TESTS
      StudentBox();
      FacultyBox();
+     
+     
 		JPanel Inputbox = new JPanel(new GridLayout(3, 2));
 		JLabel lblUser = new JLabel("Username -> ");
 		JLabel lblPassword = new JLabel("Password -> ");
@@ -259,3 +264,4 @@ public class PresentationLayer {
 		System.exit(0);
 	} // End of main method
 } // End of Class
+
