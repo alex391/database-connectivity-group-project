@@ -1,3 +1,4 @@
+
 /*
  * ISTE 330 Jim Habermas
  * Alex Leute, Evan Reighter, Michael McIntosh, Teo Luciani, Adrian Marquez
@@ -19,6 +20,7 @@ public class PresentationLayer {
 
 	public static Font myFontForOutput = new Font("Courier", Font.BOLD, 20);
    
+
    public void StudentBox()
    {
       // Student Box Frame Setup
@@ -114,6 +116,50 @@ public class PresentationLayer {
    
    
    
+
+   public String[] appLoginPL() {
+      //user login
+      //returns String[] as [username, usertype]
+      JPanel Inputbox = new JPanel(new GridLayout(3, 2));
+		JLabel lblUser = new JLabel("Username -> ");
+		JLabel lblPassword = new JLabel("Password -> ");
+		JTextField tfUser = new JTextField("guest");
+		JTextField tfPassword = new JPasswordField("");
+
+		Inputbox.add(lblUser);
+		Inputbox.add(tfUser);
+		Inputbox.add(lblPassword);
+		Inputbox.add(tfPassword);
+
+		lblUser.setFont(myFontForOutput);
+		tfUser.setFont(myFontForOutput);
+		tfUser.setForeground(Color.BLUE);
+		lblPassword.setFont(myFontForOutput);
+		tfPassword.setFont(myFontForOutput);
+		tfPassword.setForeground(Color.BLUE);
+
+		JOptionPane.showMessageDialog(null, Inputbox,
+				"Default password is \"guest\" - This logs into interest search application", JOptionPane.QUESTION_MESSAGE);
+
+		String userName = tfUser.getText();
+
+		String password = new String();
+		String passwordInput = new String();
+
+		passwordInput = tfPassword.getText();
+
+		// set the default password to "student"
+		if (passwordInput.equalsIgnoreCase("")) {
+			password = "guest"; // CHANGE TO guest
+		} else {
+			password = passwordInput;
+		}
+      
+      //returns [username, usertype]
+      return dl.appLoginDL(username, password);
+   }
+   
+
 	public PresentationLayer() {
 		System.out.println("Connecting to the database . . .");
      StudentBox();
@@ -157,8 +203,12 @@ public class PresentationLayer {
 		dl.connect(userName, password); // Call DataLayer
       
       //loop 1 login
-         //case Student v Faculty
-            //loop Student/guest
+      while(true){
+         String usertype = appLoginPL()[1];
+		 //case Student v Faculty
+         switch (usertype){
+			case "student":
+			//loop Student/guest
                //Who is logged in somewhere
                //exit button
                //options to
@@ -166,7 +216,8 @@ public class PresentationLayer {
                   //search by interests
                   //search by userID
                   //or browse entries
-            //loop faculty
+			case "faculty":
+			//loop faculty
                //Who is logged in somewhere
                //exit button
                //options to
@@ -178,7 +229,12 @@ public class PresentationLayer {
                      //add
                      //update
                      //delete
+		 }
+         break;
+         
             
+            
+      }
 
 		//Closing all connections to database
       
