@@ -127,11 +127,10 @@ public class DataLayer {
             return 0; 
         }
     }
-    
 
-    
     /**
      * Takes in username
+     *
      * @return an array of formatted entries that match user's id
      */
     public String[] selectUpdateEntry(int userID) {
@@ -151,9 +150,39 @@ public class DataLayer {
         }
     }
 
-    public String[] appLoginDL(){
-        String[] result = new String[0];
-        return result;
+    /**
+     * Get the usertype, given a userName
+     *
+     * @param userName the username
+     * @return the user type, either "F" for Faculty or "S" for Student, "G" for guest
+     */
+    public String getUserType(String userName){
+        if (userName.equals("guest")) {
+            return "G";
+        }
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(String.format("SELECT userType FROM users WHERE userName = \"%s\"", userName));
+            String type = null;
+            if (rs.next()) {
+                type = rs.getString("userType");
+            } else {
+                System.err.println("Error in getting the topic - no more rows.");
+            }
+
+            if (type == null) {
+                System.err.println("Error in getting the topic - type is null.");
+                return "G"; // To not crash unless we have to, return G
+            }
+            else {
+                return type;
+            }
+        } catch (SQLException e) {
+            System.out.println("There was an error in getting the user type.");
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+        }
     }
 
     /**
@@ -168,9 +197,11 @@ public class DataLayer {
             byte[] digest = md.digest(plain.getBytes(StandardCharsets.UTF_8));
             return new String(digest, StandardCharsets.UTF_8);
         } catch (NoSuchAlgorithmException e) {
+            // Won't happen, because SHA-1 is guaranteed to exist
             e.printStackTrace();
             System.exit(1);
             return null;
         }
     }
+
 }
