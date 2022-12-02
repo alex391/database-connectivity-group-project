@@ -184,7 +184,7 @@ public class PresentationLayer {
         JPanel Inputbox = new JPanel(new GridLayout(3, 2));
         JLabel lblUser = new JLabel("Username -> ");
         JLabel lblPassword = new JLabel("Password -> ");
-        JTextField tfUser = new JTextField("guest");
+        JTextField tfUser = new JTextField("Guest");
         JTextField tfPassword = new JPasswordField("");
 
         Inputbox.add(lblUser);
@@ -212,6 +212,7 @@ public class PresentationLayer {
         // set the default password to "student"
         if (passwordInput.equalsIgnoreCase("")) {
             password = "guest"; // CHANGE TO guest
+
         } else {
             password = passwordInput;
         }
@@ -269,9 +270,8 @@ public class PresentationLayer {
         dl.connect(userName, password); // Call DataLayer
 
         // case Student v Faculty
-        appLogin();
-        while (loggedIn) {
-            System.out.println("before switch case");
+        loggedIn = appLogin();
+        if (loggedIn) {
             switch (userType) {
                 case "F": // Faculty
                     // loop faculty
