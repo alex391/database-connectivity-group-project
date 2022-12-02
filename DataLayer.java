@@ -290,9 +290,4 @@ public class DataLayer {
             return false;
         }
     }
-
-    public static void main(String[] args) {
-        DataLayer dl = new DataLayer();
-        System.out.println(dl.checkPassword("jHabermas", "test123"));
-    }
 }
