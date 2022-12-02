@@ -47,7 +47,7 @@ CREATE TABLE UserInterests(
 -- Creates a table of entries. 
 DROP TABLE IF EXISTS Entries;
 CREATE TABLE Entries(
-	entryId INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	entryID INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	userID INT UNSIGNED NOT NULL,
 	topic TEXT NOT NULL,
 	interestID INT NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE Entries(
 		REFERENCES Users(userID)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	PRIMARY KEY (entryId)
+	PRIMARY KEY (entryID)
 )ENGINE=InnoDB DEFAULT CHARSET= utf8mb4;
 
 -- Creates a table of faculty members. Includes their building, email, and office location so they can be contacted for future projects.
@@ -122,18 +122,18 @@ INSERT INTO UserInterests(userID, interestID) VALUES ('109','1');
 -- Data creation for Faculty table.
 INSERT INTO Faculty(userID,buildNumber,officeNumber,email) VALUES (100,175,211,'jHabermas@rit.edu');
 INSERT INTO Faculty(userID,buildNumber,officeNumber,email) VALUES (101,176,212,'bBabermas@rit.edu');
-INSERT INTO Faculty(userID,buildNumber,officeNumber,email) VALUES (102,177,213,'DDabermas@rit.edu');
+INSERT INTO Faculty(userID,buildNumber,officeNumber,email) VALUES (102,177,213,'dDabermas@rit.edu');
 INSERT INTO Faculty(userID,buildNumber,officeNumber,email) VALUES (103,178,214,'fFabermas@rit.edu');
 INSERT INTO Faculty(userID,buildNumber,officeNumber,email) VALUES (104,179,215,'gGabermas@rit.edu');
 
 -- Data creation for Entries table.
 INSERT INTO Entries(topic, userID, interestID) VALUES('All about Java',100,1);
-INSERT INTO Entries(topic, userID, interestID) VALUES('Is it ethical to restrict internet access in low income families',100,3);
+INSERT INTO Entries(topic, userID, interestID) VALUES('Is it ethical to restrict internet access in low income families?',100,3);
 INSERT INTO Entries(topic, userID, interestID) VALUES('Cultural groups around the world',101,2);
 INSERT INTO Entries(topic, userID, interestID) VALUES('All about biochemical Engineering',101,7);
 INSERT INTO Entries(topic, userID, interestID) VALUES('Cultural Melting Pots',102,2);
 INSERT INTO Entries(topic, userID, interestID) VALUES('The specifics of biochemical engineering',102,7);
-INSERT INTO Entries(topic, userID, interestID) VALUES('Java vs C++',103,1);
-INSERT INTO Entries(topic, userID, interestID) VALUES('About abstract Art',103,9);
+INSERT INTO Entries(topic, userID, interestID) VALUES('Java vs. C++',103,1);
+INSERT INTO Entries(topic, userID, interestID) VALUES('About Abstract Art',103,9);
 INSERT INTO Entries(topic, userID, interestID) VALUES('Cultural Melting Pots',104,2);
-INSERT INTO Entries(topic, userID, interestID) VALUES('About abstract Art',104,9);
+INSERT INTO Entries(topic, userID, interestID) VALUES('About Abstract Art',104,9);
