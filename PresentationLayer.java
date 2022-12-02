@@ -18,7 +18,7 @@ public class PresentationLayer {
     DataLayer dl = new DataLayer();
 
     public static Font myFontForOutput = new Font("Courier", Font.BOLD, 20);
-
+      
     public void StudentBox() {
         // Student Box Frame Setup
         JFrame f = new JFrame();
@@ -151,6 +151,28 @@ public class PresentationLayer {
       f.setLayout(null); // using no layout managers
       f.setVisible(true); // making the frame visible
    }
+   
+   
+   
+
+      // Results Box, preset object that show whatever comes out a query for any methods/button later on.
+      public void ResultBox(String in) {
+   
+      String resultTest = new String(in);
+      // Frame Creation
+      JFrame f = new JFrame();
+      f.setSize(600,600);
+      // Text Area Creation
+      JTextArea result = new JTextArea(resultTest);
+      result.setBounds(10,10,500,500);
+      f.add(result);
+      
+      
+      
+   
+      f.setLayout(null); // using no layout managers
+      f.setVisible(true); // making the frame visible
+   }
 
     /**
      * User Login
@@ -207,6 +229,7 @@ public class PresentationLayer {
         // // BOX TESTS
         // StudentBox();
         // FacultyBox();
+        ResultBox("hello");
 
         JPanel Inputbox = new JPanel(new GridLayout(3, 2));
         JLabel lblUser = new JLabel("Username -> ");
