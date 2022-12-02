@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 DROP DATABASE IF EXISTS  StudentFaculty;
 
 -- ISTE 330 Jim Habermas
@@ -135,7 +134,6 @@ INSERT INTO Entries(topic, userID, interestID) VALUES('The specifics of biochemi
 INSERT INTO Entries(topic, userID, interestID) VALUES('Java vs C++',103,1);
 INSERT INTO Entries(topic, userID, interestID) VALUES('About abstract Art',103,9);
 INSERT INTO Entries(topic, userID, interestID) VALUES('Cultural Melting Pots',104,2);
-=======
 DROP DATABASE IF EXISTS  StudentFaculty;
 
 -- ISTE 330 Jim Habermas
@@ -272,5 +270,4 @@ INSERT INTO Entries(topic, userID, interestID) VALUES('The specifics of biochemi
 INSERT INTO Entries(topic, userID, interestID) VALUES('Java vs C++',103,1);
 INSERT INTO Entries(topic, userID, interestID) VALUES('About abstract Art',103,9);
 INSERT INTO Entries(topic, userID, interestID) VALUES('Cultural Melting Pots',104,2);
->>>>>>> 414650a47f61c81ad6b7ff9c39584bf94be40647
 INSERT INTO Entries(topic, userID, interestID) VALUES('About abstract Art',104,9);

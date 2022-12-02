@@ -6,26 +6,23 @@
  * Group Project 01 StudentFaculty Project DataLayer
  */
 
-import java.sql.*;
+//import java.sql.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 
 public class PresentationLayer {
+    String userName = "";
+    String userType = "G";
+    boolean loggedIn = false;
+    DataLayer dl = new DataLayer();
 
-	DataLayer dl = new DataLayer();
-	private int columns;
-	private int rows;
+    public static Font myFontForOutput = new Font("Courier", Font.BOLD, 20);
 
-	public static Font myFontForOutput = new Font("Courier", Font.BOLD, 20);
-   
-
-   public void StudentBox() {
-      // Student Box Frame Setup
-      JFrame f = new JFrame();
-      f.setSize(400,400);
-      
+    public void StudentBox() {
+        // Student Box Frame Setup
+        JFrame f = new JFrame();
+        f.setSize(400, 400);
+        
       // Label
       JLabel label = new JLabel(" Student/Guest Features");
       label.setBounds(100,50,150,30);
@@ -120,11 +117,12 @@ public class PresentationLayer {
    }
 
     /**
-     * user login
-     *
-     * @return String[] as [username, usertype]
+     * User Login
+     * Changes global userType and userName attributes
+     * 
+     * @return true when log in matches credentials provided
      */
-    public String[] appLoginPL() {
+    public boolean appLogin() {
         JPanel Inputbox = new JPanel(new GridLayout(3, 2));
         JLabel lblUser = new JLabel("Username -> ");
         JLabel lblPassword = new JLabel("Password -> ");
@@ -144,13 +142,13 @@ public class PresentationLayer {
         tfPassword.setForeground(Color.BLUE);
 
         JOptionPane.showMessageDialog(null, Inputbox,
-                "Default password is \"guest\" - This logs into interest search application", JOptionPane.QUESTION_MESSAGE);
+                "Default password is \"guest\" - This logs into interest search application",
+                JOptionPane.QUESTION_MESSAGE);
 
-        String userName = tfUser.getText();
-
+        userName = tfUser.getText();
+        userType = dl.getUserType(userName);
         String password = new String();
         String passwordInput = new String();
-
         passwordInput = tfPassword.getText();
 
         // set the default password to "student"
@@ -160,118 +158,111 @@ public class PresentationLayer {
             password = passwordInput;
         }
 
-          //returns [username, usertype]
-
-        return new String[]{userName, dl.getUserType(userName)};
+        // returns true false
+        loggedIn = dl.checkPassword(userName, password);
+        return loggedIn;
     }
-   
 
-	public PresentationLayer() {
-		System.out.println("Connecting to the database . . .");
+    /**
+     * Constructor
+     */
+    public PresentationLayer() {
+        System.out.println("Connecting to the database . . .");
 
-     
-     
-     // BOX TESTS
-     StudentBox();
-     FacultyBox();
-     
-     
-		JPanel Inputbox = new JPanel(new GridLayout(3, 2));
-		JLabel lblUser = new JLabel("Username -> ");
-		JLabel lblPassword = new JLabel("Password -> ");
-		JTextField tfUser = new JTextField("root");
-		// JTextField tfPassword = new JTextField("");
-		JTextField tfPassword = new JPasswordField("");
+        // // BOX TESTS
+        // StudentBox();
+        // FacultyBox();
 
-		Inputbox.add(lblUser);
-		Inputbox.add(tfUser);
-		Inputbox.add(lblPassword);
-		Inputbox.add(tfPassword);
+        JPanel Inputbox = new JPanel(new GridLayout(3, 2));
+        JLabel lblUser = new JLabel("Username -> ");
+        JLabel lblPassword = new JLabel("Password -> ");
+        JTextField tfUser = new JTextField("root");
+        // JTextField tfPassword = new JTextField("");
+        JTextField tfPassword = new JPasswordField("");
 
-		lblUser.setFont(myFontForOutput);
-		tfUser.setFont(myFontForOutput);
-		tfUser.setForeground(Color.BLUE);
-		lblPassword.setFont(myFontForOutput);
-		tfPassword.setFont(myFontForOutput);
-		tfPassword.setForeground(Color.BLUE);
+        Inputbox.add(lblUser);
+        Inputbox.add(tfUser);
+        Inputbox.add(lblPassword);
+        Inputbox.add(tfPassword);
 
-		JOptionPane.showMessageDialog(null, Inputbox,
-				"Default password is \"student\" - This logs into system studentfaculty DB", JOptionPane.QUESTION_MESSAGE);
+        lblUser.setFont(myFontForOutput);
+        tfUser.setFont(myFontForOutput);
+        tfUser.setForeground(Color.BLUE);
+        lblPassword.setFont(myFontForOutput);
+        tfPassword.setFont(myFontForOutput);
+        tfPassword.setForeground(Color.BLUE);
 
-		String userName = tfUser.getText();
+        JOptionPane.showMessageDialog(null, Inputbox,
+                "Default password is \"student\" - This logs into system studentfaculty DB",
+                JOptionPane.QUESTION_MESSAGE);
 
-		String password = new String();
-		String passwordInput = new String();
+        String userName = tfUser.getText();
+        String password = new String();
+        String passwordInput = new String();
+        passwordInput = tfPassword.getText();
 
-		passwordInput = tfPassword.getText();
+        // set the default password to "student"
+        if (passwordInput.equalsIgnoreCase("")) {
+            password = "student"; // CHANGE TO STUDENT
+        } else {
+            password = passwordInput;
+        }
 
-		// set the default password to "student"
-		if (passwordInput.equalsIgnoreCase("")) {
-			password = "student"; // CHANGE TO STUDENT
-		} else {
-			password = passwordInput;
-		}
+        dl.connect(userName, password); // Call DataLayer
 
-		dl.connect(userName, password); // Call DataLayer
-
-        //loop 1 login
-        while(true){
-            String usertype = appLoginPL()[1];
-            //case Student v Faculty
-            switch (usertype){
-                case "F":  //Faculty
-                //loop faculty
-                   //Who is logged in somewhere
-                   //exit button
-                   //options to
-                      //edit interests
-                      //search by interests
-                      //search by userID
-                      //or browse entries
-                      //entries
-                         //add
-                         //update
-                         //delete
+        // case Student v Faculty
+        appLogin();
+        while (loggedIn) {
+            System.out.println("before switch case");
+            switch (userType) {
+                case "F": // Faculty
+                    // loop faculty
+                    // Who is logged in somewhere
+                    // exit button
+                    // options to
+                    // edit interests
+                    // search by interests
+                    // search by userID
+                    // or browse entries
+                    // entries
+                    // add
+                    // update
+                    // delete
+                    FacultyBox();
                     break;
 
                 case "S": // Student
-                case "G": //Guest - currently both students and guests are the same.
-                    //loop Student/guest
-                    //Who is logged in somewhere
-                    //exit button
-                    //options to
-                    //edit interests
-                    //search by interests
-                    //search by userID
-                    //or browse entries
+                    StudentBox();
+                    break;
+                case "G": // Guest - currently both students and guests are the same.
+                    // loop Student/guest
+                    // Who is logged in somewhere
+                    // exit button
+                    // options to
+                    // edit interests
+                    // search by interests
+                    // search by userID
+                    // or browse entries
+                    StudentBox();
                     break;
                 default:
                     System.err.println("Invalid user type!");
                     break;
             }
-            break;
         }
+        // Closing all connections to database
+        System.out.println("\nClosing all connections to database...\n");
+        dl.close();
 
-		//Closing all connections to database
-      
-     
-      
-      
-		System.out.println("\nClosing all connections to database...\n");
-		dl.close();
+        // End Of Job data - EOJ routines
+        java.util.Date today = new java.util.Date();
+        System.out.println("\nProgram terminated @ " + today);
+    } // End of Constructor
 
-		// End Of Job data - EOJ routines
-		java.util.Date today = new java.util.Date();
-		System.out.println("\nProgram terminated @ " + today);
-	} // End of Constructor
+    public static void main(String[] args) {
+        System.out.println("Group 4");
 
-
-
-	public static void main(String[] args) {
-		System.out.println("Group 4");
-      
-		new PresentationLayer(); // Create a new object. An Instantiation
-		System.out.println("EOJ");
-	} // End of main method
+        new PresentationLayer(); // Create a new object. An Instantiation
+        System.out.println("EOJ");
+    } // End of main method
 } // End of Class
-
