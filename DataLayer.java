@@ -5,6 +5,7 @@
  * Group Project 01 StudentFaculty Project DataLayer
  */
 
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -236,8 +237,9 @@ public class DataLayer {
     String hashString(String plain) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");
-            byte[] digest = md.digest(plain.getBytes(StandardCharsets.UTF_8));
-            return new String(digest, StandardCharsets.UTF_8);
+            byte[] bytes = md.digest(plain.getBytes(StandardCharsets.UTF_8));
+            BigInteger bi = new BigInteger(1, bytes); // Convert to a hex string. Thanks to https://stackoverflow.com/a/943963/12203444
+            return String.format("%0" + (bytes.length << 1) + "x", bi);
         } catch (NoSuchAlgorithmException e) {
             // Won't happen, because SHA-1 is guaranteed to exist
             e.printStackTrace();
@@ -279,5 +281,4 @@ public class DataLayer {
             return false;
         }
     }
-
 }
