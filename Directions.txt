@@ -1,36 +1,42 @@
---------------------------------------------------------------------
--------- Faculty Research Database Application -------- 
---------------------------------------------------------------------
+----------------------------------------------------------------------
+-------------  Faculty Research Database Application ----------------- 
+----------------------------------------------------------------------
 
-The goal of this application is to allow guests, faculty 
-and students to find common interests between 
-eachother. The application has different 
-functionalities depending on the type of user.
+The goal of this application is to allow guests, faculty, and students to find common interests between 
+each other. The application has different 
+functionalities depending on the type of user that is using it.
 All users can search for entries, while faculty are
 able to create, edit, and remove entries. 
 
 ---------------------------------------------------------------------
---------------------------- Directions ---------------------------
+--------------------------- Directions ------------------------------
 ---------------------------------------------------------------------
+- Prerequisite -
+* To utilize the application, the StudentFaculty.sql file must be sourced into their MySQL command prompt.
+* Compile the program by adding 
+
+- Using The Application -
+* Users will start the application by running the PresentationLayer.java file. The user will be prompted to provide login credentials for their localhost database. After a successful connection to their local database, the user will then be prompted to login with their application credentials. Each user will have their own user type: “Student”,”Faculty”, or “Guest.” Depending on their user type, they will have access to different functionality. Currently, there is no differing functionality between the Student and Guest user types.
+
+To login to the Guest Account
 
 - Students and Guests -
 
 * Use the search Interest function to filter certain
 interests to find to the faculty you are 
 looking for. The application will display results
-according to how the user applys filters.
+according to how the user applies filters.
 
 * Use the search User ID function to filter certain
 users to find to the faculty you are 
 looking for. The application will display results
-according to how the user applys filters.
+according to how the user applies filters.
 
 * Use the edit Interests function to update your own
 interests in systems.
 
 * Use the browse Interests function to see a collection of 
 all entries in the system.
-
 
                                     
 - Faculty -
@@ -41,13 +47,13 @@ relevant info.
 
 * Use the UPDATE entry function to edit an existing 
 entry to the database. You will need to edit the topic
-and other revelant info.
+and other relevant info.
 
 * Use the DELETE entry function to remove an existing 
 entry from the database. You will need to specify which
 entry in the GUI.
 
-* Faculty has access to all of the  features Student/Guest
+* Faculty has access to all of the features Student/Guest
 accounts have.
 
 
