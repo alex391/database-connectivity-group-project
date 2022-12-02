@@ -62,15 +62,16 @@ public class DataLayer {
     // - Takes in the interestID from input
     // System will display entries from faculty members with that interest
 
-    public int searchEntries(int interestID){
-        int result=0;
-        try{
-        PreparedStatement stmt;
-        stmt =conn.prepareStatement("SELECT topic from entries WHERE interestID = ?;");
-        stmt.setInt(1,interestID);
-        result = stmt.executeUpdate();
-        }catch(SQLException e){
-            System.out.println("There was an error in the insert.");
+    public int searchEntries(int interestid) {
+        int result = 0;
+        try {
+            PreparedStatement stmt;
+            stmt = conn.prepareStatement(
+                    "SELECT entries.topic AS \"email\" ,interestID From userinterests JOIN entries USING(userID) WHERE entries.userID = userinterests.userID AND interestID = ? GROUP BY entries.userID;");
+            stmt.setInt(1, interestid);
+            result = stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("There was an error in the insert");
             System.out.println("Error = " + e);
             e.printStackTrace();
         }
@@ -204,7 +205,7 @@ public class DataLayer {
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement
-                    .executeQuery(String.format("SELECT userType FROM users WHERE userName = \"%s\"", userName));
+                    .executeQuery(String.format("SELECT userType FROM users WHERE userName = \"%s\";", userName));
             String type = null;
             if (rs.next()) {
                 type = rs.getString("userType");
@@ -255,6 +256,30 @@ public class DataLayer {
      * @return true if the password matches what's in the database.
      */
     boolean checkPassword(String userName, String password) {
-        return true;
+        password = hashString(password);
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement
+                    .executeQuery(String.format("SELECT password FROM users WHERE userName = \"%s\";", userName));
+            String correctPassword = null;
+            if (rs.next()) {
+                correctPassword = rs.getString("password");
+            } else {
+                System.err.println("Error in checking the password - no more rows.");
+            }
+
+            if (correctPassword == null) {
+                System.err.println("Error in checking the password - type is null.");
+                return false;
+            } else {
+                return password.equals(correctPassword);
+            }
+        } catch (SQLException e) {
+            System.out.println("There was an error in checking the password.");
+            e.printStackTrace();
+            System.exit(1);
+            return false;
+        }
     }
+
 }

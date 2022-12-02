@@ -22,7 +22,7 @@ public class PresentationLayer {
         // Student Box Frame Setup
         JFrame f = new JFrame();
         f.setSize(400, 400);
-        
+
       // Label
       JLabel label = new JLabel(" Student/Guest Features");
       label.setBounds(100,50,150,30);
@@ -31,15 +31,15 @@ public class PresentationLayer {
       JButton editButton = new JButton("Edit Interests");
       editButton.setBounds(100,80,150,50);
       f.add(editButton);
-      
+
             //  Edit Button Listening
             editButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                editButton.setBounds(120,80,150,50);
                }
             });
-        
-        
+
+
       // Search Interests
       JButton searchIntButton = new JButton("Search Interests");
       searchIntButton.setBounds(100,130,150,50);
@@ -56,16 +56,16 @@ public class PresentationLayer {
       JButton exitButton = new JButton("Exit");
       exitButton.setBounds(100,280,150,50);
       f.add(exitButton);
-   
+
       f.setLayout(null); // using no layout managers
       f.setVisible(true); // making the frame visible
    }
-   
+
       public void FacultyBox() {
       // Faculty Box Frame Setup
       JFrame f = new JFrame();
       f.setSize(600,400);
-      
+
       // Label
       JLabel label = new JLabel(" Student/Guest Features");
       label.setBounds(125,50,150,30);
@@ -90,28 +90,28 @@ public class PresentationLayer {
       JButton exitButton = new JButton("Exit");
       exitButton.setBounds(125,280,150,50);
       f.add(exitButton);
-      
-      
+
+
       // Faculty Buttons
-      
+
       // Label
       JLabel label2 = new JLabel(" Faculty Features");
       label2.setBounds(320,100,150,30);
       f.add(label2);
-      
+
       JButton addEntry = new JButton("Add Entry");
       addEntry.setBounds(300,130,150,50);
       f.add(addEntry);
-      
+
       JButton update = new JButton("Update Entry");
       update.setBounds(300,180,150,50);
       f.add(update);
-      
+
       JButton delete = new JButton("Delete Entry");
       delete.setBounds(300,230,150,50);
       f.add(delete);
-     
-      
+
+
       f.setLayout(null); // using no layout managers
       f.setVisible(true); // making the frame visible
    }
@@ -159,8 +159,7 @@ public class PresentationLayer {
         }
 
         // returns true false
-        loggedIn = dl.checkPassword(userName, password);
-        return loggedIn;
+        return dl.checkPassword(userName, password);
     }
 
     /**
