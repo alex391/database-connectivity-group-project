@@ -226,6 +226,7 @@ public class PresentationLayer {
                          //add
                          //update
                          //delete
+                    FacultyBox();
                     break;
 
                 case "S": // Student
@@ -240,7 +241,7 @@ public class PresentationLayer {
                     //search by interests
                     //search by userID
                     //or browse entries
-                    FacultyBox();
+                    StudentBox();
                     break;
                 default:
                     System.err.println("Invalid user type!");
