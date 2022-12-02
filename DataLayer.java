@@ -98,20 +98,21 @@ public class DataLayer {
         return result;
     }
 
-    // Faculty Add Function
-    // - Takes in the userID from sign in and topic from input
-    // - User will input the topic and other entry data into GUI,
-    // System already knows their userID, entryID is assigned automatically.
-
+    /**
+     * This function adds an entry into the database containing userID and a topic.
+     * The system already knows the userID due to the sign in.
+     * The entryID is assigned automatically.
+     * @param userID The userID to use for the new entry in the database.
+     * @param topic The topic to use for the new entry in the database.
+     * @return the result of the add function whether it was successful or not.
+     */
     public int addEntry(int userID, String topic) {
         int result = 0;
         try {
-
             PreparedStatement stmt;
             stmt = conn.prepareStatement("INSERT INTO entries(userID, topic) VALUES (?, ?);");
             stmt.setInt(1, userID);
             stmt.setString(2, topic);
-
             result = stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("There was an error in the insert.");
@@ -142,11 +143,10 @@ public class DataLayer {
     }
 
     /**
-     * Faculty Update Function
-     * Searches the database using the entryID given from the user.
+     * This function searches the database using the entryID given from the user.
      * Once an entry is found, the user can input whatever edits they
-     * want to make to the topic. The method will update the
-     * entry's topic when the user is done.
+     * want to make to the topic. 
+     * The method will update the entry's topic when the user is done.
      * @param entryID used to edit the topic of the faculty member corresponding to that ID.
      * @param newTopic the new topic that the user wants to replace the entry's topic with.
      * @return the result of the update function whether it was successful or not.
@@ -192,7 +192,7 @@ public class DataLayer {
     }
 
     /**
-     * This function gets the usertype using the given userName.
+     * This function gets the userType using the given userName.
      * @param userName the userName to be checked for a userType.
      * @return the userType, either "F" for 
      * Faculty, "S" for Student, or "G" for Guest.
@@ -254,6 +254,7 @@ public class DataLayer {
      * @param userName the userName of the user.
      * @param password the password of the user.
      * @return true if the password matches what's in the database.
+     * False means that it did not match.
      */
     boolean checkPassword(String userName, String password) {
         password = hashString(password);
@@ -281,5 +282,4 @@ public class DataLayer {
             return false;
         }
     }
-
 }
