@@ -5,7 +5,6 @@
  * Group Project 01 StudentFaculty Project DataLayer
  */
 
-import java.io.Console;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -36,6 +35,7 @@ public class DataLayer {
             // SQLException will be thrown, if database access occurs or url is null.
 
             conn = DriverManager.getConnection(url, username, password);
+            System.out.println("Connection successful");
         } catch (SQLException sqle) {
             sqle.printStackTrace();
             System.out.println("There was a connection error");
