@@ -5,7 +5,6 @@
  * Group Project 01 StudentFaculty Project DataLayer
  */
 
-import javax.xml.crypto.Data;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -289,10 +288,5 @@ public class DataLayer {
             System.exit(1);
             return false;
         }
-    }
-
-    public static void main(String[] args) {
-        DataLayer dl = new DataLayer();
-        System.out.println(dl.checkPassword("jHabermas", "test123"));
     }
 }
