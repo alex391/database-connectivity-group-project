@@ -50,6 +50,7 @@ CREATE TABLE Entries(
 	entryId INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	userID INT UNSIGNED NOT NULL,
 	topic TEXT NOT NULL,
+	interestID INT NOT NULL,
 	CONSTRAINT userIDFK   FOREIGN KEY (userID)    
 		REFERENCES Users(userID)
 		ON DELETE CASCADE
@@ -124,13 +125,13 @@ INSERT INTO Faculty(userID,buildNumber,officeNumber,email) VALUES (103,178,214,'
 INSERT INTO Faculty(userID,buildNumber,officeNumber,email) VALUES (104,179,215,'gGabermas@rit.edu');
 
 -- Data creation for Entries table.
-INSERT INTO Entries(topic, userID) VALUES('All about Java',100);
-INSERT INTO Entries(topic, userID) VALUES('Is it ethical to restirict internet access in low income families',100);
-INSERT INTO Entries(topic, userID) VALUES('Cultural groups around the world',101);
-INSERT INTO Entries(topic, userID) VALUES('All about biochemical Engineering',101);
-INSERT INTO Entries(topic, userID) VALUES('Cultural Melting Pots',102);
-INSERT INTO Entries(topic, userID) VALUES('The specifics of biochemical engineering',102);
-INSERT INTO Entries(topic, userID) VALUES('Java vs C++',103);
-INSERT INTO Entries(topic, userID) VALUES('About abstract Art',103);
-INSERT INTO Entries(topic, userID) VALUES('Cultural Melting Pots',104);
-INSERT INTO Entries(topic, userID) VALUES('About abstract Art',104);
+INSERT INTO Entries(topic, userID, interestID) VALUES('All about Java',100,1);
+INSERT INTO Entries(topic, userID, interestID) VALUES('Is it ethical to restirict internet access in low income families',100,3);
+INSERT INTO Entries(topic, userID, interestID) VALUES('Cultural groups around the world',101,2);
+INSERT INTO Entries(topic, userID, interestID) VALUES('All about biochemical Engineering',101,7);
+INSERT INTO Entries(topic, userID, interestID) VALUES('Cultural Melting Pots',102,2);
+INSERT INTO Entries(topic, userID, interestID) VALUES('The specifics of biochemical engineering',102,7);
+INSERT INTO Entries(topic, userID, interestID) VALUES('Java vs C++',103,1);
+INSERT INTO Entries(topic, userID, interestID) VALUES('About abstract Art',103,9);
+INSERT INTO Entries(topic, userID, interestID) VALUES('Cultural Melting Pots',104,2);
+INSERT INTO Entries(topic, userID, interestID) VALUES('About abstract Art',104,9);
