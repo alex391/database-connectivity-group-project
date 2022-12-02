@@ -34,6 +34,15 @@ public class PresentationLayer {
       JButton editButton = new JButton("Edit Interests");
       editButton.setBounds(100,80,150,50);
       f.add(editButton);
+      
+            //  Edit Button Listening
+            editButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               editButton.setBounds(120,80,150,50);
+               }
+            });
+        
+        
       // Search Interests
       JButton searchIntButton = new JButton("Search Interests");
       searchIntButton.setBounds(100,130,150,50);
