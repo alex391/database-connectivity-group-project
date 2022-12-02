@@ -5,7 +5,6 @@
  * Group Project 01 StudentFaculty Project DataLayer
  */
 
-import java.io.Console;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -70,7 +69,7 @@ public class DataLayer {
         int result=0;
         try{
         PreparedStatement stmt;
-        stmt =conn.prepareStatement("SELECT entries.topic AS \"email\" ,interestID From userinterests JOIN entries USING(userID) WHERE entries.userID = userinterests.userID AND interestID = ? GROUP BY entries.userID;");
+        stmt =conn.prepareStatement("Select topic from entries WHERE interestID = ?;");
         stmt.setInt(1,interestid);
         result = stmt.executeUpdate();
         }catch(SQLException e){
@@ -245,17 +244,5 @@ public class DataLayer {
             return null;
         }
     }
-
-    /**
-     * Check if the password is correct
-     *
-     * @param username the username of the user
-     * @param password the password
-     * @return true if the password matches what's in the database
-     */
-    boolean checkPassword(String username, String password) {
-        return true;
-    }
-
 
 }
