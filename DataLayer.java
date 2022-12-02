@@ -20,11 +20,10 @@ public class DataLayer {
      * @return true if the connection is successful, else false
      */
     public boolean connect(String userName, String password) {
-        // get a connection
-
+        // 1) Get a connection
         /*
          * url line below at the end identifies the database name
-         * /* Define Data Source
+         * Define Data Source
          */
         String url = "jdbc:mysql://localhost/studentfaculty";
         url = url + "?serverTimezone=UTC"; // added 9/12
@@ -123,8 +122,7 @@ public class DataLayer {
     }
 
     /**
-     * Faculty Delete Entry Function.
-     * Deletes a faculty member by taking in their entryID.
+     * This function deletes a faculty member by taking in their entryID.
      * @param entryID used to delete the faculty member corresponding to that ID.
      * @return the result of the delete function whether it was successful or not.
      * 0 means that it did not work.
@@ -170,22 +168,23 @@ public class DataLayer {
     }
 
     /**
-     * Takes in userName
-     *
-     * @return an array of formatted entries that match user's ID
+     * This function selects all the topics from 
+     * an entry where the userID matches.
+     * @return an array of formatted topics that match user's ID
+     * Null means that it did not work.
      */
-    public String[] selectUpdateEntry(int userID) {
+    public String[] selectTopicsFromEntry(int userID) {
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement
                     .executeQuery("SELECT topic FROM Entries WHERE userID = " + Integer.toString(userID));
-            List<String> topics = new ArrayList<>();
+            List<String> arrayTopics = new ArrayList<>();
             while (rs.next()) {
-                topics.add(rs.getString("topic"));
+                arrayTopics.add(rs.getString("topic"));
             }
-            return topics.toArray(new String[0]);
+            return arrayTopics.toArray(new String[0]);
         } catch (SQLException e) {
-            System.out.println("There was an error in selecting update entries.");
+            System.out.println("There was an error in selecting topic(s) from the entryID given.");
             e.printStackTrace();
             System.exit(1);
             return null;
@@ -193,10 +192,11 @@ public class DataLayer {
     }
 
     /**
-     * Get the usertype, given a userName
-     *
-     * @param userName the username
-     * @return the user type, either "F" for Faculty or "S" for Student, "G" for guest
+     * This function gets the usertype using the given userName.
+     * @param userName the userName to be checked for a userType.
+     * @return the userType, either "F" for 
+     * Faculty, "S" for Student, or "G" for Guest.
+     * Null means that it did not work.
      */
     public String getUserType(String userName) {
         if (userName.equals("guest")) {
@@ -228,18 +228,19 @@ public class DataLayer {
     }
 
     /**
-     * Hash a string
+     * This function hashes a string and converts it using a SHA-1 hash.
      *
-     * @param plain - the plaintext string to hash
-     * @return the hash of that string
+     * @param plainText The plaintext string that is going to be converted to to hash.
+     * @return the hash of that string.
+     * Null means that it did not work.
      */
-    String hashString(String plain) {
+    String hashString(String plainText) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");
-            byte[] digest = md.digest(plain.getBytes(StandardCharsets.UTF_8));
+            byte[] digest = md.digest(plainText.getBytes(StandardCharsets.UTF_8));
             return new String(digest, StandardCharsets.UTF_8);
         } catch (NoSuchAlgorithmException e) {
-            // Won't happen, because SHA-1 is guaranteed to exist
+            // Won't happen, because SHA-1 is guaranteed to exist.
             e.printStackTrace();
             System.exit(1);
             return null;
@@ -247,11 +248,12 @@ public class DataLayer {
     }
 
     /**
-     * Check if the password is correct
-     *
-     * @param userName the username of the user
-     * @param password the password
-     * @return true if the password matches what's in the database, else false
+     * This function checks if the password is correct
+     * and matches what's in the database.
+     * 
+     * @param userName the userName of the user.
+     * @param password the password of the user.
+     * @return true if the password matches what's in the database.
      */
     boolean checkPassword(String userName, String password) {
         password = hashString(password);
