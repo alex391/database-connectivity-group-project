@@ -5,7 +5,6 @@
  * Group Project 01 StudentFaculty Project DataLayer
  */
 
-import java.io.Console;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -20,7 +19,7 @@ public class DataLayer {
      * 
      * @return true if the connection is successful, else false
      */
-    public boolean connect(String username, String password) {
+    public boolean connect(String userName, String password) {
         // get a connection
 
         /*
@@ -35,7 +34,7 @@ public class DataLayer {
             // This statement below returns connections to the URL.
             // SQLException will be thrown, if database access occurs or url is null.
 
-            conn = DriverManager.getConnection(url, username, password);
+            conn = DriverManager.getConnection(url, userName, password);
         } catch (SQLException sqle) {
             sqle.printStackTrace();
             System.out.println("There was a connection error");
@@ -84,16 +83,16 @@ public class DataLayer {
     // - Takes in the interestID from input
     // System will display the email address from faculty members with that interest
 
-    public int searchFaculty(int interestid) {
+    public int searchFaculty(int interestID) {
         int result = 0;
         try {
             PreparedStatement stmt;
             stmt = conn.prepareStatement(
-                    "SELECT faculty.email AS 'email', faculty.officeNumber as 'Office Number'From faculty JOIN userinterests USING(userID) WHERE faculty.userID = userID AND interestID = ? GROUP BY faculty.userID;");
-            stmt.setInt(1, interestid);
+                    "SELECT faculty.email AS 'email', faculty.officeNumber AS 'Office Number' FROM faculty JOIN userinterests USING(userID) WHERE faculty.userID = userID AND interestID = ? GROUP BY faculty.userID;");
+            stmt.setInt(1, interestID);
             result = stmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("There was an error in the insert");
+            System.out.println("There was an error in the insert.");
             System.out.println("Error = " + e);
             e.printStackTrace();
         }
@@ -105,58 +104,39 @@ public class DataLayer {
     // - User will input the topic and other entry data into GUI,
     // System already knows their userID, entryID is assigned automatically.
 
-    public int addEntry(int userid, String topic) {
+    public int addEntry(int userID, String topic) {
         int result = 0;
         try {
 
             PreparedStatement stmt;
             stmt = conn.prepareStatement("INSERT INTO entries(userID, topic) VALUES (?, ?);");
-            stmt.setInt(1, userid);
+            stmt.setInt(1, userID);
             stmt.setString(2, topic);
 
             result = stmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("There was an error in the insert");
+            System.out.println("There was an error in the insert.");
             System.out.println("Error = " + e);
             e.printStackTrace();
         }
         return (result);
     }
 
-    // Faculty Delete Function
-    // - Takes in the entryid from GUI
-    // User will choose which entry to delete (to be implemented later). Deletes
-    // the unique entryID
-
-    public int deleteEntry(int entryid) {
+    /**
+     * Faculty Delete Entry Function.
+     * Deletes a faculty member by taking in their entryID.
+     * @param entryID used to delete the faculty member corresponding to that ID.
+     * @return the result of the delete function whether it was successful or not.
+     * 0 means that it did not work.
+     */
+    public int deleteEntry(int entryID) {
         PreparedStatement stmt;
         try {
             stmt = conn.prepareStatement("DELETE FROM entries WHERE entryID = ?;");
-            stmt.setInt(1, entryid);
+            stmt.setInt(1, entryID);
             return stmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("There was an error in the delete");
-            e.printStackTrace();
-            System.exit(1);
-            return 0;
-        }
-    }
-
-    // Faculty Update Function
-    // - update the entry topic based on the entryid
-    // - Will take in the entryid from searching method, and user
-    // inputs whatever edits they make to topic. Method will
-    // update the entry when user is done
-
-    public int updateEntry(int entryid, String topic) {
-        PreparedStatement stmt;
-        try {
-            stmt = conn.prepareStatement("UPDATE entries SET topic = ? WHERE entryId = ?;");
-            stmt.setInt(1, entryid);
-            stmt.setString(2, topic);
-            return stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("There was an error in the update");
+            System.out.println("There was an error in the delete.");
             e.printStackTrace();
             System.exit(1);
             return 0;
@@ -164,9 +144,35 @@ public class DataLayer {
     }
 
     /**
-     * Takes in username
+     * Faculty Update Function
+     * Searches the database using the entryID given from the user.
+     * Once an entry is found, the user can input whatever edits they
+     * want to make to the topic. The method will update the
+     * entry's topic when the user is done.
+     * @param entryID used to edit the topic of the faculty member corresponding to that ID.
+     * @param newTopic the new topic that the user wants to replace the entry's topic with.
+     * @return the result of the update function whether it was successful or not.
+     * 0 means that it did not work.
+     */
+    public int updateEntry(int entryID, String newTopic) {
+        PreparedStatement stmt;
+        try {
+            stmt = conn.prepareStatement("UPDATE entries SET topic = ? WHERE entryId = ?;");
+            stmt.setString(1, newTopic);
+            stmt.setInt(2, entryID);
+            return stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("There was an error in the update.");
+            e.printStackTrace();
+            System.exit(1);
+            return 0;
+        }
+    }
+
+    /**
+     * Takes in userName
      *
-     * @return an array of formatted entries that match user's id
+     * @return an array of formatted entries that match user's ID
      */
     public String[] selectUpdateEntry(int userID) {
         try {
@@ -179,7 +185,7 @@ public class DataLayer {
             }
             return topics.toArray(new String[0]);
         } catch (SQLException e) {
-            System.out.println("There was an error in selecting entries");
+            System.out.println("There was an error in selecting update entries.");
             e.printStackTrace();
             System.exit(1);
             return null;
@@ -256,17 +262,17 @@ public class DataLayer {
             if (rs.next()) {
                 correctPassword = rs.getString("userType");
             } else {
-                System.err.println("Error in getting the topic - no more rows.");
+                System.err.println("Error in checking the password - no more rows.");
             }
 
             if (correctPassword == null) {
-                System.err.println("Error in getting the topic - type is null.");
+                System.err.println("Error in checking the password - type is null.");
                 return false;
             } else {
                 return password.equals(correctPassword);
             }
         } catch (SQLException e) {
-            System.out.println("There was an error in getting the user type.");
+            System.out.println("There was an error in checking the password.");
             e.printStackTrace();
             System.exit(1);
             return false;
