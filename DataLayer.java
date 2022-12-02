@@ -254,6 +254,7 @@ public class DataLayer {
      * @return true if the password matches what's in the database, else false
      */
     boolean checkPassword(String userName, String password) {
+        password = hashString(password);
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement
