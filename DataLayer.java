@@ -15,28 +15,28 @@ import java.util.List;
 public class DataLayer {
     private Connection conn;
     /**
-     * Connect to the database
+     * Connect to the database and create a connection.
      * 
-     * @return true if the connection is successful, else false
+     * @return True if the connection is successful.
+     * Return false if otherwise.
      */
     public boolean connect(String userName, String password) {
         // 1) Get a connection
         /*
-         * url line below at the end identifies the database name
+         * Url line below at the end identifies the database name
          * Define Data Source
          */
         String url = "jdbc:mysql://localhost/studentfaculty";
-        url = url + "?serverTimezone=UTC"; // added 9/12
+        url = url + "?serverTimezone=UTC";
 
         // 2) Create a connection
         try {
             // This statement below returns connections to the URL.
             // SQLException will be thrown, if database access occurs or url is null.
-
             conn = DriverManager.getConnection(url, userName, password);
         } catch (SQLException sqle) {
             sqle.printStackTrace();
-            System.out.println("There was a connection error");
+            System.out.println("There was a connection error.");
             System.exit(1);
             return false;
         }
@@ -44,9 +44,10 @@ public class DataLayer {
     }
 
     /**
-     * Close the database connection
+     * Close the database connection.
      * 
-     * @return true if successful, false otherwise
+     * @return True if closing the connection is successful.
+     * Return false if otherwise.
      */
     public boolean close() {
         try {
@@ -58,30 +59,34 @@ public class DataLayer {
         return true;
     }
 
-    // student search Entries Function
-    // - Takes in the interestID from input
-    // System will display entries from faculty members with that interest
-
-    public int searchEntries(int interestid) {
+    /**
+     * This function searches the entries for a shared interest using an interestID that matches it.
+     * The fucntion will display all entries from the faculty member that shares that interest.
+     * @param interestID The interestID of the desired interest to search for.
+     * @return all the entries of the faculty members that have that interest.
+     */
+    public int searchEntries(int interestID) {
         int result = 0;
         try {
             PreparedStatement stmt;
             stmt = conn.prepareStatement(
                     "SELECT entries.topic AS \"email\" ,interestID From userinterests JOIN entries USING(userID) WHERE entries.userID = userinterests.userID AND interestID = ? GROUP BY entries.userID;");
-            stmt.setInt(1, interestid);
+            stmt.setInt(1, interestID);
             result = stmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("There was an error in the insert");
+            System.out.println("There was an error in the select.");
             System.out.println("Error = " + e);
             e.printStackTrace();
         }
         return result;
     }
 
-    // student search faculty Function
-    // - Takes in the interestID from input
-    // System will display the email address from faculty members with that interest
-
+    /**
+     * This function searches the faculty for a shared interest using an interestID that matches it.
+     * The function will return the emails of every faculty member that shares that interest.
+     * @param interestID The interestID of the desired interest to search for.
+     * @return all the emails of every faculty member that shares that interest.
+     */
     public int searchFaculty(int interestID) {
         int result = 0;
         try {
@@ -91,7 +96,7 @@ public class DataLayer {
             stmt.setInt(1, interestID);
             result = stmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("There was an error in the insert.");
+            System.out.println("There was an error in the select.");
             System.out.println("Error = " + e);
             e.printStackTrace();
         }
@@ -220,7 +225,7 @@ public class DataLayer {
                 return type;
             }
         } catch (SQLException e) {
-            System.out.println("There was an error in getting the user type.");
+            System.out.println("There was an error in getting/selecting the user type.");
             e.printStackTrace();
             System.exit(1);
             return null;
