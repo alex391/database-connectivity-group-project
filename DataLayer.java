@@ -15,8 +15,6 @@ import java.util.List;
 
 public class DataLayer {
     private Connection conn;
-    private Console console = System.console();
-
     /**
      * Connect to the database
      * 
