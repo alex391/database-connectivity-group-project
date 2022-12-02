@@ -64,15 +64,14 @@ public class DataLayer {
     // - Takes in the interestID from input
     // System will display entries from faculty members with that interest
 
-    public int searchEntries(int interestid) {
-        int result = 0;
-        try {
-            PreparedStatement stmt;
-            stmt = conn.prepareStatement(
-                    "SELECT entries.topic AS \"email\" ,interestID From userinterests JOIN entries USING(userID) WHERE entries.userID = userinterests.userID AND interestID = ? GROUP BY entries.userID;");
-            stmt.setInt(1, interestid);
-            result = stmt.executeUpdate();
-        } catch (SQLException e) {
+    public int searchEntries(int interestid){
+        int result=0;
+        try{
+        PreparedStatement stmt;
+        stmt =conn.prepareStatement("Select topic from entries WHERE interestID = ?;");
+        stmt.setInt(1,interestid);
+        result = stmt.executeUpdate();
+        }catch(SQLException e){
             System.out.println("There was an error in the insert");
             System.out.println("Error = " + e);
             e.printStackTrace();
