@@ -261,7 +261,7 @@ public class DataLayer {
                     .executeQuery(String.format("SELECT password FROM users WHERE userName = \"%s\";", userName));
             String correctPassword = null;
             if (rs.next()) {
-                correctPassword = rs.getString("userType");
+                correctPassword = rs.getString("password");
             } else {
                 System.err.println("Error in checking the password - no more rows.");
             }
