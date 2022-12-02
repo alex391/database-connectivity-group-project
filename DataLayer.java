@@ -190,8 +190,7 @@ public class DataLayer {
      * Get the usertype, given a userName
      *
      * @param userName the username
-     * @return the user type, either "F" for Faculty or "S" for Student, "G" for
-     *         guest
+     * @return the user type, either "F" for Faculty or "S" for Student, "G" for guest
      */
     public String getUserType(String userName) {
         if (userName.equals("guest")) {
@@ -200,7 +199,7 @@ public class DataLayer {
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement
-                    .executeQuery(String.format("SELECT userType FROM users WHERE userName = \"%s\"", userName));
+                    .executeQuery(String.format("SELECT userType FROM users WHERE userName = \"%s\";", userName));
             String type = null;
             if (rs.next()) {
                 type = rs.getString("userType");
@@ -244,12 +243,34 @@ public class DataLayer {
     /**
      * Check if the password is correct
      *
-     * @param username the username of the user
+     * @param userName the username of the user
      * @param password the password
-     * @return true if the password matches what's in the database
+     * @return true if the password matches what's in the database, else false
      */
-    boolean checkPassword(String username, String password) {
-        return true;
+    boolean checkPassword(String userName, String password) {
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement
+                    .executeQuery(String.format("SELECT password FROM users WHERE userName = \"%s\";", userName));
+            String correctPassword = null;
+            if (rs.next()) {
+                correctPassword = rs.getString("userType");
+            } else {
+                System.err.println("Error in getting the topic - no more rows.");
+            }
+
+            if (correctPassword == null) {
+                System.err.println("Error in getting the topic - type is null.");
+                return false;
+            } else {
+                return password.equals(correctPassword);
+            }
+        } catch (SQLException e) {
+            System.out.println("There was an error in getting the user type.");
+            e.printStackTrace();
+            System.exit(1);
+            return false;
+        }
     }
 
 }

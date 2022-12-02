@@ -144,8 +144,7 @@ public class PresentationLayer {
         }
 
         // returns true false
-        boolean successFail = dl.checkPassword(userName, password);
-        return successFail;
+        return dl.checkPassword(userName, password);
     }
 
     /**
