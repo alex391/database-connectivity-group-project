@@ -290,8 +290,6 @@ public class PresentationLayer {
                     break;
 
                 case "S": // Student
-                    StudentBox();
-                    break;
                 case "G": // Guest - currently both students and guests are the same.
                     // loop Student/guest
                     // Who is logged in somewhere

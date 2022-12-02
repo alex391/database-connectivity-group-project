@@ -5,6 +5,7 @@
  * Group Project 01 StudentFaculty Project DataLayer
  */
 
+import javax.xml.crypto.Data;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -183,7 +184,7 @@ public class DataLayer {
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement
-                    .executeQuery("SELECT topic FROM Entries WHERE userID = " + Integer.toString(userID));
+                    .executeQuery("SELECT topic FROM Entries WHERE userID = " + userID);
             List<String> arrayTopics = new ArrayList<>();
             while (rs.next()) {
                 arrayTopics.add(rs.getString("topic"));
@@ -288,5 +289,10 @@ public class DataLayer {
             System.exit(1);
             return false;
         }
+    }
+
+    public static void main(String[] args) {
+        DataLayer dl = new DataLayer();
+        System.out.println(dl.checkPassword("jHabermas", "test123"));
     }
 }
