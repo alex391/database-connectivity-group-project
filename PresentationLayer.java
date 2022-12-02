@@ -13,7 +13,7 @@ import java.awt.*;
 public class PresentationLayer {
     String userName = "";
     String userType = "G";
-
+    boolean loggedIn = false;
     DataLayer dl = new DataLayer();
 
     public static Font myFontForOutput = new Font("Courier", Font.BOLD, 20);
@@ -144,8 +144,8 @@ public class PresentationLayer {
         }
 
         // returns true false
-        boolean successFail = dl.checkPassword(userName, password);
-        return successFail;
+        loggedIn = dl.checkPassword(userName, password);
+        return loggedIn;
     }
 
     /**
@@ -154,9 +154,9 @@ public class PresentationLayer {
     public PresentationLayer() {
         System.out.println("Connecting to the database . . .");
 
-        // BOX TESTS
-        StudentBox();
-        FacultyBox();
+        // // BOX TESTS
+        // StudentBox();
+        // FacultyBox();
 
         JPanel Inputbox = new JPanel(new GridLayout(3, 2));
         JLabel lblUser = new JLabel("Username -> ");
@@ -196,7 +196,9 @@ public class PresentationLayer {
         dl.connect(userName, password); // Call DataLayer
 
         // case Student v Faculty
-        while (!appLogin()) {
+        appLogin();
+        while (loggedIn) {
+            System.out.println("before switch case");
             switch (userType) {
                 case "F": // Faculty
                     // loop faculty
@@ -232,7 +234,6 @@ public class PresentationLayer {
                     System.err.println("Invalid user type!");
                     break;
             }
-            break;
         }
         // Closing all connections to database
         System.out.println("\nClosing all connections to database...\n");

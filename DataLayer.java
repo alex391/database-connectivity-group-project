@@ -5,7 +5,6 @@
  * Group Project 01 StudentFaculty Project DataLayer
  */
 
-import java.io.Console;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -15,8 +14,6 @@ import java.util.List;
 
 public class DataLayer {
     private Connection conn;
-    private Console console = System.console();
-
     /**
      * Connect to the database
      * 
@@ -66,15 +63,14 @@ public class DataLayer {
     // - Takes in the interestID from input
     // System will display entries from faculty members with that interest
 
-    public int searchEntries(int interestID) {
-        int result = 0;
-        try {
-            PreparedStatement stmt;
-            stmt = conn.prepareStatement(
-                    "SELECT entries.topic AS \"email\" , interestID FROM userinterests JOIN entries USING(userID) WHERE entries.userID = userinterests.userID AND interestID = ? GROUP BY entries.userID;");
-            stmt.setInt(1, interestID);
-            result = stmt.executeUpdate();
-        } catch (SQLException e) {
+    public int searchEntries(int interestID){
+        int result=0;
+        try{
+        PreparedStatement stmt;
+        stmt =conn.prepareStatement("SELECT topic from entries WHERE interestID = ?;");
+        stmt.setInt(1,interestID);
+        result = stmt.executeUpdate();
+        }catch(SQLException e){
             System.out.println("There was an error in the insert.");
             System.out.println("Error = " + e);
             e.printStackTrace();
@@ -91,11 +87,11 @@ public class DataLayer {
         try {
             PreparedStatement stmt;
             stmt = conn.prepareStatement(
-                    "SELECT faculty.email AS 'email', faculty.officeNumber as 'Office Number' FROM faculty JOIN userinterests USING(userID) WHERE faculty.userID = userID AND interestID = ? GROUP BY faculty.userID;");
+                    "SELECT faculty.email AS 'email', faculty.officeNumber AS 'Office Number' FROM faculty JOIN userinterests USING(userID) WHERE faculty.userID = userID AND interestID = ? GROUP BY faculty.userID;");
             stmt.setInt(1, interestID);
             result = stmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("There was an error in the insert");
+            System.out.println("There was an error in the insert.");
             System.out.println("Error = " + e);
             e.printStackTrace();
         }
@@ -161,11 +157,11 @@ public class DataLayer {
         PreparedStatement stmt;
         try {
             stmt = conn.prepareStatement("UPDATE entries SET topic = ? WHERE entryId = ?;");
-            stmt.setInt(1, entryID);
-            stmt.setString(2, newTopic);
+            stmt.setString(1, newTopic);
+            stmt.setInt(2, entryID);
             return stmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("There was an error in the update");
+            System.out.println("There was an error in the update.");
             e.printStackTrace();
             System.exit(1);
             return 0;
@@ -188,7 +184,7 @@ public class DataLayer {
             }
             return topics.toArray(new String[0]);
         } catch (SQLException e) {
-            System.out.println("There was an error in selecting entries");
+            System.out.println("There was an error in selecting update entries.");
             e.printStackTrace();
             System.exit(1);
             return null;
@@ -260,5 +256,4 @@ public class DataLayer {
     boolean checkPassword(String userName, String password) {
         return true;
     }
-
 }
