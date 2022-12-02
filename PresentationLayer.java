@@ -229,7 +229,7 @@ public class PresentationLayer {
         // // BOX TESTS
         // StudentBox();
         // FacultyBox();
-        ResultBox("hello");
+        // ResultBox("hello");
 
         JPanel Inputbox = new JPanel(new GridLayout(3, 2));
         JLabel lblUser = new JLabel("Username -> ");
