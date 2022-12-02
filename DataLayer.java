@@ -5,13 +5,10 @@
  * Group Project 01 StudentFaculty Project DataLayer
  */
 
-<<<<<<< HEAD
 import java.io.Console;
-=======
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
->>>>>>> 1185d7dd4f760758785480e76ee27415497ccd72
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
