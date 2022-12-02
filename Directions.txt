@@ -2,44 +2,49 @@
 -------------  Faculty Research Database Application ----------------- 
 ----------------------------------------------------------------------
 
-The goal of this application is to allow guests, faculty, and students to find common interests between 
-each other. The application has different 
-functionalities depending on the type of user that is using it.
-All users can search for entries, while faculty are
-able to create, edit, and remove entries. 
+The goal of this application is to allow guests, faculty, and students to find common interests between each other. The application has different functionalities depending on the type of user that is using it. All users can search for entries, while faculty are
+able to create, edit, and remove entries.
 
----------------------------------------------------------------------
---------------------------- Directions ------------------------------
----------------------------------------------------------------------
-- Prerequisite -
-* To utilize the application, the StudentFaculty.sql file must be sourced into their MySQL command prompt.
-* Compile the program by adding 
+----------------------------------------------------------------------
+--------------------------- Directions -------------------------------
+----------------------------------------------------------------------
 
-- Using The Application -
-* Users will start the application by running the PresentationLayer.java file. The user will be prompted to provide login credentials for their localhost database. After a successful connection to their local database, the user will then be prompted to login with their application credentials. Each user will have their own user type: “Student”,”Faculty”, or “Guest.” Depending on their user type, they will have access to different functionality. Currently, there is no differing functionality between the Student and Guest user types.
+----- Prerequisites -----
 
-To login to the Guest Account
+* To utilize the application, the StudentFaculty.sql file must be sourced into their MySQL command prompt. This can be done using the SOURCE command from MySQL.
 
-- Students and Guests -
+* Please add ‘mysql-connector-java-8.0.21.jar’ to your CLASSPATH. The jar file is given in the program files.
 
-* Use the search Interest function to filter certain
-interests to find to the faculty you are 
+* Verify that you have added to the CLASSPATH correctly by compiling the program. Either use your IDE’s compile button or run ‘javac PresentationLayer.java’ in your command line. Afterwards you can either use the run button in your IDE or run ‘java PresentationLayer’ in your command line. 
+
+----- Using The Application -----
+
+* Users will start the application by running the PresentationLayer.java file. The user will be prompted to provide login credentials for their localhost database. After a successful connection to their local database, the user will then be prompted to login with their application credentials. Each user will have their own user type: “Student”,”Faculty”, or “Guest.” Depending on their user type, they will have access to different functionality. Currently, there is no differing functionality between the “Student” and “Guest” user types.
+
+* To login to the Guest account, the user can simply press enter as the default username and password are both “Guest”.
+
+* To login to a faculty account for grading purposes we have created an account with a username of “jHabermas” and a password of “test123”.
+
+----- Students and Guests -----
+
+* Use the “Search Interest” function to filter certain
+interests to find the faculty you are 
 looking for. The application will display results
 according to how the user applies filters.
 
 * Use the search User ID function to filter certain
-users to find to the faculty you are 
+users to find the faculty you are 
 looking for. The application will display results
 according to how the user applies filters.
 
 * Use the edit Interests function to update your own
-interests in systems.
+interests in the database.
 
 * Use the browse Interests function to see a collection of 
 all entries in the system.
 
                                     
-- Faculty -
+----- Faculty -----
 
 * Use the INSERT entry function to add a new entry to the 
 database. You will need to add the topic and other
@@ -55,5 +60,3 @@ entry in the GUI.
 
 * Faculty has access to all of the features Student/Guest
 accounts have.
-
-
