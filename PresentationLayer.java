@@ -9,6 +9,7 @@
 //import java.sql.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class PresentationLayer {
     String userName = "";
@@ -27,15 +28,17 @@ public class PresentationLayer {
       JLabel label = new JLabel(" Student/Guest Features");
       label.setBounds(100,50,150,30);
       f.add(label);
+      
       // Edit interests
       JButton editButton = new JButton("Edit Interests");
       editButton.setBounds(100,80,150,50);
       f.add(editButton);
-
             //  Edit Button Listening
             editButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               editButton.setBounds(120,80,150,50);
+               
+               // Action
+               
                }
             });
 
@@ -44,18 +47,51 @@ public class PresentationLayer {
       JButton searchIntButton = new JButton("Search Interests");
       searchIntButton.setBounds(100,130,150,50);
       f.add(searchIntButton);
+            //  Search Interests Button Listening
+            searchIntButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            
+               // Action
+               
+               }
+            });
+
       // Search UserID
       JButton searchUserButton = new JButton("Search User ID");
       searchUserButton.setBounds(100,180,150,50);
       f.add(searchUserButton);
+         //  Search UserID Button Listening
+            searchUserButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            
+               // Action
+               
+               }
+            });
+
       // Browse
       JButton browseButton = new JButton("Browse Entries");
       browseButton.setBounds(100,230,150,50);
       f.add(browseButton);
+         //  Search UserID Button Listening
+            browseButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            
+               // Action
+               
+               }
+            });
+            
       // Exit Button
       JButton exitButton = new JButton("Exit");
       exitButton.setBounds(100,280,150,50);
       f.add(exitButton);
+            //Exit Button Listening
+            exitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               System.exit(0);
+               }
+            });
 
       f.setLayout(null); // using no layout managers
       f.setVisible(true); // making the frame visible
