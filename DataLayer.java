@@ -82,13 +82,12 @@ public class DataLayer {
         return result;
     }
 
-    public int allEntries(int interestID) {
+    public int allEntries() {
         int result = 0;
         try {
             PreparedStatement stmt;
             stmt = conn.prepareStatement(
                     "SELECT topic AS 'entries' From entries GROUP BY topic;");
-            stmt.setInt(1, interestID);
             result = stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
