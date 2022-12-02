@@ -131,7 +131,7 @@ public class PresentationLayer {
       // Faculty Buttons
 
       // Label
-      JLabel label2 = new JLabel(" Faculty Features");
+      JLabel label2 = new JLabel("Faculty Features");
       label2.setBounds(320,100,150,30);
       f.add(label2);
 
