@@ -5,6 +5,7 @@
  * Group Project 01 StudentFaculty Project DataLayer
  */
 
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -61,7 +62,7 @@ public class DataLayer {
 
     /**
      * This function searches the entries for a shared interest using an interestID that matches it.
-     * The fucntion will display all entries from the faculty member that shares that interest.
+     * The function will display all entries from the faculty member that shares that interest.
      * @param interestID The interestID of the desired interest to search for.
      * @return all the entries of the faculty members that have that interest.
      */
@@ -225,7 +226,7 @@ public class DataLayer {
                 return type;
             }
         } catch (SQLException e) {
-            System.out.println("There was an error in getting/selecting the user type.");
+            System.err.println("There was an error in getting/selecting the user type.");
             e.printStackTrace();
             System.exit(1);
             return null;
@@ -235,15 +236,16 @@ public class DataLayer {
     /**
      * This function hashes a string and converts it using a SHA-1 hash.
      *
-     * @param plainText The plaintext string that is going to be converted to to hash.
+     * @param plainText The plaintext string that is going to be converted to hash.
      * @return the hash of that string.
      * Null means that it did not work.
      */
     String hashString(String plainText) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");
-            byte[] digest = md.digest(plainText.getBytes(StandardCharsets.UTF_8));
-            return new String(digest, StandardCharsets.UTF_8);
+            byte[] bytes = md.digest(plainText.getBytes(StandardCharsets.UTF_8));
+            BigInteger bi = new BigInteger(1, bytes); // Convert to a hex string. Thanks to https://stackoverflow.com/a/943963/12203444
+            return String.format("%0" + (bytes.length << 1) + "x", bi);
         } catch (NoSuchAlgorithmException e) {
             // Won't happen, because SHA-1 is guaranteed to exist.
             e.printStackTrace();
@@ -255,7 +257,7 @@ public class DataLayer {
     /**
      * This function checks if the password is correct
      * and matches what's in the database.
-     * 
+     *
      * @param userName the userName of the user.
      * @param password the password of the user.
      * @return true if the password matches what's in the database.
