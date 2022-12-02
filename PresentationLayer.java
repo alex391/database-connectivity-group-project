@@ -154,9 +154,9 @@ public class PresentationLayer {
     public PresentationLayer() {
         System.out.println("Connecting to the database . . .");
 
-        // BOX TESTS
-        StudentBox();
-        FacultyBox();
+        // // BOX TESTS
+        // StudentBox();
+        // FacultyBox();
 
         JPanel Inputbox = new JPanel(new GridLayout(3, 2));
         JLabel lblUser = new JLabel("Username -> ");
