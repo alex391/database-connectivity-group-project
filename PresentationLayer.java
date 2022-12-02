@@ -6,17 +6,16 @@
  * Group Project 01 StudentFaculty Project DataLayer
  */
 
-import java.sql.*;
+//import java.sql.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+
 
 public class PresentationLayer {
+    String userName = "";
+    String userType = "G";
 
 	DataLayer dl = new DataLayer();
-	private int columns;
-	private int rows;
 
 	public static Font myFontForOutput = new Font("Courier", Font.BOLD, 20);
    
@@ -112,10 +111,10 @@ public class PresentationLayer {
 
     /**
      * user login
-     *
-     * @return String[] as [username, usertype]
+     * Changes global userType and userName attributes
+     * @return true when log in matches credentials provided
      */
-    public String[] appLoginPL() {
+    public boolean appLogin() {
         JPanel Inputbox = new JPanel(new GridLayout(3, 2));
         JLabel lblUser = new JLabel("Username -> ");
         JLabel lblPassword = new JLabel("Password -> ");
@@ -137,7 +136,8 @@ public class PresentationLayer {
         JOptionPane.showMessageDialog(null, Inputbox,
                 "Default password is \"guest\" - This logs into interest search application", JOptionPane.QUESTION_MESSAGE);
 
-        String userName = tfUser.getText();
+        userName = tfUser.getText();
+        userType = dl.getUserType(userName);
 
         String password = new String();
         String passwordInput = new String();
@@ -151,12 +151,17 @@ public class PresentationLayer {
             password = passwordInput;
         }
 
-          //returns [username, usertype]
+          //returns true false
+        
+        boolean successFail = dl.checkPassword(userName, password);
 
-        return new String[]{userName, dl.getUserType(userName)};
+        return successFail;
     }
    
 
+	/**
+	 * Constructor
+	 */
 	public PresentationLayer() {
 		System.out.println("Connecting to the database . . .");
 
@@ -205,11 +210,9 @@ public class PresentationLayer {
 
 		dl.connect(userName, password); // Call DataLayer
 
-        //loop 1 login
-        while(true){
-            String usertype = appLoginPL()[1];
             //case Student v Faculty
-            switch (usertype){
+        while(!appLogin()){
+            switch (userType){
                 case "F":  //Faculty
                 //loop faculty
                    //Who is logged in somewhere
@@ -226,6 +229,8 @@ public class PresentationLayer {
                     break;
 
                 case "S": // Student
+                    StudentBox();
+                    break;
                 case "G": //Guest - currently both students and guests are the same.
                     //loop Student/guest
                     //Who is logged in somewhere
@@ -235,6 +240,7 @@ public class PresentationLayer {
                     //search by interests
                     //search by userID
                     //or browse entries
+                    FacultyBox();
                     break;
                 default:
                     System.err.println("Invalid user type!");
@@ -242,7 +248,6 @@ public class PresentationLayer {
             }
             break;
         }
-
 		//Closing all connections to database
       
      
