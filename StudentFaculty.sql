@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 DROP DATABASE IF EXISTS  StudentFaculty;
 
 -- ISTE 330 Jim Habermas
