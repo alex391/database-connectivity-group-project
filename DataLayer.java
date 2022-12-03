@@ -258,6 +258,37 @@ public class DataLayer {
         }
     }
 
+
+
+    public String getUserID(String userName) {
+        if (userName.equals("guest")) {
+            return "G";
+        }
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement
+                    .executeQuery(String.format("SELECT userID FROM users WHERE userName = \"%s\";", userName));
+            String type = null;
+            if (rs.next()) {
+                type = rs.getString("userID");
+            } else {
+                System.err.println("Error in getting the topic - no more rows.");
+            }
+
+            if (type == null) {
+                System.err.println("Error in getting the topic - type is null.");
+                return "G"; // To not crash unless we have to, return G
+            } else {
+                return type;
+            }
+        } catch (SQLException e) {
+            System.err.println("There was an error in getting/selecting the user type.");
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+        }
+    }
+
     /**
      * This function hashes a string and converts it using a SHA-1 hash.
      *
