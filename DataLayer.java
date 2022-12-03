@@ -86,11 +86,15 @@ public class DataLayer {
         return result;
     }
 
+    /**
+     * This function returns all the Entries stored in the Entries database.
+     * @return all the Entries stored in the database.
+     */
     public String allEntries() {
         StringBuilder result = new StringBuilder();
         try {
             Statement topicStatement = conn.createStatement();
-            ResultSet topicResult = topicStatement.executeQuery("SELECT topic, userID  From entries GROUP BY topic;");
+            ResultSet topicResult = topicStatement.executeQuery("SELECT topic, userID FROM entries GROUP BY topic;");
             while (topicResult.next()) {
                 // topic - firstName lastName, firstName2 lastName2, ...
                 result.append(topicResult.getString("topic")).append(" - ");
@@ -114,13 +118,49 @@ public class DataLayer {
         return result.toString();
     }
 
-    public String StudentInterests(int UserID) {
+    /**
+     * This function returns all the Interests stored in the Interests database.
+     * @return all the Interests stored in the database.
+     */
+    public String allInterests() {
+        StringBuilder result = new StringBuilder();
+        try {
+            Statement interestStatement = conn.createStatement();
+            ResultSet interestResult = interestStatement.executeQuery("SELECT interestID FROM interests;");
+            while (interestResult.next()) {
+                // interestID - interest...
+                result.append(interestResult.getString("interestID")).append(" - ");
+                Statement usersStatement = conn.createStatement();
+                ResultSet usersResult = usersStatement.executeQuery(
+                        "SELECT interest FROM interests WHERE interestID = " + interestResult.getInt("interestID"));
+                while (usersResult.next()) {
+                    result.append(usersResult.getString("interest"));
+                    if (!usersResult.isLast()) {
+                        result.append(", ");
+                    }
+                }
+                result.append("\n");
+            }
+        } catch (SQLException e) {
+            System.out.println("There was an error in the select.");
+            System.out.println("Error = " + e);
+            e.printStackTrace();
+        }
+        return result.toString();
+    }
+
+    /**
+     * This function returns the email(s) of the faculty member(s) being searched.
+     * @param userID the userID of the faculty members.
+     * @return the email(s) of the faculty member(s) being searched.
+     */
+    public String StudentInterests(int userID) {
         String result = "";
         try {
 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt
-                    .executeQuery(String.format("SELECT interestID FROM UserInterests WHERE USERID= \"%d\" ;", UserID));
+                    .executeQuery(String.format("SELECT interestID FROM UserInterests WHERE USERID= \"%d\" ;", userID));
             while (rs.next()) {
                 result += rs.getString("email") + "\n";
 
@@ -189,7 +229,13 @@ public class DataLayer {
         return (result);
     }
 
-    public int editInterest(int userID, int interestID) {
+    /**
+     * This function allows the user to add their interests.
+     * @param userID The userID that will have interests added.
+     * @param interestID The interestID to be added.
+     * @return the result of the add function whether it was successful or not.
+     */
+    public int addInterest(int userID, int interestID) {
         int result = 0;
         try {
             PreparedStatement stmt;
@@ -312,6 +358,11 @@ public class DataLayer {
         }
     }
 
+    /**
+     * This function returns the userID of the userName entered. Useful for when you know a username but not their userID.
+     * @param userName the userName to get the userID of.
+     * @return the userID of that belongs to the userName.
+     */
     public int getUserID(String userName) {
         if (userName.equals("guest")) {
             return 0;
