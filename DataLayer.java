@@ -89,7 +89,7 @@ public class DataLayer {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT topic AS 'entries' From entries GROUP BY topic;");   
             while (rs.next()) {
-            result+=rs.getString("entries") + "\n";
+            result += rs.getString("entries") + "\n";
             
             }
         } catch (SQLException e) {
