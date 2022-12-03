@@ -44,8 +44,8 @@ public class PresentationLayer {
 
 
       // Search by Interests, returns Faculty that match current users interests
-      JButton searchIntButton = new JButton("Search Interests");
-      searchIntButton.setBounds(100,130,150,50);
+      JButton searchIntButton = new JButton("Search by Interests");
+      searchIntButton.setBounds(100,130,175,50);
       f.add(searchIntButton);
             //  Search Interests Button Listening
             searchIntButton.addActionListener(new ActionListener() {
@@ -54,25 +54,43 @@ public class PresentationLayer {
                // Action
                
                   // Box with textarea of interest option + textbox for user input. Search button to search by what user inputs.
-                     JFrame sframe = new JFrame("Search by Interest");
+                     JFrame sframe = new JFrame("Search for Faculty Name by Interest ID");
                      sframe.setSize(400, 300);
                      
                      // Add Label, box, button
-                     JLabel newLabel = new JLabel("Enter Interest to Search: ");
+                     JLabel newLabel = new JLabel("Enter Interest ID to Search: ");
                      sframe.add(newLabel);
-                     newLabel.setBounds(180,30,180,30);
+                     newLabel.setBounds(185,30,185,30);
                      
                      JTextField t = new JTextField(16);
                      sframe.add(t);
-                     t.setBounds(165,60,180,30);
+                     t.setBounds(185,60,180,30);
 
                      JButton b = new JButton("Search");
                      sframe.add(b);
-                     b.setBounds(200,100,100,50);
-                     // List the interests                    
-                     JTextArea listInterests = new JTextArea("Hello\nHello");
+                     b.setBounds(220,100,100,50);
+                     
+                        // Add Listener for search button
+                        b.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+               
+                              // Action for search uses the textfield as a parameter
+                              
+                                String output = dl.searchFaculty(Integer.parseInt(t.getText()));
+                                      
+                                ResultBox(output);
+                        }
+                        });
+
+                        
+                     // List the interests        
+                     JLabel intLabel = new JLabel("Interest and ID's: ");
+                     sframe.add(intLabel);
+                     intLabel.setBounds(10,0,150,30);
+                                 
+                     JTextArea listInterests = new JTextArea("Java = 1\nAnthropology = 2\nEthics in Computing = 3\nCalculus = 4\nMobile Design = 5\nPython = 6\nBiochemical Engineering = 7\nBiology = 8\nArt = 9\nFilm/Animation = 10\n");
                      listInterests.setEditable(false);
-                     listInterests.setBounds(10,10,100,250);
+                     listInterests.setBounds(10,30,160,250);
                      sframe.add(listInterests);
                      
                      

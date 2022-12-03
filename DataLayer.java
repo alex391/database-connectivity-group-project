@@ -116,26 +116,9 @@ public class DataLayer {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(String.format("SELECT faculty.email AS 'email', faculty.officeNumber AS 'Office Number' FROM faculty JOIN userinterests USING(userID) WHERE faculty.userID = userID AND interestID = \"%d\" GROUP BY faculty.userID;",interestID));   
             while (rs.next()) {
-            result += rs.getString("entries") + "\n";
+            result += rs.getString("email") + "\n";
             
             }
-        } catch (SQLException e) {
-            System.out.println("There was an error in the select.");
-            System.out.println("Error = " + e);
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-
-    public int searchFaculty() {
-        int result = 0;
-        try {
-            PreparedStatement stmt;
-            stmt = conn.prepareStatement(
-                    "");
-           
-            result = stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
             System.out.println("Error = " + e);
