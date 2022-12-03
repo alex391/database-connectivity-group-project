@@ -78,6 +78,8 @@ public class PresentationLayer {
             public void actionPerformed(ActionEvent e) {
             
                // Action
+               String result = dl.allEntries();
+               ResultBox(result);
                
                }
             });
@@ -89,6 +91,9 @@ public class PresentationLayer {
             //Exit Button Listening
             exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+               // Closing all connections to database
+               System.out.println("\nClosing all connections to database...\n");
+               dl.close();
                System.exit(0);
                }
             });
@@ -306,9 +311,7 @@ public class PresentationLayer {
                     break;
             }
         }
-        // Closing all connections to database
-        System.out.println("\nClosing all connections to database...\n");
-        dl.close();
+        
 
         // End Of Job data - EOJ routines
         java.util.Date today = new java.util.Date();
