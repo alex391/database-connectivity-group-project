@@ -357,11 +357,51 @@ public class PresentationLayer {
         f.add(addEntry);
         
             addEntry.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent e) {
+                                   // Action
+                    // Box with textarea of interest option + textbox for user input. Search button to search by what user inputs.
+                    JFrame sframe = new JFrame("New Entry");
+                    sframe.setSize(400, 300);
+                    
+                    // Add Label, box, button
+                    JLabel newLabel = new JLabel("Paste Abstract:");
+                    sframe.add(newLabel);
+                    newLabel.setBounds(185,30,185,30);
+                    
+                    JTextField t = new JTextField(16);
+                    sframe.add(t);
+                    t.setBounds(185,60,180,30);
+
+                    JLabel newLabel2 = new JLabel("Interest ID:");
+                    sframe.add(newLabel2);
+                    newLabel2.setBounds(185,100,185,30);
+
+                    JTextField interest = new JTextField(16);
+                    sframe.add(interest);
+                    interest.setBounds(185,140,180,30);
+
+                    JButton b = new JButton("Add Entry");
+                    sframe.add(b);
+                    b.setBounds(220,140,180,50);
+                    
+                        // Add Listener for search button
+                        b.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
             
-               // Action
-               
-               }
+                            // Action for new entry uses the textfield as a parameter
+                            
+                            // Result box will show success message if added
+
+                                dl.addEntry(Integer.parseInt(dl.getUserID(userName)), t.getText(), Integer.parseInt(interest.getText()));
+                                ResultBox("Entry Added");
+
+                                
+                        }
+                        });
+                sframe.setLayout(null); // using no layout managers
+                sframe.setVisible(true); // making the frame visible
+
+                }
             });
             
         

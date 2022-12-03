@@ -153,13 +153,14 @@ public class DataLayer {
      * @param topic The topic to use for the new entry in the database.
      * @return the result of the add function whether it was successful or not.
      */
-    public int addEntry(int userID, String topic) {
+    public int addEntry(int userID, String topic, int interestID) {
         int result = 0;
         try {
             PreparedStatement stmt;
-            stmt = conn.prepareStatement("INSERT INTO entries(userID, topic) VALUES (?, ?);");
+            stmt = conn.prepareStatement("INSERT INTO entries(userID, topic, interestID) VALUES (?, ?, ?);");
             stmt.setInt(1, userID);
             stmt.setString(2, topic);
+            stmt.setInt(3, interestID);
             result = stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("There was an error in the insert.");
