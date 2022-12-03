@@ -131,60 +131,60 @@ public class PresentationLayer {
       f.setVisible(true); // making the frame visible
    }
 
-      public void FacultyBox() {
-      // Faculty Box Frame Setup
-      JFrame f = new JFrame();
-      f.setSize(600,400);
+    public void FacultyBox() {
+        // Faculty Box Frame Setup
+        JFrame f = new JFrame();
+        f.setSize(600,400);
 
-      // Label
-      JLabel label = new JLabel(" Student/Guest Features");
-      label.setBounds(125,50,150,30);
-      f.add(label);
-      // Edit interests
-      JButton editButton = new JButton("Edit Interests");
-      editButton.setBounds(125,80,150,50);
-      f.add(editButton);
-      // Search Interests
-      JButton searchIntButton = new JButton("Search Interests");
-      searchIntButton.setBounds(125,130,150,50);
-      f.add(searchIntButton);
-      // Search UserID
-      JButton searchUserButton = new JButton("Search User ID");
-      searchUserButton.setBounds(125,180,150,50);
-      f.add(searchUserButton);
-      // Browse
-      JButton browseButton = new JButton("Browse Entries");
-      browseButton.setBounds(125,230,150,50);
-      f.add(browseButton);
-      // Exit Button
-      JButton exitButton = new JButton("Exit");
-      exitButton.setBounds(125,280,150,50);
-      f.add(exitButton);
-
-
-      // Faculty Buttons
-
-      // Label
-      JLabel label2 = new JLabel("Faculty Features");
-      label2.setBounds(320,100,150,30);
-      f.add(label2);
-
-      JButton addEntry = new JButton("Add Entry");
-      addEntry.setBounds(300,130,150,50);
-      f.add(addEntry);
-
-      JButton update = new JButton("Update Entry");
-      update.setBounds(300,180,150,50);
-      f.add(update);
-
-      JButton delete = new JButton("Delete Entry");
-      delete.setBounds(300,230,150,50);
-      f.add(delete);
+        // Label
+        JLabel label = new JLabel(" Student/Guest Features");
+        label.setBounds(125,50,150,30);
+        f.add(label);
+        // Edit interests
+        JButton editButton = new JButton("Edit Interests");
+        editButton.setBounds(125,80,150,50);
+        f.add(editButton);
+        // Search Interests
+        JButton searchIntButton = new JButton("Search Interests");
+        searchIntButton.setBounds(125,130,150,50);
+        f.add(searchIntButton);
+        // Search UserID
+        JButton searchUserButton = new JButton("Search User ID");
+        searchUserButton.setBounds(125,180,150,50);
+        f.add(searchUserButton);
+        // Browse
+        JButton browseButton = new JButton("Browse Entries");
+        browseButton.setBounds(125,230,150,50);
+        f.add(browseButton);
+        // Exit Button
+        JButton exitButton = new JButton("Exit");
+        exitButton.setBounds(125,280,150,50);
+        f.add(exitButton);
 
 
-      f.setLayout(null); // using no layout managers
-      f.setVisible(true); // making the frame visible
-   }
+        // Faculty Buttons
+
+        // Label
+        JLabel label2 = new JLabel("Faculty Features");
+        label2.setBounds(320,100,150,30);
+        f.add(label2);
+
+        JButton addEntry = new JButton("Add Entry");
+        addEntry.setBounds(300,130,150,50);
+        f.add(addEntry);
+
+        JButton update = new JButton("Update Entry");
+        update.setBounds(300,180,150,50);
+        f.add(update);
+
+        JButton delete = new JButton("Delete Entry");
+        delete.setBounds(300,230,150,50);
+        f.add(delete);
+
+
+        f.setLayout(null); // using no layout managers
+        f.setVisible(true); // making the frame visible
+    }
    
    
    
@@ -341,17 +341,11 @@ public class PresentationLayer {
                     break;
             }
         }
-        
-
-        // End Of Job data - EOJ routines
-        java.util.Date today = new java.util.Date();
-        System.out.println("\nProgram terminated @ " + today);
     } // End of Constructor
 
     public static void main(String[] args) {
         System.out.println("Group 4");
 
         new PresentationLayer(); // Create a new object. An Instantiation
-        System.out.println("EOJ");
     } // End of main method
 } // End of Class
