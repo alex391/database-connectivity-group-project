@@ -392,7 +392,7 @@ public class PresentationLayer {
                             
                             // Result box will show success message if added
 
-                                dl.addEntry(Integer.parseInt(dl.getUserID(userName)), t.getText(), Integer.parseInt(interest.getText()));
+                                dl.addEntry(dl.getUserID(userName), t.getText(), Integer.parseInt(interest.getText()));
                                 ResultBox("Entry Added");
 
                                 
