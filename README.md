@@ -4,3 +4,5 @@ ISTE 330 Faculty Research Database project
 Evan Reighter
 Alex Leute
 Michael McIntosh
+Teo Luciani
+Adrian Marquez
