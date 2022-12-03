@@ -471,7 +471,40 @@ public class PresentationLayer {
             public void actionPerformed(ActionEvent e) {
             
                // Action
-               
+                    // Box with textarea of interest option + textbox for user input. Search button to search by what user inputs.
+                    JFrame sframe = new JFrame("Delete Entry");
+                    sframe.setSize(400, 300);
+                    
+                    // Add Label, box, button
+                    JLabel newLabel = new JLabel("Entry ID:");
+                    sframe.add(newLabel);
+                    newLabel.setBounds(185,30,185,30);
+                    
+                    JTextField t = new JTextField(16);
+                    sframe.add(t);
+                    t.setBounds(185,60,180,30);
+
+
+                    JButton b = new JButton("Delete Entry");
+                    sframe.add(b);
+                    b.setBounds(220,180,180,50);
+                    
+                        // Add Listener for search button
+                        b.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+            
+                            // Action for new entry uses the textfield as a parameter
+                            
+                            // Result box will show success message if added
+
+                                dl.deleteEntry(Integer.parseInt(t.getText()));
+                                ResultBox("Entry Deleted");
+
+                                
+                        }
+                        });
+                sframe.setLayout(null); // using no layout managers
+                sframe.setVisible(true); // making the frame visible               
                }
             });
 
