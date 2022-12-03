@@ -2,8 +2,11 @@
 -------------  Faculty Research Database Application ----------------- 
 ----------------------------------------------------------------------
 
-The goal of this application is to allow guests, faculty, and students to find common interests between each other. The application has different functionalities depending on the type of user that is using it. All users can search for entries, while faculty are
-able to create, edit, and remove entries.
+The goal of this application is to allow guests, faculty, and students 
+to find common interests between each other. The application has 
+different functionalities depending on the type of user that is using 
+it. All users can search for entries, while faculty are able to 
+create, edit, and remove entries.
 
 ----------------------------------------------------------------------
 --------------------------- Directions -------------------------------
@@ -11,21 +14,38 @@ able to create, edit, and remove entries.
 
 ----- Prerequisites -----
 
-* To utilize the application, the StudentFaculty.sql file must be sourced into their MySQL command prompt. This can be done using the SOURCE command from MySQL.
+* To utilize the application, the StudentFaculty.sql file must be 
+sourced into their MySQL command prompt. This can be done using the 
+SOURCE command from MySQL.
 
-* Please add ‘mysql-connector-java-8.0.21.jar’ to your CLASSPATH. The jar file is given in the program files.
+* Please add ‘mysql-connector-java-8.0.21.jar’ to your CLASSPATH. The 
+jar file is given in the program files.
 
-* Verify that you have added to the CLASSPATH correctly by compiling the program. Either use your IDE’s compile button or run ‘javac PresentationLayer.java’ in your command line. Afterwards you can either use the run button in your IDE or run ‘java PresentationLayer’ in your command line. 
+* Verify that you have added to the CLASSPATH correctly by compiling 
+the program. Either use your IDE’s compile button or run ‘javac 
+PresentationLayer.java’ in your command line. Afterwards you can 
+either use the run button in your IDE or run ‘java PresentationLayer’
+in your command line. 
 
 ----- Using The Application -----
 
-* Users will start the application by running the PresentationLayer.java file. The user will be prompted to provide login credentials for their localhost database. After a successful connection to their local database, the user will then be prompted to login with their application credentials. Each user will have their own user type: “Student”,”Faculty”, or “Guest.” Depending on their user type, they will have access to different functionality. Currently, there is no differing functionality between the “Student” and “Guest” user types.
+* Users will start the application by running the PresentationLayer.java 
+file. The user will be prompted to provide login credentials for their 
+localhost database. After a successful connection to their local 
+database, the user will then be prompted to login with their 
+application credentials. Each user will have their own user type: 
+“Student”,”Faculty”, or “Guest.” Depending on their user type, they 
+will have access to different functionality. Currently, there is no 
+differing functionality between the “Student” and “Guest” user types.
 
-* To login to the Guest account, the user can simply use "Guest" as the default user, and "guest" as the password.
+* To login to the Guest account, the user can simply use "Guest" as 
+the default user, and "guest" as the password.
 
-* To login to a Student account for grading purposes we have created an account with a username of "asmith" and a password of “test123”.
+* To login to a Student account for grading purposes we have created 
+an account with a username of "asmith" and a password of “test123”.
 
-* To login to a Faculty account for grading purposes we have created an account with a username of “jHabermas” and a password of “test123”.
+* To login to a Faculty account for grading purposes we have created
+an account with a username of “jHabermas” and a password of “test123”.
 
 --------- Guests --------- 
 [ Features: Able to Browse and Search by Interest ]
