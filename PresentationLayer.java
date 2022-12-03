@@ -315,7 +315,7 @@ public class PresentationLayer {
 
     public void FacultyBox() {
         // Faculty Box Frame Setup
-        JFrame f = new JFrame();
+        JFrame f = new JFrame("Faculty Portal");
         f.setSize(600,400);
 
         // Label

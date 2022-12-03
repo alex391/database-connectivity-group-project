@@ -21,30 +21,40 @@ able to create, edit, and remove entries.
 
 * Users will start the application by running the PresentationLayer.java file. The user will be prompted to provide login credentials for their localhost database. After a successful connection to their local database, the user will then be prompted to login with their application credentials. Each user will have their own user type: “Student”,”Faculty”, or “Guest.” Depending on their user type, they will have access to different functionality. Currently, there is no differing functionality between the “Student” and “Guest” user types.
 
-* To login to the Guest account, the user can simply press enter as the default username and password are both “Guest”.
+* To login to the Guest account, the user can simply use "Guest" as the default user, and "guest" as the password.
 
-* To login to a faculty account for grading purposes we have created an account with a username of “jHabermas” and a password of “test123”.
+* To login to a Student account for grading purposes we have created an account with a username of "asmith" and a password of “test123”.
 
------ Students and Guests -----
+* To login to a Faculty account for grading purposes we have created an account with a username of “jHabermas” and a password of “test123”.
 
-* Use the “Search Interest” function to filter certain
-interests to find the faculty you are 
-looking for. The application will display results
-according to how the user applies filters.
+--------- Guests --------- 
+[ Features: Able to Browse and Search by Interest ]
 
-* Use the search User ID function to filter certain
-users to find the faculty you are 
-looking for. The application will display results
-according to how the user applies filters.
+* Use the "Search by Interest” function to filter 
+interests by an inputted interest ID number
+ to find the faculty you are looking for. The 
+application will display results according
+to which number is set.
 
-* Use the edit Interests function to update your own
-interests in the database.
-
-* Use the browse Interests function to see a collection of 
+* Use the "Browse Interests" function to see a collection of 
 all entries in the system.
 
+--------- Students ---------
+[  Features: Same as guest, but can also search by commonalities
+and edit current interests in the database ]
+
+* Use the "Common Interests" button to filter 
+users to find the faculty your interests align with.
+The application will display results by automatically
+looking at the user's current interest.
+
+* Use the "Edit Interests" function to update your own
+interests in the database.
+
                                     
------ Faculty -----
+--------- Faculty ---------
+[  Features: Same as guest and student but can add, update, and
+delete their current entries in the system. ]
 
 * Use the INSERT entry function to add a new entry to the 
 database. You will need to add the topic and other
