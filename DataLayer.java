@@ -114,7 +114,7 @@ public class DataLayer {
         try {
 
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(String.format("SELECT faculty.email AS 'email',CONCAT_WS(',',Users.lastName,Users.firstName) AS name , faculty.officeNumber AS 'Office Number' FROM faculty JOIN userinterests USING(userID) JOIN Users USING (userID)WHERE faculty.userID = userID AND interestID =  \"%d\" GROUP BY faculty.userID;",interestID));   
+            ResultSet rs = stmt.executeQuery(String.format("SELECT faculty.email AS 'email',CONCAT_WS(',',Users.lastName,Users.firstName) AS name , faculty.officeNumber,faculty.buildNumber AS 'Office Number' FROM faculty JOIN userinterests USING(userID) JOIN Users USING (userID)WHERE faculty.userID = userID AND interestID =  \"%d\" GROUP BY faculty.userID;",interestID));   
             while (rs.next()) {
             result += rs.getString("email") + "\n";
             
