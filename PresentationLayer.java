@@ -12,11 +12,11 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class PresentationLayer {
-    String userName = "";
-    String userType = "G";
-    int UserID;
-    boolean loggedIn = false;
-    DataLayer dl = new DataLayer();
+   String userName = "";
+   String userType = "G";
+   int UserID;
+   boolean loggedIn = false;
+   DataLayer dl = new DataLayer();
 
    public static Font myFontForOutput = new Font("Courier", Font.BOLD, 20);
 
@@ -255,18 +255,18 @@ public class PresentationLayer {
       JButton searchCommonButton = new JButton("Common Interests");
       searchCommonButton.setBounds(100, 180, 150, 50);
       f.add(searchCommonButton);
-         //  Search UserID Button Listening
-            searchCommonButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            
-               // Action
-                 
-               String Interestresult = dl.StudentInterests(UserID);
-               
-               //ResultBox(result);
-               
-               }
-            });
+      // Search UserID Button Listening
+      searchCommonButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+
+            // Action
+
+            String Interestresult = dl.StudentInterests(UserID);
+
+            // ResultBox(result);
+
+         }
+      });
 
       // Browse
       JButton browseButton = new JButton("Browse Entries");
