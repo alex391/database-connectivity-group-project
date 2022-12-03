@@ -235,13 +235,13 @@ public class PresentationLayer {
       f.add(browseButton);
          //  Search UserID Button Listening
             browseButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            
-               // Action
-               String result = dl.allEntries();
-               ResultBox(result);
-               
-               }
+                public void actionPerformed(ActionEvent e) {
+
+                    // Action
+                    String result = dl.allEntries();
+                    ResultBox(result);
+
+                }
             });
             
       // Exit Button
