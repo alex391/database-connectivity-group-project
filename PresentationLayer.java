@@ -19,19 +19,132 @@ public class PresentationLayer {
 
     public static Font myFontForOutput = new Font("Courier", Font.BOLD, 20);
       
-    public void StudentBox() {
+      
+      /// GUEST PORTAL GUI ///
+      
+     
+     public void GuestBox() {
         // Student Box Frame Setup
-        JFrame f = new JFrame();
+        JFrame f = new JFrame("Guest Portal");
         f.setSize(400, 400);
 
       // Label
-      JLabel label = new JLabel(" Student/Guest Features");
+      JLabel label = new JLabel(" Guest Features");
+      label.setBounds(120,50,150,30);
+      f.add(label);
+
+
+
+      // Search by Interests, returns Faculty that match current users interests
+      JButton searchIntButton = new JButton("Search by Interests");
+      searchIntButton.setBounds(90,80,175,50);
+      f.add(searchIntButton);
+            //  Search Interests Button Listening
+            searchIntButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            
+               // Action
+               
+                  // Box with textarea of interest option + textbox for user input. Search button to search by what user inputs.
+                     JFrame sframe = new JFrame("Search for Faculty Name by Interest ID");
+                     sframe.setSize(400, 300);
+                     
+                     // Add Label, box, button
+                     JLabel newLabel = new JLabel("Enter Interest ID to Search: ");
+                     sframe.add(newLabel);
+                     newLabel.setBounds(185,30,185,30);
+                     
+                     JTextField t = new JTextField(16);
+                     sframe.add(t);
+                     t.setBounds(185,60,180,30);
+
+                     JButton b = new JButton("Search");
+                     sframe.add(b);
+                     b.setBounds(220,100,100,50);
+                     
+                        // Add Listener for search button
+                        b.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+               
+                              // Action for search uses the textfield as a parameter
+                              
+                              // Result box will show the faculty with matching interest as user input
+
+                                String output = dl.searchFaculty(Integer.parseInt(t.getText()));
+                                ResultBox(output);
+                        }
+                        });
+
+                        
+                     // List the interests        
+                     JLabel intLabel = new JLabel("Interest and ID's: ");
+                     sframe.add(intLabel);
+                     intLabel.setBounds(10,0,150,30);
+                                 
+                     JTextArea listInterests = new JTextArea("Java = 1\nAnthropology = 2\nEthics in Computing = 3\nCalculus = 4\nMobile Design = 5\nPython = 6\nBiochemical Engineering = 7\nBiology = 8\nArt = 9\nFilm/Animation = 10\n");
+                     listInterests.setEditable(false);
+                     listInterests.setBounds(10,30,160,250);
+                     sframe.add(listInterests);
+                     
+                     
+                     sframe.setLayout(null); // using no layout managers
+                     sframe.setVisible(true); // making the frame visible
+                     
+                                         
+               
+               }
+            });
+
+      // Browse
+      JButton browseButton = new JButton("Browse Entries");
+      browseButton.setBounds(100,130,150,50);
+      f.add(browseButton);
+         //  Search UserID Button Listening
+            browseButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            
+               // Action
+               String result = dl.allEntries();
+               ResultBox(result);
+               
+               }
+            });
+            
+      // Exit Button
+      JButton exitButton = new JButton("Exit");
+      exitButton.setBounds(100,180,150,50);
+      f.add(exitButton);
+            //Exit Button Listening
+            exitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               // Closing all connections to database
+               System.out.println("\nClosing all connections to database...\n");
+               dl.close();
+               System.exit(0);
+               }
+            });
+
+      f.setLayout(null); // using no layout managers
+      f.setVisible(true); // making the frame visible
+   }
+
+    
+    /// STUDENT PORTAL GUI ///
+    
+    
+    public void StudentBox() {
+        // Student Box Frame Setup
+        JFrame f = new JFrame("Student Portal");
+        f.setSize(400, 400);
+
+      // Label
+      JLabel label = new JLabel(" Student Features");
       label.setBounds(100,50,150,30);
       f.add(label);
       
       // Edit interests
       JButton editButton = new JButton("Edit Interests");
-      editButton.setBounds(100,80,150,50);
+      editButton.setBounds(90,80,150,50);
       f.add(editButton);
             //  Edit Button Listening
             editButton.addActionListener(new ActionListener() {
@@ -104,7 +217,7 @@ public class PresentationLayer {
             });
 
       // Search UserID
-      JButton searchUserButton = new JButton("Search User ID");
+      JButton searchUserButton = new JButton("Common Interests");
       searchUserButton.setBounds(100,180,150,50);
       f.add(searchUserButton);
          //  Search UserID Button Listening
@@ -344,8 +457,7 @@ public class PresentationLayer {
                     break;
 
                 case "S": // Student
-                case "G": // Guest - currently both students and guests are the same.
-                    // loop Student/guest
+                 // loop Student/guest
                     // Who is logged in somewhere
                     // exit button
                     // options to
@@ -354,6 +466,11 @@ public class PresentationLayer {
                     // search by userID
                     // or browse entries
                     StudentBox();
+                     break;
+                
+                case "G":
+                   
+                    GuestBox();
                     break;
                 default:
                     System.err.println("Invalid user type!");

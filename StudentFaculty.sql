@@ -82,7 +82,7 @@ INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('bNetwo
 INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('nCradle',SHA1('test123'),'S','Newton','Cradle');
 INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('aSmith',SHA1('test123'),'S','Adam','Smith');
 INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('eSmith',SHA1('test123'),'S','Eve','Smith');
-INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('Guest',SHA1('guest'),'S','Guest','Guest');
+INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('Guest',SHA1('guest'),'G','Guest','Guest');
 
 
 -- Data creation for Interests table.
