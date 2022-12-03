@@ -181,6 +181,22 @@ public class DataLayer {
         return (result);
     }
 
+    public int editInterest(int userID, int interestID) {
+        int result = 0;
+        try {
+            PreparedStatement stmt;
+            stmt = conn.prepareStatement("INSERT INTO userinterests(userID, interestID) VALUES (?, ?);");
+            stmt.setInt(1, userID);
+            stmt.setInt(2, interestID);
+            result = stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("There was an error in the insert.");
+            System.out.println("Error = " + e);
+            e.printStackTrace();
+        }
+        return (result);
+    }
+
     /**
      * This function deletes a faculty member by taking in their entryID.
      * @param entryID used to delete the faculty member corresponding to that ID.

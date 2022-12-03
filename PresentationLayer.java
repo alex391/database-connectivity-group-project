@@ -177,8 +177,8 @@ public class PresentationLayer {
                               
                               // Result box will show the faculty with matching interest as user input
 
-                                String output = dl.searchFaculty(Integer.parseInt(t.getText()));
-                                ResultBox(output);
+                                dl.editInterest(dl.getUserID(userName), Integer.parseInt(t.getText()));
+                                ResultBox("Interest Added");
                         }
                         });
 
@@ -335,34 +335,34 @@ public class PresentationLayer {
                // Action
                
                   // Box with textarea of interest option + textbox for user input. Search button to search by what user inputs.
-                     JFrame sframe = new JFrame("Edit your Interest");
-                     sframe.setSize(400, 300);
-                     
-                     // Add Label, box, button
-                     JLabel newLabel = new JLabel("Enter your new Interest: ");
-                     sframe.add(newLabel);
-                     newLabel.setBounds(185,30,185,30);
-                     
-                     JTextField t = new JTextField(16);
-                     sframe.add(t);
-                     t.setBounds(185,60,180,30);
+                  JFrame sframe = new JFrame("Edit your Interest");
+                  sframe.setSize(400, 300);
+                  
+                  // Add Label, box, button
+                  JLabel newLabel = new JLabel("Enter your new Interest: ");
+                  sframe.add(newLabel);
+                  newLabel.setBounds(185,30,185,30);
+                  
+                  JTextField t = new JTextField(16);
+                  sframe.add(t);
+                  t.setBounds(185,60,180,30);
 
-                     JButton b = new JButton("Update");
-                     sframe.add(b);
-                     b.setBounds(220,100,100,50);
-                     
-                        // Add Listener for search button
-                        b.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-               
-                              // Action for search uses the textfield as a parameter
-                              
-                              // Result box will show the faculty with matching interest as user input
+                  JButton b = new JButton("Update");
+                  sframe.add(b);
+                  b.setBounds(220,100,100,50);
+                  
+                     // Add Listener for search button
+                     b.addActionListener(new ActionListener() {
+                     public void actionPerformed(ActionEvent e) {
+            
+                           // Action for search uses the textfield as a parameter
+                           
+                           // Result box will show the faculty with matching interest as user input
 
-                                String output = dl.searchFaculty(Integer.parseInt(t.getText()));
-                                ResultBox(output);
-                        }
-                        });
+                             dl.editInterest(dl.getUserID(userName), Integer.parseInt(t.getText()));
+                             ResultBox("Interest Added");
+                     }      
+                                      });
 
                         
                      // List the interests        
