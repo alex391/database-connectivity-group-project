@@ -76,8 +76,9 @@ public class PresentationLayer {
                
                               // Action for search uses the textfield as a parameter
                               
+                              // Result box will show the faculty with matching interest as user input
+
                                 String output = dl.searchFaculty(Integer.parseInt(t.getText()));
-                                      
                                 ResultBox(output);
                         }
                         });
@@ -97,8 +98,7 @@ public class PresentationLayer {
                      sframe.setLayout(null); // using no layout managers
                      sframe.setVisible(true); // making the frame visible
                      
-                     // Result box will show the faculty with matching interest as user input
-                    
+                                         
                
                }
             });
@@ -286,6 +286,7 @@ public class PresentationLayer {
         // ResultBox("hello");
 
         JPanel Inputbox = new JPanel(new GridLayout(3, 2));
+        
         JLabel lblUser = new JLabel("Username -> ");
         JLabel lblPassword = new JLabel("Password -> ");
         JTextField tfUser = new JTextField("root");
