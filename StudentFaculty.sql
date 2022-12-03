@@ -118,6 +118,11 @@ INSERT INTO UserInterests(userID, interestID) VALUES ('106','7');
 INSERT INTO UserInterests(userID, interestID) VALUES ('107','8');
 INSERT INTO UserInterests(userID, interestID) VALUES ('108','9');
 INSERT INTO UserInterests(userID, interestID) VALUES ('109','1');
+INSERT INTO UserInterests(userID, interestID) VALUES ('100','10');
+INSERT INTO UserInterests(userID, interestID) VALUES ('101','7');
+INSERT INTO UserInterests(userID, interestID) VALUES ('102','8');
+INSERT INTO UserInterests(userID, interestID) VALUES ('103','9');
+INSERT INTO UserInterests(userID, interestID) VALUES ('104','6');
 
 -- Data creation for Faculty table.
 INSERT INTO Faculty(userID,buildNumber,officeNumber,email) VALUES (100,175,211,'jHabermas@rit.edu');
