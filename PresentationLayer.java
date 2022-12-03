@@ -356,7 +356,6 @@ public class PresentationLayer {
         addEntry.setBounds(300,130,150,50);
         f.add(addEntry);
         
-        // Search UserID Button Listening
             addEntry.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             
@@ -364,15 +363,36 @@ public class PresentationLayer {
                
                }
             });
+            
         
-        //  
+        //  Update Entry Button
         JButton update = new JButton("Update Entry");
         update.setBounds(300,180,150,50);
         f.add(update);
-
+        
+            
+            update.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            
+               // Action
+               
+               }
+            });
+            
+        
+        // Delete Entry Button
         JButton delete = new JButton("Delete Entry");
         delete.setBounds(300,230,150,50);
         f.add(delete);
+        
+         
+            delete.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            
+               // Action
+               
+               }
+            });
 
 
         f.setLayout(null); // using no layout managers
