@@ -14,6 +14,7 @@ import java.awt.event.*;
 public class PresentationLayer {
     String userName = "";
     String userType = "G";
+    int UserID;
     boolean loggedIn = false;
     DataLayer dl = new DataLayer();
 
@@ -274,7 +275,8 @@ public class PresentationLayer {
             
                // Action
                  
-               //String result = dl.Method();
+               String Interestresult = dl.StudentInterests(UserID);
+               
                //ResultBox(result);
                
                }
