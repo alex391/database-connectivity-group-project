@@ -48,7 +48,7 @@ public class PresentationLayer {
             sframe.setSize(400, 300);
 
             // Add Label, box, button
-            JLabel newLabel = new JLabel("Enter Interest ID to Search: ");
+            JLabel newLabel = new JLabel("Enter The Number of Your Interest ID to Search: ");
             sframe.add(newLabel);
             newLabel.setBounds(185, 30, 185, 30);
 
@@ -74,19 +74,19 @@ public class PresentationLayer {
             });
 
             // List the interests
-            JLabel intLabel = new JLabel("Interest and ID's: ");
+            JLabel intLabel = new JLabel("Interests and ID's: ");
             sframe.add(intLabel);
             intLabel.setBounds(10, 0, 150, 30);
 
-            JTextArea listInterests = new JTextArea(
-                  "Java = 1\nAnthropology = 2\nEthics in Computing = 3\nCalculus = 4\nMobile Design = 5\nPython = 6\nBiochemical Engineering = 7\nBiology = 8\nArt = 9\nFilm/Animation = 10\n");
+            String result = dl.allInterests();
+            JTextArea listInterests = new JTextArea(result);
             listInterests.setEditable(false);
-            listInterests.setBounds(10, 30, 160, 250);
+            listInterests.setBounds(10, 30, 170, 400);
             sframe.add(listInterests);
 
             sframe.setLayout(null); // using no layout managers
+            sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
-
          }
       });
 
@@ -171,25 +171,25 @@ public class PresentationLayer {
 
                   // Result box will show the faculty with matching interest as user input
 
-                  dl.editInterest(dl.getUserID(userName), Integer.parseInt(t.getText()));
+                  dl.addInterest(dl.getUserID(userName), Integer.parseInt(t.getText()));
                   ResultBox("Interest Added");
                }
             });
 
             // List the interests
-            JLabel intLabel = new JLabel("Interest and ID's: ");
+            JLabel intLabel = new JLabel("Interests and ID's: ");
             sframe.add(intLabel);
             intLabel.setBounds(10, 0, 150, 30);
 
-            JTextArea listInterests = new JTextArea(
-                  "Java = 1\nAnthropology = 2\nEthics in Computing = 3\nCalculus = 4\nMobile Design = 5\nPython = 6\nBiochemical Engineering = 7\nBiology = 8\nArt = 9\nFilm/Animation = 10\n");
+            String result = dl.allInterests();
+            JTextArea listInterests = new JTextArea(result);
             listInterests.setEditable(false);
-            listInterests.setBounds(10, 30, 160, 250);
+            listInterests.setBounds(10, 30, 170, 400);
             sframe.add(listInterests);
 
             sframe.setLayout(null); // using no layout managers
+            sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
-
          }
       });
 
@@ -209,7 +209,7 @@ public class PresentationLayer {
             sframe.setSize(400, 300);
 
             // Add Label, box, button
-            JLabel newLabel = new JLabel("Enter Interest ID to Search: ");
+            JLabel newLabel = new JLabel("Enter The Number of Your Interest ID to Search: ");
             sframe.add(newLabel);
             newLabel.setBounds(185, 30, 185, 30);
 
@@ -235,19 +235,19 @@ public class PresentationLayer {
             });
 
             // List the interests
-            JLabel intLabel = new JLabel("Interest and ID's: ");
+            JLabel intLabel = new JLabel("Interests and ID's: ");
             sframe.add(intLabel);
             intLabel.setBounds(10, 0, 150, 30);
 
-            JTextArea listInterests = new JTextArea(
-                  "Java = 1\nAnthropology = 2\nEthics in Computing = 3\nCalculus = 4\nMobile Design = 5\nPython = 6\nBiochemical Engineering = 7\nBiology = 8\nArt = 9\nFilm/Animation = 10\n");
+            String result = dl.allInterests();
+            JTextArea listInterests = new JTextArea(result);
             listInterests.setEditable(false);
-            listInterests.setBounds(10, 30, 160, 250);
+            listInterests.setBounds(10, 30, 170, 400);
             sframe.add(listInterests);
 
             sframe.setLayout(null); // using no layout managers
+            sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
-
          }
       });
 
@@ -348,25 +348,25 @@ public class PresentationLayer {
 
                   // Result box will show the faculty with matching interest as user input
 
-                  dl.editInterest(dl.getUserID(userName), Integer.parseInt(t.getText()));
+                  dl.addInterest(dl.getUserID(userName), Integer.parseInt(t.getText()));
                   ResultBox("Interest Added");
                }
             });
 
             // List the interests
-            JLabel intLabel = new JLabel("Interest and ID's: ");
+            JLabel intLabel = new JLabel("Interests and ID's: ");
             sframe.add(intLabel);
             intLabel.setBounds(10, 0, 150, 30);
 
-            JTextArea listInterests = new JTextArea(
-                  "Java = 1\nAnthropology = 2\nEthics in Computing = 3\nCalculus = 4\nMobile Design = 5\nPython = 6\nBiochemical Engineering = 7\nBiology = 8\nArt = 9\nFilm/Animation = 10\n");
+            String result = dl.allInterests();
+            JTextArea listInterests = new JTextArea(result);
             listInterests.setEditable(false);
-            listInterests.setBounds(10, 30, 160, 250);
+            listInterests.setBounds(10, 30, 170, 400);
             sframe.add(listInterests);
 
             sframe.setLayout(null); // using no layout managers
+            sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
-
          }
       });
 
@@ -387,7 +387,7 @@ public class PresentationLayer {
             sframe.setSize(400, 300);
 
             // Add Label, box, button
-            JLabel newLabel = new JLabel("Enter Interest ID to Search: ");
+            JLabel newLabel = new JLabel("Enter The Number of Your Interest ID to Search: ");
             sframe.add(newLabel);
             newLabel.setBounds(185, 30, 185, 30);
 
@@ -413,19 +413,19 @@ public class PresentationLayer {
             });
 
             // List the interests
-            JLabel intLabel = new JLabel("Interest and ID's: ");
+            JLabel intLabel = new JLabel("Interests and ID's: ");
             sframe.add(intLabel);
             intLabel.setBounds(10, 0, 150, 30);
 
-            JTextArea listInterests = new JTextArea(
-                  "Java = 1\nAnthropology = 2\nEthics in Computing = 3\nCalculus = 4\nMobile Design = 5\nPython = 6\nBiochemical Engineering = 7\nBiology = 8\nArt = 9\nFilm/Animation = 10\n");
+            String result = dl.allInterests();
+            JTextArea listInterests = new JTextArea(result);
             listInterests.setEditable(false);
-            listInterests.setBounds(10, 30, 160, 250);
+            listInterests.setBounds(10, 30, 170, 400);
             sframe.add(listInterests);
 
             sframe.setLayout(null); // using no layout managers
+            sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
-
          }
       });
 
