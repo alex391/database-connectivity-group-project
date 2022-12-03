@@ -83,21 +83,32 @@ public class DataLayer {
     }
 
     public String allEntries() {
-        String result="";
+        StringBuilder result= new StringBuilder();
         try {
-
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT topic AS 'entries' From entries GROUP BY topic;");   
-            while (rs.next()) {
-            result += rs.getString("entries") + "\n";
-            
+            Statement topicStatement = conn.createStatement();
+            ResultSet topicResult = topicStatement.executeQuery("SELECT topic, userID  From entries GROUP BY topic;");
+            while (topicResult.next()) {
+                // topic - firstName lastName, firstName2 lastName2, ...
+                result.append(topicResult.getString("topic")).append(" - ");
+                Statement usersStatement = conn.createStatement();
+                ResultSet usersResult = usersStatement.executeQuery(
+                    "SELECT firstName, lastName FROM users WHERE userID = " + topicResult.getInt("userID")
+                );
+                while(usersResult.next()) {
+                    result.append(usersResult.getString("firstName")).append(" ");
+                    result.append(usersResult.getString("lastName"));
+                    if (!usersResult.isLast()) {
+                        result.append(", ");
+                    }
+                }
+                result.append("\n");
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
             System.out.println("Error = " + e);
             e.printStackTrace();
         }
-        return result;
+        return result.toString();
     }
 
     public String StudentInterests(int UserID) {
@@ -174,7 +185,6 @@ public class DataLayer {
      * This function deletes a faculty member by taking in their entryID.
      * @param entryID used to delete the faculty member corresponding to that ID.
      * @return the result of the delete function whether it was successful or not.
-     * 0 means that it did not work.
      */
     public int deleteEntry(int entryID) {
         PreparedStatement stmt;
@@ -198,7 +208,6 @@ public class DataLayer {
      * @param entryID used to edit the topic of the faculty member corresponding to that ID.
      * @param newTopic the new topic that the user wants to replace the entry's topic with.
      * @return the result of the update function whether it was successful or not.
-     * 0 means that it did not work.
      */
     public int updateEntry(int entryID, String newTopic) {
         PreparedStatement stmt;
@@ -219,7 +228,6 @@ public class DataLayer {
      * This function selects all the topics from 
      * an entry where the userID matches.
      * @return an array of formatted topics that match user's ID
-     * Null means that it did not work.
      */
     public String[] selectTopicsFromEntry(int userID) {
         try {
@@ -244,10 +252,9 @@ public class DataLayer {
      * @param userName the userName to be checked for a userType.
      * @return the userType, either "F" for 
      * Faculty, "S" for Student, or "G" for Guest.
-     * Null means that it did not work.
      */
     public String getUserType(String userName) {
-        if (userName.equals("guest")) {
+        if (userName.equalsIgnoreCase("guest")) {
             return "G";
         }
         try {
@@ -311,7 +318,6 @@ public class DataLayer {
      *
      * @param plainText The plaintext string that is going to be converted to hash.
      * @return the hash of that string.
-     * Null means that it did not work.
      */
     String hashString(String plainText) {
         try {
