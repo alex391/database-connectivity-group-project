@@ -43,7 +43,7 @@ public class PresentationLayer {
             });
 
 
-      // Search Interests
+      // Search by Interests, returns Faculty that match current users interests
       JButton searchIntButton = new JButton("Search Interests");
       searchIntButton.setBounds(100,130,150,50);
       f.add(searchIntButton);
@@ -52,6 +52,35 @@ public class PresentationLayer {
             public void actionPerformed(ActionEvent e) {
             
                // Action
+               
+                  // Box with textarea of interest option + textbox for user input. Search button to search by what user inputs.
+                     JFrame sframe = new JFrame("Search by Interest");
+                     sframe.setSize(400, 300);
+                     
+                     // Add Label, box, button
+                     JLabel newLabel = new JLabel("Enter Interest to Search: ");
+                     sframe.add(newLabel);
+                     newLabel.setBounds(180,30,180,30);
+                     
+                     JTextField t = new JTextField(16);
+                     sframe.add(t);
+                     t.setBounds(165,60,180,30);
+
+                     JButton b = new JButton("Search");
+                     sframe.add(b);
+                     b.setBounds(200,100,100,50);
+                     // List the interests                    
+                     JTextArea listInterests = new JTextArea("Hello\nHello");
+                     listInterests.setEditable(false);
+                     listInterests.setBounds(10,10,100,250);
+                     sframe.add(listInterests);
+                     
+                     
+                     sframe.setLayout(null); // using no layout managers
+                     sframe.setVisible(true); // making the frame visible
+                     
+                     // Result box will show the faculty with matching interest as user input
+                    
                
                }
             });
@@ -169,6 +198,7 @@ public class PresentationLayer {
       f.setSize(600,600);
       // Text Area Creation
       JTextArea result = new JTextArea(resultTest);
+      result.setEditable(false);
       result.setBounds(10,10,500,500);
       f.add(result);
       
