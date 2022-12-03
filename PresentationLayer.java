@@ -322,26 +322,179 @@ public class PresentationLayer {
         JLabel label = new JLabel(" Student/Guest Features");
         label.setBounds(125,50,150,30);
         f.add(label);
+        
         // Edit interests
         JButton editButton = new JButton("Edit Interests");
         editButton.setBounds(125,80,150,50);
         f.add(editButton);
+        
+          //  Edit Interest Listening
+             editButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            
+               // Action
+               
+                  // Box with textarea of interest option + textbox for user input. Search button to search by what user inputs.
+                     JFrame sframe = new JFrame("Edit your Interest");
+                     sframe.setSize(400, 300);
+                     
+                     // Add Label, box, button
+                     JLabel newLabel = new JLabel("Enter your new Interest: ");
+                     sframe.add(newLabel);
+                     newLabel.setBounds(185,30,185,30);
+                     
+                     JTextField t = new JTextField(16);
+                     sframe.add(t);
+                     t.setBounds(185,60,180,30);
+
+                     JButton b = new JButton("Update");
+                     sframe.add(b);
+                     b.setBounds(220,100,100,50);
+                     
+                        // Add Listener for search button
+                        b.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+               
+                              // Action for search uses the textfield as a parameter
+                              
+                              // Result box will show the faculty with matching interest as user input
+
+                                String output = dl.searchFaculty(Integer.parseInt(t.getText()));
+                                ResultBox(output);
+                        }
+                        });
+
+                        
+                     // List the interests        
+                     JLabel intLabel = new JLabel("Interest and ID's: ");
+                     sframe.add(intLabel);
+                     intLabel.setBounds(10,0,150,30);
+                                 
+                     JTextArea listInterests = new JTextArea("Java = 1\nAnthropology = 2\nEthics in Computing = 3\nCalculus = 4\nMobile Design = 5\nPython = 6\nBiochemical Engineering = 7\nBiology = 8\nArt = 9\nFilm/Animation = 10\n");
+                     listInterests.setEditable(false);
+                     listInterests.setBounds(10,30,160,250);
+                     sframe.add(listInterests);
+                     
+                     
+                     sframe.setLayout(null); // using no layout managers
+                     sframe.setVisible(true); // making the frame visible
+                     
+                                         
+               
+               }
+            });
+
+
         // Search Interests
         JButton searchIntButton = new JButton("Search Interests");
         searchIntButton.setBounds(125,130,150,50);
         f.add(searchIntButton);
-        // Search UserID
-        JButton searchUserButton = new JButton("Search User ID");
-        searchUserButton.setBounds(125,180,150,50);
-        f.add(searchUserButton);
+        
+         //  Search Interests Button Listening
+            searchIntButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            
+               // Action
+               
+                  // Box with textarea of interest option + textbox for user input. Search button to search by what user inputs.
+                     JFrame sframe = new JFrame("Search for Faculty Name by Interest ID");
+                     sframe.setSize(400, 300);
+                     
+                     // Add Label, box, button
+                     JLabel newLabel = new JLabel("Enter Interest ID to Search: ");
+                     sframe.add(newLabel);
+                     newLabel.setBounds(185,30,185,30);
+                     
+                     JTextField t = new JTextField(16);
+                     sframe.add(t);
+                     t.setBounds(185,60,180,30);
+
+                     JButton b = new JButton("Search");
+                     sframe.add(b);
+                     b.setBounds(220,100,100,50);
+                     
+                        // Add Listener for search button
+                        b.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+               
+                              // Action for search uses the textfield as a parameter
+                              
+                              // Result box will show the faculty with matching interest as user input
+
+                                String output = dl.searchFaculty(Integer.parseInt(t.getText()));
+                                ResultBox(output);
+                        }
+                        });
+
+                        
+                     // List the interests        
+                     JLabel intLabel = new JLabel("Interest and ID's: ");
+                     sframe.add(intLabel);
+                     intLabel.setBounds(10,0,150,30);
+                                 
+                     JTextArea listInterests = new JTextArea("Java = 1\nAnthropology = 2\nEthics in Computing = 3\nCalculus = 4\nMobile Design = 5\nPython = 6\nBiochemical Engineering = 7\nBiology = 8\nArt = 9\nFilm/Animation = 10\n");
+                     listInterests.setEditable(false);
+                     listInterests.setBounds(10,30,160,250);
+                     sframe.add(listInterests);
+                     
+                     
+                     sframe.setLayout(null); // using no layout managers
+                     sframe.setVisible(true); // making the frame visible
+                     
+                                         
+               
+               }
+            });
+
+
+        // Search Commonalities
+        JButton searchCommonButton = new JButton("Search User ID");
+        searchCommonButton.setBounds(125,180,150,50);
+        f.add(searchCommonButton);
+        
+         searchCommonButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            
+               // Action
+                 
+               //String result = dl.Method();
+               //ResultBox(result);
+               
+               }
+            });
+
         // Browse
         JButton browseButton = new JButton("Browse Entries");
         browseButton.setBounds(125,230,150,50);
         f.add(browseButton);
+        
+           //  Search UserID Button Listening
+            browseButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+
+                    // Action
+                    String result = dl.allEntries();
+                    ResultBox(result);
+
+                }
+            });
+        
         // Exit Button
         JButton exitButton = new JButton("Exit");
         exitButton.setBounds(125,280,150,50);
         f.add(exitButton);
+        
+        //Exit Button Listening
+            exitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               // Closing all connections to database
+               System.out.println("\nClosing all connections to database...\n");
+               dl.close();
+               System.exit(0);
+               }
+            });
+        
+        
 
 
         // Faculty Buttons
