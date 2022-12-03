@@ -97,32 +97,32 @@ INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('aEinst
 INSERT INTO Users(userName,password,userType,firstName,lastName) VALUES ('Guest',SHA1('guest'),'G','Guest','Guest');
 
 -- Data creation for Interests table.
-INSERT INTO Interests(interest) VALUES ('Java'); 1
-INSERT INTO Interests(interest) VALUES ('Anthropology'); 2
-INSERT INTO Interests(interest) VALUES ('Ethics in Computing'); 3
-INSERT INTO Interests(interest) VALUES ('Calculus'); 4
-INSERT INTO Interests(interest) VALUES ('Mobile Design'); 5
-INSERT INTO Interests(interest) VALUES ('Python'); 6
-INSERT INTO Interests(interest) VALUES ('Biochemical Engineering'); 7
-INSERT INTO Interests(interest) VALUES ('Biology'); 8
-INSERT INTO Interests(interest) VALUES ('Art'); 9
-INSERT INTO Interests(interest) VALUES ('Film and Animation'); 10
-INSERT INTO Interests(interest) VALUES ('Web Design'); 11
-INSERT INTO Interests(interest) VALUES ('Ruby'); 12
-INSERT INTO Interests(interest) VALUES ('Video Game Design'); 13
-INSERT INTO Interests(interest) VALUES ('Scripting'); 14
-INSERT INTO Interests(interest) VALUES ('Theater'); 15
-INSERT INTO Interests(interest) VALUES ('Physical Education'); 16
-INSERT INTO Interests(interest) VALUES ('Database Design'); 17
-INSERT INTO Interests(interest) VALUES ('Algorithms'); 18
-INSERT INTO Interests(interest) VALUES ('Machine Learning'); 19
-INSERT INTO Interests(interest) VALUES ('Cybersecurity'); 20
-INSERT INTO Interests(interest) VALUES ('Networking'); 21
-INSERT INTO Interests(interest) VALUES ('MySQL'); 22
-INSERT INTO Interests(interest) VALUES ('MongoDB'); 23
-INSERT INTO Interests(interest) VALUES ('C++'); 24
-INSERT INTO Interests(interest) VALUES ('C#'); 25
-INSERT INTO Interests(interest) VALUES ('Physics'); 26
+INSERT INTO Interests(interest) VALUES ('Java');
+INSERT INTO Interests(interest) VALUES ('Anthropology');
+INSERT INTO Interests(interest) VALUES ('Ethics in Computing');
+INSERT INTO Interests(interest) VALUES ('Calculus');
+INSERT INTO Interests(interest) VALUES ('Mobile Design');
+INSERT INTO Interests(interest) VALUES ('Python');
+INSERT INTO Interests(interest) VALUES ('Biochemical Engineering');
+INSERT INTO Interests(interest) VALUES ('Biology');
+INSERT INTO Interests(interest) VALUES ('Art');
+INSERT INTO Interests(interest) VALUES ('Film and Animation');
+INSERT INTO Interests(interest) VALUES ('Web Design');
+INSERT INTO Interests(interest) VALUES ('Ruby');
+INSERT INTO Interests(interest) VALUES ('Video Game Design');
+INSERT INTO Interests(interest) VALUES ('Scripting');
+INSERT INTO Interests(interest) VALUES ('Theater');
+INSERT INTO Interests(interest) VALUES ('Physical Education');
+INSERT INTO Interests(interest) VALUES ('Database Design');
+INSERT INTO Interests(interest) VALUES ('Algorithms');
+INSERT INTO Interests(interest) VALUES ('Machine Learning');
+INSERT INTO Interests(interest) VALUES ('Cybersecurity');
+INSERT INTO Interests(interest) VALUES ('Networking');
+INSERT INTO Interests(interest) VALUES ('MySQL');
+INSERT INTO Interests(interest) VALUES ('MongoDB');
+INSERT INTO Interests(interest) VALUES ('C++');
+INSERT INTO Interests(interest) VALUES ('C#');
+INSERT INTO Interests(interest) VALUES ('Physics');
 
 -- Data creation for UserInterests table.
 
