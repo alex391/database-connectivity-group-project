@@ -111,7 +111,23 @@ public class DataLayer {
         return result.toString();
     }
 
-    
+    public String StudentInterests(int UserID) {
+        String result="";
+        try {
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(String.format("SELECT interestID FROM UserInterests WHERE USERID= \"%d\" ;",UserID));   
+            while (rs.next()) {
+            result += rs.getString("email") + "\n";
+            
+            }
+        } catch (SQLException e) {
+            System.out.println("There was an error in the select.");
+            System.out.println("Error = " + e);
+            e.printStackTrace();
+        }
+        return result;
+    }
 
     /**
      * This function searches the faculty for a shared interest using an interestID that matches it.
@@ -148,13 +164,14 @@ public class DataLayer {
      * @param topic The topic to use for the new entry in the database.
      * @return the result of the add function whether it was successful or not.
      */
-    public int addEntry(int userID, String topic) {
+    public int addEntry(int userID, String topic, int interestID) {
         int result = 0;
         try {
             PreparedStatement stmt;
-            stmt = conn.prepareStatement("INSERT INTO entries(userID, topic) VALUES (?, ?);");
+            stmt = conn.prepareStatement("INSERT INTO entries(userID, topic, interestID) VALUES (?, ?, ?);");
             stmt.setInt(1, userID);
             stmt.setString(2, topic);
+            stmt.setInt(3, interestID);
             result = stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("There was an error in the insert.");
@@ -267,24 +284,24 @@ public class DataLayer {
 
 
 
-    public String getUserID(String userName) {
+    public int getUserID(String userName) {
         if (userName.equals("guest")) {
-            return "G";
+            return 0;
         }
         try {
             Statement statement = conn.createStatement();
             ResultSet rs = statement
                     .executeQuery(String.format("SELECT userID FROM users WHERE userName = \"%s\";", userName));
-            String type = null;
+            int type = 0;
             if (rs.next()) {
-                type = rs.getString("userID");
+                type = rs.getInt("userID");
             } else {
                 System.err.println("Error in getting the topic - no more rows.");
             }
 
-            if (type == null) {
+            if (type == 0) {
                 System.err.println("Error in getting the topic - type is null.");
-                return "G"; // To not crash unless we have to, return G
+                return 0; // To not crash unless we have to, return G
             } else {
                 return type;
             }
@@ -292,7 +309,7 @@ public class DataLayer {
             System.err.println("There was an error in getting/selecting the user type.");
             e.printStackTrace();
             System.exit(1);
-            return null;
+            return 0;
         }
     }
 
