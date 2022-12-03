@@ -108,13 +108,33 @@ public class DataLayer {
      * @param interestID The interestID of the desired interest to search for.
      * @return all the emails of every faculty member that shares that interest.
      */
-    public int searchFaculty(int interestID) {
+
+    public String searchFaculty(int interestID) {
+        String result="";
+        try {
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(String.format("SELECT faculty.email AS 'email', faculty.officeNumber AS 'Office Number' FROM faculty JOIN userinterests USING(userID) WHERE faculty.userID = userID AND interestID = \"%d\" GROUP BY faculty.userID;",interestID));   
+            while (rs.next()) {
+            result += rs.getString("entries") + "\n";
+            
+            }
+        } catch (SQLException e) {
+            System.out.println("There was an error in the select.");
+            System.out.println("Error = " + e);
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
+    public int searchFaculty() {
         int result = 0;
         try {
             PreparedStatement stmt;
             stmt = conn.prepareStatement(
-                    "SELECT faculty.email AS 'email', faculty.officeNumber AS 'Office Number' FROM faculty JOIN userinterests USING(userID) WHERE faculty.userID = userID AND interestID = ? GROUP BY faculty.userID;");
-            stmt.setInt(1, interestID);
+                    "");
+           
             result = stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
