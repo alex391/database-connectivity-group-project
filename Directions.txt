@@ -42,7 +42,7 @@ differing functionality between the “Student” and “Guest” user types.
 the default user, and "guest" as the password.
 
 * To login to a Student account for grading purposes we have created 
-an account with a username of "aSmith" and a password of “test123”.
+an account with a username of "aSmith" and a password of “test1211”.
 
 * To login to a Faculty account for grading purposes we have created
 an account with a username of “jHabermas” and a password of “test123”.
