@@ -35,11 +35,10 @@ localhost database. After a successful connection to their local
 database, the user will then be prompted to login with their 
 application credentials. Each user will have their own user type: 
 “Student”,”Faculty”, or “Guest.” Depending on their user type, they 
-will have access to different functionality. Currently, there is no 
-differing functionality between the “Student” and “Guest” user types.
+will have access to different functionality. 
 
-* To login to the Guest account, the user can simply use "Guest" as 
-the default user, and "guest" as the password.
+* To login to the Guest account, the user can simply use the "Guest"
+button, and the fields will auto fill with guest login info.
 
 * To login to a Student account for grading purposes we have created 
 an account with a username of "aSmith" and a password of “test1211”.
@@ -50,25 +49,25 @@ an account with a username of “jHabermas” and a password of “test123”.
 --------- Guests --------- 
 [ Features: Able to Browse and Search by Interest ]
 
-* Use the "Search by Interest” function to filter 
+* Use the "Search Faculty by Interests” function to filter 
 interests by an inputted interest ID number
  to find the faculty you are looking for. The 
 application will display results according
 to which number is set.
 
-* Use the "Browse Interests" function to see a collection of 
+* Use the "Browse Entries" function to see a collection of 
 all entries in the system.
 
 --------- Students ---------
 [  Features: Same as guest, but can also search by commonalities
 and edit current interests in the database ]
 
-* Use the "Common Interests" button to filter 
+* Use the "Faculty with Common Interests" button to filter 
 users to find the faculty your interests align with.
 The application will display results by automatically
 looking at the user's current interest.
 
-* Use the "Edit Interests" function to update your own
+* Use the "Edit Your Interests" function to update your own
 interests in the database.
 
                                     
@@ -88,5 +87,7 @@ and other relevant info.
 entry from the database. You will need to specify which
 entry in the GUI.
 
-* Faculty has access to all of the features Student/Guest
-accounts have.
+* Use the "Search Students by Interests" button to filter 
+interests by an inputted interest ID number to find the 
+student you are looking for. The  application will display 
+results according to which number is set.

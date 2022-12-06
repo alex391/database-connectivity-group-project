@@ -360,7 +360,7 @@ public class PresentationLayer {
 
       // Edit Interests
       JButton editButton = new JButton("Edit Your Interests");
-      editButton.setBounds(100, 80, 175, 50);
+      editButton.setBounds(62, 80, 175, 50);
       f.add(editButton);
       // Edit Interest Listening
       editButton.addActionListener(new ActionListener() {
