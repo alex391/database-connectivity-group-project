@@ -99,9 +99,9 @@ public class DataLayer {
                 "SELECT topic, GROUP_CONCAT(Users.lastName, ', ', Users.firstName SEPARATOR ' | ') AS 'name', GROUP_CONCAT(Faculty.email SEPARATOR ' | ') AS 'email' FROM entries JOIN Users USING(userID) JOIN Faculty USING(userID) GROUP BY topic;"));
             result.append("All Entries:\n\n");
             while (rs.next()) {
-                result.append("Topic  : " + rs.getString("topic")     + "\n");
-                result.append("Author : " + rs.getString("name")    + "\n");
-                result.append("Contact: " + rs.getString("email")+ "\n\n");
+                result.append("Topic:       " + rs.getString("topic")     + "\n");
+                result.append("Author:     " + rs.getString("name")    + "\n");
+                result.append("Contact:   " + rs.getString("email")+ "\n\n");
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
@@ -187,9 +187,9 @@ public class DataLayer {
                     interestID));
             result += "Faculty with the specified interest:\n\n";
             while (rs.next()) {
-                result += "Name  : " + rs.getString("name")     + "\n";
-                result += "Email   : " + rs.getString("email")    + "\n";
-                result += "Office# : " + rs.getString("officeLoc")+ "\n\n";
+                result += "Name:   " + rs.getString("name")     + "\n";
+                result += "Email:    " + rs.getString("email")    + "\n";
+                result += "Office#:  " + rs.getString("officeLoc")+ "\n\n";
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
