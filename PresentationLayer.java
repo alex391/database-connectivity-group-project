@@ -299,7 +299,7 @@ public class PresentationLayer {
                resultBuilder.append(user);
                resultBuilder.append("\n");
             }
-            String result = resultBuilder.toString() ; // name of the users, what interest they had in common, what user they are.
+            String result = resultBuilder.toString() ; // name of the users, what interest they had in common, and what user/occupation they are.
             JTextArea listInterests = new JTextArea(result);
             listInterests.setEditable(false);
             listInterests.setBounds(10, 30, 600, 400);
