@@ -95,13 +95,13 @@ public class DataLayer {
         StringBuilder result = new StringBuilder();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(String.format(
-                "SELECT topic, GROUP_CONCAT(Users.lastName, ', ', Users.firstName SEPARATOR ' | ') AS 'name', GROUP_CONCAT(Faculty.email SEPARATOR ' | ') AS 'email' FROM entries JOIN Users USING(userID) JOIN Faculty USING(userID) GROUP BY topic;"));
+            ResultSet rs = stmt.executeQuery(
+                "SELECT topic, GROUP_CONCAT(Users.lastName, ', ', Users.firstName SEPARATOR ' | ') AS 'name', GROUP_CONCAT(Faculty.email SEPARATOR ' | ') AS 'email' FROM entries JOIN Users USING(userID) JOIN Faculty USING(userID) GROUP BY topic;");
             result.append("All Entries:\n\n");
             while (rs.next()) {
-                result.append("Topic  : " + rs.getString("topic")     + "\n");
-                result.append("Author : " + rs.getString("name")    + "\n");
-                result.append("Contact: " + rs.getString("email")+ "\n\n");
+                result.append("Topic:       " + rs.getString("topic")     + "\n");
+                result.append("Author:     " + rs.getString("name")    + "\n");
+                result.append("Contact:   " + rs.getString("email")+ "\n\n");
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
@@ -187,9 +187,9 @@ public class DataLayer {
                     interestID));
             result += "Faculty with the specified interest:\n\n";
             while (rs.next()) {
-                result += "Name  : " + rs.getString("name")     + "\n";
-                result += "Email   : " + rs.getString("email")    + "\n";
-                result += "Office# : " + rs.getString("officeLoc")+ "\n\n";
+                result += "Name:   " + rs.getString("name")     + "\n";
+                result += "Email:    " + rs.getString("email")    + "\n";
+                result += "Office#:  " + rs.getString("officeLoc")+ "\n\n";
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
@@ -464,13 +464,16 @@ public class DataLayer {
             for (int interestID: usersInterests) {
                 Statement interestStatement = conn.createStatement();
                 ResultSet intrestsResultSet = interestStatement
-                        .executeQuery(String.format("SELECT firstName, lastName, interest FROM users JOIN userinterests u on users.userID = u.userID JOIN interests i on i.interestID = u.interestID WHERE i.interestID = \"%d\";", interestID));
+                        .executeQuery(String.format("SELECT firstName, lastName, userType, interest FROM users JOIN userinterests u on users.userID = u.userID JOIN interests i on i.interestID = u.interestID WHERE i.interestID = \"%d\";", interestID));
                 while (intrestsResultSet.next()) {
                     String userInfo = intrestsResultSet.getString("firstName") +
                             " " +
                             intrestsResultSet.getString("lastName") +
-                            " " +
-                            intrestsResultSet.getString("interest");
+                            " - " +
+                            intrestsResultSet.getString("interest") +
+                            " - " +
+                            longUserType(intrestsResultSet.getString("userType"));
+
                     commonUsers.add(userInfo);
                 }
             }
@@ -480,6 +483,25 @@ public class DataLayer {
             e.printStackTrace();
             System.exit(1);
             return null;
+        }
+    }
+
+    /**
+     * Convert the user type code to a longer more human-readable string
+     *
+     * @param shortUserType "F", "S", or "G"
+     * @return Faculty, Student, or Guest
+     */
+    private String longUserType(String shortUserType)  {
+        switch (shortUserType) {
+            case "F":
+                return "Faculty";
+            case "S":
+                return "Student";
+            case "G":
+                return "Guest";
+            default:
+                return "Unknown user type";
         }
     }
 
