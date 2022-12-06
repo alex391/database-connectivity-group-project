@@ -189,11 +189,13 @@ public class DataLayer {
 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(String.format(
-                    "SELECT faculty.email AS 'email',CONCAT_WS(',',Users.lastName,Users.firstName) AS name , faculty.officeNumber,faculty.buildNumber AS 'Office Number' FROM faculty JOIN userinterests USING(userID) JOIN Users USING (userID)WHERE faculty.userID = userID AND interestID =  \"%d\" GROUP BY faculty.userID;",
+                    "SELECT faculty.email AS 'email', CONCAT_WS(', ', Users.lastName, Users.firstName) AS name, CONCAT_WS('-', faculty.buildNumber, faculty.officeNumber) AS 'officeLoc' FROM faculty JOIN userinterests USING(userID) JOIN Users USING (userID) WHERE interestID =  \"%d\";",
                     interestID));
+            result += "Faculty with a common interest:\n\n";
             while (rs.next()) {
-                result += rs.getString("email") + "\n";
-
+                result += "Name  : " + rs.getString("name")     + "\n";
+                result += "Email : " + rs.getString("email")    + "\n";
+                result += "Office: " + rs.getString("officeLoc")+ "\n\n";
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
