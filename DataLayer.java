@@ -538,4 +538,33 @@ public class DataLayer {
             return false;
         }
     }
+
+    /**
+     * This function returns true or false based on 
+     * if the intake user does (true) or 
+     * does not (false) own the entry.
+     * 
+     * @param userID of current user
+     * @param entryID of entry in question
+     * @return
+     * Boolean
+     */
+    boolean checkOwnership(int userID, int entryID){
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(String.format("SELECT * FROM entries WHERE userID = \"%d\" AND entryID = \"%d\";", userID, entryID));
+
+            if (rs.next()){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("There was an error in validating ownership.");
+            e.printStackTrace();
+            System.exit(1);
+            return false;
+        }
+        
+    }
 }

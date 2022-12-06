@@ -731,9 +731,13 @@ public class PresentationLayer {
                   // Action for new entry uses the textfield as a parameter
 
                   // Result box will show success message if added
-
-                  dl.updateEntry(Integer.parseInt(entryID.getText()), t.getText());
-                  ResultBox("Entry Updated");
+                  if (dl.checkOwnership(dl.getUserID(userName), Integer.parseInt(entryID.getText()))){
+                     dl.updateEntry(Integer.parseInt(entryID.getText()), t.getText());
+                     ResultBox("Entry Updated");
+                  } else{
+                     ResultBox("You cannot edit/delete entries you do not own");
+                  }
+                  
 
                }
             });
@@ -776,10 +780,12 @@ public class PresentationLayer {
                   // Action for new entry uses the textfield as a parameter
 
                   // Result box will show success message if added
-
-                  dl.deleteEntry(Integer.parseInt(t.getText()));
-                  ResultBox("Entry Deleted");
-
+                  if (dl.checkOwnership(dl.getUserID(userName), Integer.parseInt(t.getText()))){
+                     dl.deleteEntry(Integer.parseInt(t.getText()));
+                     ResultBox("Entry Deleted");
+                  } else {
+                     ResultBox("You cannot edit/delete entries you do not own");
+                  }
                }
             });
             sframe.setLayout(null); // using no layout managers
