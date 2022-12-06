@@ -194,8 +194,8 @@ public class DataLayer {
             result += "Faculty with the specified interest:\n\n";
             while (rs.next()) {
                 result += "Name  : " + rs.getString("name")     + "\n";
-                result += "Email : " + rs.getString("email")    + "\n";
-                result += "Office: " + rs.getString("officeLoc")+ "\n\n";
+                result += "Email   : " + rs.getString("email")    + "\n";
+                result += "Office# : " + rs.getString("officeLoc")+ "\n\n";
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
