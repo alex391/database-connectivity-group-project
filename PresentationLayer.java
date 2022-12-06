@@ -400,6 +400,7 @@ public class PresentationLayer {
             });
 
             // List the interests
+            listInterests(sframe);
             listUserInterests(sframe);
          }
       });
@@ -746,9 +747,9 @@ public class PresentationLayer {
       String result = dl.allInterests();
       JTextArea listInterests = new JTextArea(result);
       listInterests.setEditable(false);
-      listInterests.setBounds(10, 30, 170, 400);
+      listInterests.setBounds(10, 30, 170, 420); //nice
       sframe.add(listInterests);
-
+      
       sframe.setLayout(null); // using no layout managers
       sframe.setSize(800, 800);
       sframe.setVisible(true); // making the frame visible
@@ -760,14 +761,15 @@ public class PresentationLayer {
     * @param sframe the sframe to add the interests to.
     */
    private void listUserInterests(JFrame sframe) {
-      JLabel intLabel = new JLabel("Interests and ID's: ");
+      JLabel intLabel = new JLabel("Current Interests and ID's: ");
       sframe.add(intLabel);
-      intLabel.setBounds(10, 0, 150, 30);
+      intLabel.setBounds(600, 0, 150, 30);
 
       String result = dl.allUserInterests(Integer.toString(dl.getUserID(userName)));
       JTextArea listUserInterests = new JTextArea(result);
       listUserInterests.setEditable(false);
-      listUserInterests.setBounds(10, 30, 170, 400);
+      listUserInterests.setBounds(600, 30, 170, 420);
+      
       sframe.add(listUserInterests);
 
       sframe.setLayout(null); // using no layout managers

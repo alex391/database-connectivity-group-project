@@ -154,7 +154,8 @@ public class DataLayer {
         StringBuilder result = new StringBuilder();
         try {
             Statement interestStatement = conn.createStatement();
-            ResultSet interestResult = interestStatement.executeQuery("SELECT interests.interestID, interests.interest FROM userinterests JOIN interests USING(interestID) WHERE userID = " + user + ";");
+            ResultSet interestResult = interestStatement.executeQuery("SELECT interests.interestID, interests.interest FROM userinterests JOIN interests USING(interestID) WHERE userID = " + user + " ORDER BY interestID;");
+            result.append("Current User interests:\n\n");
             while (interestResult.next()) {
                 // interestID - interest...
                 result.append(interestResult.getString("interestID")).append(" - ").append(interestResult.getString("interest"));
