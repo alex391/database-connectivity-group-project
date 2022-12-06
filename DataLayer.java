@@ -94,7 +94,7 @@ public class DataLayer {
         StringBuilder result = new StringBuilder();
         try {
             Statement topicStatement = conn.createStatement();
-            ResultSet topicResult = topicStatement.executeQuery("SELECT topic, userID FROM entries GROUP BY topic;");
+            ResultSet topicResult = topicStatement.executeQuery("SELECT topic, userID FROM entries GROUP BY topic, userID;");
             while (topicResult.next()) {
                 // topic - firstName lastName, firstName2 lastName2, ...
                 result.append(topicResult.getString("topic")).append(" - ");
