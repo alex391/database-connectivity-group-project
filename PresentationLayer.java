@@ -127,12 +127,12 @@ public class PresentationLayer {
 
       // Label
       JLabel label = new JLabel(" Student Features");
-      label.setBounds(122, 50, 170, 30);
+      label.setBounds(92, 50, 170, 30);
       f.add(label);
 
       // Edit Interests
       JButton editButton = new JButton("Edit Your Interests");
-      editButton.setBounds(100, 80, 175, 50);
+      editButton.setBounds(62, 80, 175, 50);
       f.add(editButton);
       // Edit Interest Listening
       editButton.addActionListener(new ActionListener() {
@@ -167,7 +167,7 @@ public class PresentationLayer {
                   // Result box will show the faculty with matching interest as user input
 
                   dl.addInterest(dl.getUserID(userName), Integer.parseInt(enterInterestText.getText()));
-                  ResultBox("Interest Added.");
+                  ResultBox("Interest Added");
                }
             });
 
@@ -193,19 +193,21 @@ public class PresentationLayer {
                   // Result box will show the faculty with matching interest as user input
 
                   dl.deleteInterest(dl.getUserID(userName), Integer.parseInt(removeInterestText.getText()));
-                  ResultBox("Interest Removed.");
+                  ResultBox("Interest Removed");
                }
             });
 
             // List the interests
             listInterests(sframe);
+            listUserInterests(sframe);
          }
       });
 
-      // Search by Interests, returns Faculty that match current users interests
-      JButton searchIntButton = new JButton("Search Faculty By Interests");
-      searchIntButton.setBounds(90, 130, 200, 50);
+      // Search Interests
+      JButton searchIntButton = new JButton("Search Faculty by Interests");
+      searchIntButton.setBounds(50, 130, 210, 50);
       f.add(searchIntButton);
+
       // Search Interests Button Listening
       searchIntButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
@@ -214,11 +216,11 @@ public class PresentationLayer {
 
             // Box with textarea of interest option + textbox for user input. Search button
             // to search by what user inputs.
-            JFrame sframe = new JFrame("Search For Faculty Name By Interest ID");
+            JFrame sframe = new JFrame("Search for Faculty Name by Interest ID");
             sframe.setSize(400, 300);
 
             // Add Label, box, button
-            JLabel newLabel = new JLabel("Enter The Number Of Your Interest ID To Search: ");
+            JLabel newLabel = new JLabel("Enter The Number of Your Interest ID to Search: ");
             sframe.add(newLabel);
             newLabel.setBounds(185, 30, 185, 30);
 
@@ -248,14 +250,13 @@ public class PresentationLayer {
          }
       });
 
-      // Search Common Interest
+      // Search Commonalities
       JButton searchCommonButton = new JButton("Common Interests");
-      searchCommonButton.setBounds(80, 180, 220, 50);
+      searchCommonButton.setBounds(40, 180, 230, 50);
       f.add(searchCommonButton);
-      // Search UserID Button Listening
+
       searchCommonButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-
             // Action
 
             // Box with textarea of interest option + textbox for user input. Search button
@@ -280,27 +281,28 @@ public class PresentationLayer {
             sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
          }
+
       });
 
       // Browse
       JButton browseButton = new JButton("Browse Entries");
-      browseButton.setBounds(110, 230, 150, 50);
+      browseButton.setBounds(80, 230, 150, 50);
       f.add(browseButton);
+
       // Search UserID Button Listening
       browseButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-
             // Action
             String result = dl.allEntries();
             ResultBox(result);
-
          }
       });
 
       // Exit Button
       JButton exitButton = new JButton("Exit");
-      exitButton.setBounds(110, 280, 150, 50);
+      exitButton.setBounds(80, 280, 150, 50);
       f.add(exitButton);
+
       // Exit Button Listening
       exitButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
@@ -736,7 +738,7 @@ public class PresentationLayer {
    private void listInterests(JFrame sframe) {
       JLabel intLabel = new JLabel("Interests and ID's: ");
       sframe.add(intLabel);
-      intLabel.setBounds(10, 0, 150, 30);
+      intLabel.setBounds(10, 0, 170, 30);
 
       String result = dl.allInterests();
       JTextArea listInterests = new JTextArea(result);
@@ -757,7 +759,7 @@ public class PresentationLayer {
    private void listUserInterests(JFrame sframe) {
       JLabel intLabel = new JLabel("Current Interests and ID's: ");
       sframe.add(intLabel);
-      intLabel.setBounds(600, 0, 150, 30);
+      intLabel.setBounds(600, 0, 170, 30);
 
       String result = dl.allUserInterests(Integer.toString(dl.getUserID(userName)));
       JTextArea listUserInterests = new JTextArea(result);
