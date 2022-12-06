@@ -214,11 +214,12 @@ public class DataLayer {
 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(String.format(
-                    "SELECT CONCAT_WS(', ', Users.lastName, Users.firstName) AS name FROM Users JOIN userinterests USING(userID) WHERE interestID =  \"%d\";",
+                    "SELECT CONCAT_WS(', ', Users.lastName, Users.firstName) AS name FROM Users JOIN userinterests USING(userID) WHERE userType = 'S' AND interestID =  \"%d\";",
                     interestID));
-            result += "Students with a specified interest:\n\n";
+            result += "Students with specified interest:\n\n";
             while (rs.next()) {
                 result += "Name  : " + rs.getString("name")     + "\n";
+                result += "Email : our database doesnt have anywhere for non-faculty emails and we realized too late. :(";
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
