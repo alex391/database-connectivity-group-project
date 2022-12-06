@@ -95,8 +95,8 @@ public class DataLayer {
         StringBuilder result = new StringBuilder();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(String.format(
-                "SELECT topic, GROUP_CONCAT(Users.lastName, ', ', Users.firstName SEPARATOR ' | ') AS 'name', GROUP_CONCAT(Faculty.email SEPARATOR ' | ') AS 'email' FROM entries JOIN Users USING(userID) JOIN Faculty USING(userID) GROUP BY topic;"));
+            ResultSet rs = stmt.executeQuery(
+                "SELECT topic, GROUP_CONCAT(Users.lastName, ', ', Users.firstName SEPARATOR ' | ') AS 'name', GROUP_CONCAT(Faculty.email SEPARATOR ' | ') AS 'email' FROM entries JOIN Users USING(userID) JOIN Faculty USING(userID) GROUP BY topic;");
             result.append("All Entries:\n\n");
             while (rs.next()) {
                 result.append("Topic:       " + rs.getString("topic")     + "\n");
@@ -487,7 +487,7 @@ public class DataLayer {
     }
 
     /**
-     * Convert the user type code to a longer more human-readable type
+     * Convert the user type code to a longer more human-readable string
      *
      * @param shortUserType "F", "S", or "G"
      * @return Faculty, Student, or Guest

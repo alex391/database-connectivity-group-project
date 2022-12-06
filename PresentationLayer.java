@@ -502,19 +502,36 @@ public class PresentationLayer {
       });
 
       // Search Commonalities
-      JButton searchCommonButton = new JButton("Faculty with Common Interests");
+      JButton searchCommonButton = new JButton("Common Interests");
       searchCommonButton.setBounds(40, 180, 230, 50);
       f.add(searchCommonButton);
 
       searchCommonButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-
             // Action
 
-            // String result = dl.Method();
-            // ResultBox(result);
+            // Box with textarea of interest option + textbox for user input. Search button
+            // to search by what user inputs.
+            JFrame sframe = new JFrame("Common Interests");
+            sframe.setSize(400, 300);
 
+            StringBuilder resultBuilder = new StringBuilder();
+            resultBuilder.append("Name - Interest In Common - Occupation\n");
+            for (String user : dl.getCommonInterests(dl.getUserID(userName))) {
+               resultBuilder.append(user);
+               resultBuilder.append("\n");
+            }
+            String result = resultBuilder.toString() ; // name of the users, what interest they had in common, and what user/occupation they are.
+            JTextArea listInterests = new JTextArea(result);
+            listInterests.setEditable(false);
+            listInterests.setBounds(10, 30, 600, 400);
+            sframe.add(listInterests);
+
+            sframe.setLayout(null); // using no layout managers
+            sframe.setSize(800, 800);
+            sframe.setVisible(true); // making the frame visible
          }
+
       });
 
       // Browse
