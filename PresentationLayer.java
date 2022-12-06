@@ -194,63 +194,63 @@ public class PresentationLayer {
          }
       });
 
-      // Delete interests
-      JButton deleteButton = new JButton("Remove Your Interests");
-      deleteButton.setBounds(100, 80, 175, 50);
-      f.add(deleteButton);
-      // Delete Interest Listening
-      deleteButton.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
+      // // Delete interests
+      // JButton deleteButton = new JButton("Remove Your Interests");
+      // deleteButton.setBounds(100, 80, 175, 50);
+      // f.add(deleteButton);
+      // // Delete Interest Listening
+      // deleteButton.addActionListener(new ActionListener() {
+      //    public void actionPerformed(ActionEvent e) {
 
-            // Action
+      //       // Action
 
-            // Box with textarea of interest option + textbox for user input. Search button
-            // to search by what user inputs.
-            JFrame sframe = new JFrame("Remove Your Interest");
-            sframe.setSize(400, 300);
+      //       // Box with textarea of interest option + textbox for user input. Search button
+      //       // to search by what user inputs.
+      //       JFrame sframe = new JFrame("Remove Your Interest");
+      //       sframe.setSize(400, 300);
 
-            // Add Label, box, button
-            JLabel newLabel = new JLabel("Enter Your Unwanted Interest: ");
-            sframe.add(newLabel);
-            newLabel.setBounds(185, 30, 185, 30);
+      //       // Add Label, box, button
+      //       JLabel newLabel = new JLabel("Enter Your Unwanted Interest: ");
+      //       sframe.add(newLabel);
+      //       newLabel.setBounds(185, 30, 185, 30);
 
-            JTextField t = new JTextField(16);
-            sframe.add(t);
-            t.setBounds(185, 60, 180, 30);
+      //       JTextField t = new JTextField(16);
+      //       sframe.add(t);
+      //       t.setBounds(185, 60, 180, 30);
 
-            JButton b = new JButton("Update");
-            sframe.add(b);
-            b.setBounds(220, 100, 100, 50);
+      //       JButton b = new JButton("Update");
+      //       sframe.add(b);
+      //       b.setBounds(220, 100, 100, 50);
 
-            // Add Listener for search button
-            b.addActionListener(new ActionListener() {
-               public void actionPerformed(ActionEvent e) {
+      //       // Add Listener for search button
+      //       b.addActionListener(new ActionListener() {
+      //          public void actionPerformed(ActionEvent e) {
 
-                  // Action for search uses the textfield as a parameter
+      //             // Action for search uses the textfield as a parameter
 
-                  // Result box will show the faculty with matching interest as user input
+      //             // Result box will show the faculty with matching interest as user input
 
-                  dl.addInterest(dl.getUserID(userName), Integer.parseInt(t.getText()));
-                  ResultBox("Interest Removed");
-               }
-            });
+      //             dl.addInterest(dl.getUserID(userName), Integer.parseInt(t.getText()));
+      //             ResultBox("Interest Removed");
+      //          }
+      //       });
 
-            // List the interests
-            JLabel intLabel = new JLabel("Interests and ID's: ");
-            sframe.add(intLabel);
-            intLabel.setBounds(10, 0, 150, 30);
+      //       // List the interests
+      //       JLabel intLabel = new JLabel("Interests and ID's: ");
+      //       sframe.add(intLabel);
+      //       intLabel.setBounds(10, 0, 150, 30);
 
-            String result = dl.allInterests();
-            JTextArea listInterests = new JTextArea(result);
-            listInterests.setEditable(false);
-            listInterests.setBounds(10, 30, 170, 400);
-            sframe.add(listInterests);
+      //       String result = dl.allInterests();
+      //       JTextArea listInterests = new JTextArea(result);
+      //       listInterests.setEditable(false);
+      //       listInterests.setBounds(10, 30, 170, 400);
+      //       sframe.add(listInterests);
 
-            sframe.setLayout(null); // using no layout managers
-            sframe.setSize(800, 800);
-            sframe.setVisible(true); // making the frame visible
-         }
-      });
+      //       sframe.setLayout(null); // using no layout managers
+      //       sframe.setSize(800, 800);
+      //       sframe.setVisible(true); // making the frame visible
+      //    }
+      // });
 
       // Search by Interests, returns Faculty that match current users interests
       JButton searchIntButton = new JButton("Search Faculty by Interests");
@@ -449,63 +449,63 @@ public class PresentationLayer {
          }
       });
 
-      // Delete interests
-      JButton deleteButton = new JButton("Remove Your Interests");
-      deleteButton.setBounds(100, 80, 175, 50);
-      f.add(deleteButton);
-      // Delete Interest Listening
-      deleteButton.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
+      // // Delete interests
+      // JButton deleteButton = new JButton("Remove Your Interests");
+      // deleteButton.setBounds(100, 80, 175, 50);
+      // f.add(deleteButton);
+      // // Delete Interest Listening
+      // deleteButton.addActionListener(new ActionListener() {
+      //    public void actionPerformed(ActionEvent e) {
 
-            // Action
+      //       // Action
 
-            // Box with textarea of interest option + textbox for user input. Search button
-            // to search by what user inputs.
-            JFrame sframe = new JFrame("Remove Your Interest");
-            sframe.setSize(400, 300);
+      //       // Box with textarea of interest option + textbox for user input. Search button
+      //       // to search by what user inputs.
+      //       JFrame sframe = new JFrame("Remove Your Interest");
+      //       sframe.setSize(400, 300);
 
-            // Add Label, box, button
-            JLabel newLabel = new JLabel("Enter Your Unwanted Interest: ");
-            sframe.add(newLabel);
-            newLabel.setBounds(185, 30, 185, 30);
+      //       // Add Label, box, button
+      //       JLabel newLabel = new JLabel("Enter Your Unwanted Interest: ");
+      //       sframe.add(newLabel);
+      //       newLabel.setBounds(185, 30, 185, 30);
 
-            JTextField t = new JTextField(16);
-            sframe.add(t);
-            t.setBounds(185, 60, 180, 30);
+      //       JTextField t = new JTextField(16);
+      //       sframe.add(t);
+      //       t.setBounds(185, 60, 180, 30);
 
-            JButton b = new JButton("Update");
-            sframe.add(b);
-            b.setBounds(220, 100, 100, 50);
+      //       JButton b = new JButton("Update");
+      //       sframe.add(b);
+      //       b.setBounds(220, 100, 100, 50);
 
-            // Add Listener for search button
-            b.addActionListener(new ActionListener() {
-               public void actionPerformed(ActionEvent e) {
+      //       // Add Listener for search button
+      //       b.addActionListener(new ActionListener() {
+      //          public void actionPerformed(ActionEvent e) {
 
-                  // Action for search uses the textfield as a parameter
+      //             // Action for search uses the textfield as a parameter
 
-                  // Result box will show the faculty with matching interest as user input
+      //             // Result box will show the faculty with matching interest as user input
 
-                  dl.addInterest(dl.getUserID(userName), Integer.parseInt(t.getText()));
-                  ResultBox("Interest Removed");
-               }
-            });
+      //             dl.addInterest(dl.getUserID(userName), Integer.parseInt(t.getText()));
+      //             ResultBox("Interest Removed");
+      //          }
+      //       });
 
-            // List the interests
-            JLabel intLabel = new JLabel("Interests and ID's: ");
-            sframe.add(intLabel);
-            intLabel.setBounds(10, 0, 150, 30);
+      //       // List the interests
+      //       JLabel intLabel = new JLabel("Interests and ID's: ");
+      //       sframe.add(intLabel);
+      //       intLabel.setBounds(10, 0, 150, 30);
 
-            String result = dl.allInterests();
-            JTextArea listInterests = new JTextArea(result);
-            listInterests.setEditable(false);
-            listInterests.setBounds(10, 30, 170, 400);
-            sframe.add(listInterests);
+      //       String result = dl.allInterests();
+      //       JTextArea listInterests = new JTextArea(result);
+      //       listInterests.setEditable(false);
+      //       listInterests.setBounds(10, 30, 170, 400);
+      //       sframe.add(listInterests);
 
-            sframe.setLayout(null); // using no layout managers
-            sframe.setSize(800, 800);
-            sframe.setVisible(true); // making the frame visible
-         }
-      });
+      //       sframe.setLayout(null); // using no layout managers
+      //       sframe.setSize(800, 800);
+      //       sframe.setVisible(true); // making the frame visible
+      //    }
+      // });
 
       // Search Interests
       JButton searchIntButton = new JButton("Search Faculty by Interests");
