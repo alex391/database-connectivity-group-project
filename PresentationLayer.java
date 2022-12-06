@@ -261,9 +261,25 @@ public class PresentationLayer {
 
             // Action
 
-            String Interestresult = dl.StudentInterests(UserID);
+            // Box with textarea of interest option + textbox for user input. Search button
+            // to search by what user inputs.
+            JFrame sframe = new JFrame("Common Interests");
+            sframe.setSize(400, 300);
 
-            // ResultBox(result);
+            StringBuilder resultBuilder = new StringBuilder();
+            for (String user : dl.getCommonInterests(dl.getUserID(userName))) {
+               resultBuilder.append(resultBuilder);
+               resultBuilder.append(" ");
+            }
+            String result = resultBuilder.toString() ; //name and email of these users, and what intrest they had in common
+            JTextArea listInterests = new JTextArea(result);
+            listInterests.setEditable(false);
+            listInterests.setBounds(10, 30, 170, 400);
+            sframe.add(listInterests);
+
+            sframe.setLayout(null); // using no layout managers
+            sframe.setSize(800, 800);
+            sframe.setVisible(true); // making the frame visible
 
          }
       });

@@ -11,6 +11,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class DataLayer {
@@ -184,7 +185,7 @@ public class DataLayer {
      */
 
     public String searchFaculty(int interestID) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         try {
 
             Statement stmt = conn.createStatement();
@@ -192,7 +193,7 @@ public class DataLayer {
                     "SELECT faculty.email AS 'email',CONCAT_WS(',',Users.lastName,Users.firstName) AS name , faculty.officeNumber,faculty.buildNumber AS 'Office Number' FROM faculty JOIN userinterests USING(userID) JOIN Users USING (userID)WHERE faculty.userID = userID AND interestID =  \"%d\" GROUP BY faculty.userID;",
                     interestID));
             while (rs.next()) {
-                result += rs.getString("email") + "\n";
+                result.append(rs.getString("email")).append("\n");
 
             }
         } catch (SQLException e) {
@@ -200,7 +201,7 @@ public class DataLayer {
             System.out.println("Error = " + e);
             e.printStackTrace();
         }
-        return result;
+        return result.toString();
     }
 
     /**
@@ -393,7 +394,49 @@ public class DataLayer {
     }
 
     /**
-     * This function hashes a string and converts it using a SHA-1 hash.
+     * Get all the other users that have the same interests
+     *
+     * @param userID the user id of the person who is searching
+     * @return a list of the other users -
+     */
+    public List<String> getCommonInterests(int userID) {
+        try {
+
+            // First, find out what interests this user has
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement
+                    .executeQuery(String.format("SELECT interestID FROM userinterests WHERE userID = \"%d\";", userID));
+            List<Integer> usersInterests = new LinkedList<>();
+            while (rs.next()) {
+                usersInterests.add(rs.getInt("interestID"));
+            }
+            List<String> commonUsers = new LinkedList<>();
+
+            // Then, for all of those interests, find the other users that have that interest
+            for (int interestID: usersInterests) {
+                Statement interestStatement = conn.createStatement();
+                ResultSet intrestsResultSet = interestStatement
+                        .executeQuery(String.format("SELECT firstName, lastName, interest FROM users JOIN userinterests u on users.userID = u.userID JOIN interests i on i.interestID = u.interestID WHERE i.interestID = \"%d\";", interestID));
+                while (intrestsResultSet.next()) {
+                    String userInfo = intrestsResultSet.getString("firstName") +
+                            " " +
+                            intrestsResultSet.getString("lastName") +
+                            " " +
+                            intrestsResultSet.getString("interest");
+                    commonUsers.add(userInfo);
+                }
+            }
+            return commonUsers;
+        } catch (SQLException e) {
+            System.out.println("There was an error in checking the interests.");
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+        }
+    }
+
+    /**
+     * Hashes a string with sha1
      *
      * @param plainText The plaintext string that is going to be converted to hash.
      * @return the hash of that string.
@@ -402,8 +445,7 @@ public class DataLayer {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");
             byte[] bytes = md.digest(plainText.getBytes(StandardCharsets.UTF_8));
-            BigInteger bi = new BigInteger(1, bytes); // Convert to a hex string. Thanks to
-                                                      // https://stackoverflow.com/a/943963/12203444
+            BigInteger bi = new BigInteger(1, bytes); // Convert to a hex string. Thanks to https://stackoverflow.com/a/943963/12203444
             return String.format("%0" + (bytes.length << 1) + "x", bi);
         } catch (NoSuchAlgorithmException e) {
             // Won't happen, because SHA-1 is guaranteed to exist.
@@ -448,4 +490,5 @@ public class DataLayer {
             return false;
         }
     }
+
 }
