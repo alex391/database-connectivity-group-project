@@ -87,6 +87,7 @@ public class PresentationLayer {
             sframe.setLayout(null); // using no layout managers
             sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
+            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          }
       });
 
@@ -94,7 +95,7 @@ public class PresentationLayer {
       JButton browseButton = new JButton("Browse Entries");
       browseButton.setBounds(100, 130, 150, 50);
       f.add(browseButton);
-      // Search UserID Button Listening
+      // Browse Button Listening
       browseButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
 
@@ -121,6 +122,7 @@ public class PresentationLayer {
 
       f.setLayout(null); // using no layout managers
       f.setVisible(true); // making the frame visible
+      f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
 
    /// STUDENT PORTAL GUI ///
@@ -190,6 +192,7 @@ public class PresentationLayer {
             sframe.setLayout(null); // using no layout managers
             sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
+            sframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          }
       });
 
@@ -306,6 +309,7 @@ public class PresentationLayer {
             sframe.setLayout(null); // using no layout managers
             sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
+            sframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          }
       });
 
@@ -319,9 +323,25 @@ public class PresentationLayer {
 
             // Action
 
-            String Interestresult = dl.StudentInterests(UserID);
+            // Box with textarea of interest option + textbox for user input. Search button
+            // to search by what user inputs.
+            JFrame sframe = new JFrame("Common Interests");
+            sframe.setSize(400, 300);
 
-            // ResultBox(result);
+            StringBuilder resultBuilder = new StringBuilder();
+            for (String user : dl.getCommonInterests(dl.getUserID(userName))) {
+               resultBuilder.append(resultBuilder);
+               resultBuilder.append(" ");
+            }
+            String result = resultBuilder.toString() ; //name and email of these users, and what intrest they had in common
+            JTextArea listInterests = new JTextArea(result);
+            listInterests.setEditable(false);
+            listInterests.setBounds(10, 30, 170, 400);
+            sframe.add(listInterests);
+
+            sframe.setLayout(null); // using no layout managers
+            sframe.setSize(800, 800);
+            sframe.setVisible(true); // making the frame visible
 
          }
       });
@@ -357,6 +377,7 @@ public class PresentationLayer {
 
       f.setLayout(null); // using no layout managers
       f.setVisible(true); // making the frame visible
+      f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
    
    
@@ -428,6 +449,7 @@ public class PresentationLayer {
             sframe.setLayout(null); // using no layout managers
             sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
+            sframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          }
       });
 
@@ -545,6 +567,7 @@ public class PresentationLayer {
             sframe.setLayout(null); // using no layout managers
             sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
+            sframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          }
       });
 
@@ -651,6 +674,22 @@ public class PresentationLayer {
             });
             sframe.setLayout(null); // using no layout managers
             sframe.setVisible(true); // making the frame visible
+            
+            // List the interests
+            JLabel intLabel = new JLabel("Interests and ID's: ");
+            sframe.add(intLabel);
+            intLabel.setBounds(10, 0, 150, 30);
+
+            String result = dl.allInterests();
+            JTextArea listInterests = new JTextArea(result);
+            listInterests.setEditable(false);
+            listInterests.setBounds(10, 30, 170, 400);
+            sframe.add(listInterests);
+
+            sframe.setLayout(null); // using no layout managers
+            sframe.setSize(800, 800);
+            sframe.setVisible(true); // making the frame visible
+
 
          }
       });
@@ -705,8 +744,13 @@ public class PresentationLayer {
             });
             sframe.setLayout(null); // using no layout managers
             sframe.setVisible(true); // making the frame visible
+            sframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            
+            
 
          }
+         
+         
       });
 
       // Delete Entry Button
@@ -756,6 +800,7 @@ public class PresentationLayer {
 
       f.setLayout(null); // using no layout managers
       f.setVisible(true); // making the frame visible
+      f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
       
       
@@ -795,8 +840,8 @@ public class PresentationLayer {
                public void actionPerformed(ActionEvent e) {
 
 
-                                //dl.searchStudent()???????
-                  String output = dl.searchFaculty(Integer.parseInt(t.getText()));
+                                
+                  String output = dl.searchStudent(Integer.parseInt(t.getText()));
                   ResultBox(output);
                }
             });
@@ -815,6 +860,7 @@ public class PresentationLayer {
             sframe.setLayout(null); // using no layout managers
             sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
+            sframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          }
       });
 
@@ -832,10 +878,13 @@ public class PresentationLayer {
       JTextArea result = new JTextArea(resultTest);
       result.setEditable(false);
       result.setBounds(10, 10, 500, 500);
-      f.add(result);
 
-      f.setLayout(null); // using no layout managers
+      JScrollPane scroll; 
+      scroll = new JScrollPane(result);
+
+      f.getContentPane().add(scroll);
       f.setVisible(true); // making the frame visible
+      f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
 
    /**
@@ -848,13 +897,26 @@ public class PresentationLayer {
       JPanel Inputbox = new JPanel(new GridLayout(3, 2));
       JLabel lblUser = new JLabel("Username -> ");
       JLabel lblPassword = new JLabel("Password -> ");
-      JTextField tfUser = new JTextField("Guest");
+      JTextField tfUser = new JTextField("");
       JTextField tfPassword = new JPasswordField("");
+      JButton b = new JButton("Guest");// Guest Button
+  
 
       Inputbox.add(lblUser);
       Inputbox.add(tfUser);
       Inputbox.add(lblPassword);
       Inputbox.add(tfPassword);
+      Inputbox.add(b); // Guest Button
+      
+      // Guest Listen
+      b.addActionListener(new ActionListener() {
+               public void actionPerformed(ActionEvent e) {
+                  
+                  tfUser.setText("Guest");
+                  tfPassword.setText("guest");
+
+               }
+            });
 
       lblUser.setFont(myFontForOutput);
       tfUser.setFont(myFontForOutput);
@@ -864,7 +926,7 @@ public class PresentationLayer {
       tfPassword.setForeground(Color.BLUE);
 
       JOptionPane.showMessageDialog(null, Inputbox,
-            "Default password is \"guest\" - This logs into interest search application",
+            "Sign in as Faculty/Student, or use Guest Button",
             JOptionPane.QUESTION_MESSAGE);
 
       userName = tfUser.getText();

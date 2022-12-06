@@ -11,6 +11,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class DataLayer {
@@ -93,22 +94,14 @@ public class DataLayer {
     public String allEntries() {
         StringBuilder result = new StringBuilder();
         try {
-            Statement topicStatement = conn.createStatement();
-            ResultSet topicResult = topicStatement.executeQuery("SELECT topic, userID FROM entries GROUP BY topic, userID;");
-            while (topicResult.next()) {
-                // topic - firstName lastName, firstName2 lastName2, ...
-                result.append(topicResult.getString("topic")).append(" - ");
-                Statement usersStatement = conn.createStatement();
-                ResultSet usersResult = usersStatement.executeQuery(
-                        "SELECT firstName, lastName FROM users WHERE userID = " + topicResult.getInt("userID"));
-                while (usersResult.next()) {
-                    result.append(usersResult.getString("firstName")).append(" ");
-                    result.append(usersResult.getString("lastName"));
-                    if (!usersResult.isLast()) {
-                        result.append(", ");
-                    }
-                }
-                result.append("\n");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(String.format(
+                "SELECT topic, GROUP_CONCAT(Users.lastName, ', ', Users.firstName SEPARATOR ' | ') AS 'name', GROUP_CONCAT(Faculty.email SEPARATOR ' | ') AS 'email' FROM entries JOIN Users USING(userID) JOIN Faculty USING(userID) GROUP BY topic;"));
+            result.append("All Entries:\n\n");
+            while (rs.next()) {
+                result.append("Topic  : " + rs.getString("topic")     + "\n");
+                result.append("Author : " + rs.getString("name")    + "\n");
+                result.append("Contact: " + rs.getString("email")+ "\n\n");
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
@@ -141,6 +134,7 @@ public class DataLayer {
                 }
                 result.append("\n");
             }
+
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
             System.out.println("Error = " + e);
@@ -191,11 +185,42 @@ public class DataLayer {
             ResultSet rs = stmt.executeQuery(String.format(
                     "SELECT faculty.email AS 'email', CONCAT_WS(', ', Users.lastName, Users.firstName) AS name, CONCAT_WS('-', faculty.buildNumber, faculty.officeNumber) AS 'officeLoc' FROM faculty JOIN userinterests USING(userID) JOIN Users USING (userID) WHERE interestID =  \"%d\";",
                     interestID));
-            result += "Faculty with a common interest:\n\n";
+            result += "Faculty with the specified interest:\n\n";
             while (rs.next()) {
                 result += "Name  : " + rs.getString("name")     + "\n";
                 result += "Email   : " + rs.getString("email")    + "\n";
                 result += "Office# : " + rs.getString("officeLoc")+ "\n\n";
+            }
+        } catch (SQLException e) {
+            System.out.println("There was an error in the select.");
+            System.out.println("Error = " + e);
+            e.printStackTrace();
+        }
+        return result;
+    }
+    
+     /**
+     * This function searches the students for a shared interest using an interestID
+     * that matches it.
+     * The function will return the info of every student  that shares that
+     * interest.
+     * 
+     * @param interestID The interestID of the desired interest to search for.
+     * @return all the emails of every student of that interest.
+     */
+
+    public String searchStudent(int interestID) {
+        String result = "";
+        try {
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(String.format(
+                    "SELECT CONCAT_WS(', ', Users.lastName, Users.firstName) AS name FROM Users JOIN userinterests USING(userID) WHERE userType = 'S' AND interestID =  \"%d\";",
+                    interestID));
+            result += "Students with specified interest:\n\n";
+            while (rs.next()) {
+                result += "Name  : " + rs.getString("name")     + "\n";
+                result += "Email : our database doesnt have anywhere for non-faculty emails and we realized too late. :(";
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
@@ -417,7 +442,49 @@ public class DataLayer {
     }
 
     /**
-     * This function hashes a string and converts it using a SHA-1 hash.
+     * Get all the other users that have the same interests
+     *
+     * @param userID the user id of the person who is searching
+     * @return a list of the other users -
+     */
+    public List<String> getCommonInterests(int userID) {
+        try {
+
+            // First, find out what interests this user has
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement
+                    .executeQuery(String.format("SELECT interestID FROM userinterests WHERE userID = \"%d\";", userID));
+            List<Integer> usersInterests = new LinkedList<>();
+            while (rs.next()) {
+                usersInterests.add(rs.getInt("interestID"));
+            }
+            List<String> commonUsers = new LinkedList<>();
+
+            // Then, for all of those interests, find the other users that have that interest
+            for (int interestID: usersInterests) {
+                Statement interestStatement = conn.createStatement();
+                ResultSet intrestsResultSet = interestStatement
+                        .executeQuery(String.format("SELECT firstName, lastName, interest FROM users JOIN userinterests u on users.userID = u.userID JOIN interests i on i.interestID = u.interestID WHERE i.interestID = \"%d\";", interestID));
+                while (intrestsResultSet.next()) {
+                    String userInfo = intrestsResultSet.getString("firstName") +
+                            " " +
+                            intrestsResultSet.getString("lastName") +
+                            " " +
+                            intrestsResultSet.getString("interest");
+                    commonUsers.add(userInfo);
+                }
+            }
+            return commonUsers;
+        } catch (SQLException e) {
+            System.out.println("There was an error in checking the interests.");
+            e.printStackTrace();
+            System.exit(1);
+            return null;
+        }
+    }
+
+    /**
+     * Hashes a string with sha1
      *
      * @param plainText The plaintext string that is going to be converted to hash.
      * @return the hash of that string.
@@ -426,8 +493,7 @@ public class DataLayer {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");
             byte[] bytes = md.digest(plainText.getBytes(StandardCharsets.UTF_8));
-            BigInteger bi = new BigInteger(1, bytes); // Convert to a hex string. Thanks to
-                                                      // https://stackoverflow.com/a/943963/12203444
+            BigInteger bi = new BigInteger(1, bytes); // Convert to a hex string. Thanks to https://stackoverflow.com/a/943963/12203444
             return String.format("%0" + (bytes.length << 1) + "x", bi);
         } catch (NoSuchAlgorithmException e) {
             // Won't happen, because SHA-1 is guaranteed to exist.
