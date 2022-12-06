@@ -144,6 +144,30 @@ public class DataLayer {
         }
         return result.toString();
     }
+    
+     /**
+     * This function returns all the Interests stored in the Interests database that matches the current user
+     * 
+     * @return All the Interests stored in the database.
+     */
+    public String allUserInterests(String user) {
+        StringBuilder result = new StringBuilder();
+        try {
+            Statement interestStatement = conn.createStatement();
+            ResultSet interestResult = interestStatement.executeQuery("SELECT interests.interestID, interests.interest FROM userinterests JOIN interests USING(interestID) WHERE userID = " + user + ";");
+            while (interestResult.next()) {
+                // interestID - interest...
+                result.append(interestResult.getString("interestID")).append(" - ").append(interestResult.getString("interest"));
+                result.append("\n");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("There was an error in the select.");
+            System.out.println("Error = " + e);
+            e.printStackTrace();
+        }
+        return result.toString();
+    }
 
     /**
      * This function returns the email(s) of the faculty member(s) being searched.
@@ -436,7 +460,7 @@ public class DataLayer {
 
             if (type == 0) {
                 System.err.println("Error in getting the topic - type is null.");
-                return 0; // To not crash unless we have to, return G.
+                return 0; // To not crash unless we have to, return 0.
             } else {
                 return type;
             }
