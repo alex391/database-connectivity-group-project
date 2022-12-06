@@ -753,8 +753,8 @@ public class PresentationLayer {
       sframe.setSize(800, 800);
       sframe.setVisible(true); // making the frame visible
    }
-   
-    /**
+
+   /**
     * List all the user's interests
     *
     * @param sframe the sframe to add the interests to.
