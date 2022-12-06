@@ -716,9 +716,11 @@ public class PresentationLayer {
       JTextArea result = new JTextArea(resultTest);
       result.setEditable(false);
       result.setBounds(10, 10, 500, 500);
-      f.add(result);
 
-      f.setLayout(null); // using no layout managers
+      JScrollPane scroll; 
+      scroll = new JScrollPane(result);
+
+      f.getContentPane().add(scroll);
       f.setVisible(true); // making the frame visible
    }
 

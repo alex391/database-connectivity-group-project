@@ -93,22 +93,14 @@ public class DataLayer {
     public String allEntries() {
         StringBuilder result = new StringBuilder();
         try {
-            Statement topicStatement = conn.createStatement();
-            ResultSet topicResult = topicStatement.executeQuery("SELECT topic, userID FROM entries GROUP BY topic, userID;");
-            while (topicResult.next()) {
-                // topic - firstName lastName, firstName2 lastName2, ...
-                result.append(topicResult.getString("topic")).append(" - ");
-                Statement usersStatement = conn.createStatement();
-                ResultSet usersResult = usersStatement.executeQuery(
-                        "SELECT firstName, lastName FROM users WHERE userID = " + topicResult.getInt("userID"));
-                while (usersResult.next()) {
-                    result.append(usersResult.getString("firstName")).append(" ");
-                    result.append(usersResult.getString("lastName"));
-                    if (!usersResult.isLast()) {
-                        result.append(", ");
-                    }
-                }
-                result.append("\n");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(String.format(
+                "SELECT topic, GROUP_CONCAT(Users.lastName, ', ', Users.firstName SEPARATOR ' | ') AS 'name', GROUP_CONCAT(Faculty.email SEPARATOR ' | ') AS 'email' FROM entries JOIN Users USING(userID) JOIN Faculty USING(userID) GROUP BY topic;"));
+            result.append("All Entries:\n\n");
+            while (rs.next()) {
+                result.append("Topic  : " + rs.getString("topic")     + "\n");
+                result.append("Author : " + rs.getString("name")    + "\n");
+                result.append("Contact: " + rs.getString("email")+ "\n\n");
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
@@ -141,6 +133,7 @@ public class DataLayer {
                 }
                 result.append("\n");
             }
+
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
             System.out.println("Error = " + e);
@@ -195,7 +188,7 @@ public class DataLayer {
             while (rs.next()) {
                 result += "Name  : " + rs.getString("name")     + "\n";
                 result += "Email : " + rs.getString("email")    + "\n";
-                result += "Office: " + rs.getString("officeLoc")+ "\n\n";
+                result += "Building - Office: " + rs.getString("officeLoc")+ "\n\n";
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
