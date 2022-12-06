@@ -18,8 +18,11 @@ public class PresentationLayer {
 
    public static Font myFontForOutput = new Font("Courier", Font.BOLD, 20);
 
-   /** GUEST PORTAL GUI
-    * 
+   /**
+    * GUEST PORTAL GUI
+    * This function is responsible for the Guest Portal GUI creation and
+    * instantiation.
+    * This method is called whenever the user logs in as a Guest.
     */
    public void GuestBox() {
       // Student Box Frame Setup
@@ -111,8 +114,12 @@ public class PresentationLayer {
       f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
 
-   /// STUDENT PORTAL GUI ///
-
+   /**
+    * STUDENT PORTAL GUI
+    * This function is responsible for the Student Portal GUI creation and
+    * instantiation.
+    * This method is called whenever the user logs in as a Student.
+    */
    public void StudentBox() {
       // Student Box Frame Setup
       JFrame f = new JFrame("Student Portal");
@@ -309,6 +316,12 @@ public class PresentationLayer {
       f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
 
+   /**
+    * FACULTY PORTAL GUI
+    * This function is responsible for the Faculty Portal GUI creation and
+    * instantiation.
+    * This method is called whenever the user logs in as a Faculty.
+    */
    public void FacultyBox() {
       // Faculty Box Frame Setup
       JFrame f = new JFrame("Faculty Portal");
@@ -721,9 +734,9 @@ public class PresentationLayer {
    }
 
    /**
-    * List all the interests
+    * This function lists all the interests of the StudentFaculty database.
     *
-    * @param sframe the sframe to add the interests to.
+    * @param sframe The sframe to add the interests to.
     */
    private void listInterests(JFrame sframe) {
       JLabel intLabel = new JLabel("Interests and ID's: ");
@@ -741,11 +754,16 @@ public class PresentationLayer {
       sframe.setVisible(true); // making the frame visible
    }
 
-   // Results Box, preset object that show whatever comes out a query for any
-   // methods/button later on.
-   public void ResultBox(String in) {
+   /**
+    * This function is a box constructor used to create a JFrame containing a
+    * JTextArea and JScrollPane scrollbar.
+    * Used to show whatever comes out of a given query from a method or button.
+    * 
+    * @param title The name at the top of the JFrame.
+    */
+   public void ResultBox(String title) {
 
-      String resultTest = new String(in);
+      String resultTest = new String(title);
       // Frame Creation
       JFrame f = new JFrame();
       f.setSize(600, 600);
@@ -758,14 +776,17 @@ public class PresentationLayer {
       scroll = new JScrollPane(result);
 
       f.getContentPane().add(scroll);
-      f.setVisible(true); // making the frame visible
+      f.setVisible(true); // making the frame visible.
    }
 
    /**
-    * User Login
-    * Changes global userType and userName attributes
+    * This function is the User Login and how the user accesses the database.
     * 
-    * @return true when log in matches credentials provided
+    * Checks the login information against the database to ensure access is limited
+    * to the correct users.
+    * Changes global userType and userName attributes for the program.
+    * 
+    * @return True when login matches credentials provided. False if otherwise.
     */
    public boolean appLogin() {
       JPanel Inputbox = new JPanel(new GridLayout(3, 2));
@@ -773,7 +794,7 @@ public class PresentationLayer {
       JLabel lblPassword = new JLabel("Password -> ");
       JTextField tfUser = new JTextField("");
       JTextField tfPassword = new JPasswordField("");
-      JButton b = new JButton("Guest");// Guest Button
+      JButton b = new JButton("Guest"); // Guest Button
 
       Inputbox.add(lblUser);
       Inputbox.add(tfUser);
@@ -784,10 +805,8 @@ public class PresentationLayer {
       // Guest Listen
       b.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-
             tfUser.setText("Guest");
             tfPassword.setText("guest");
-
          }
       });
 
@@ -808,7 +827,7 @@ public class PresentationLayer {
       String passwordInput = new String();
       passwordInput = tfPassword.getText();
 
-      // set the default password to "student"
+      // Set the default password to "student".
       if (passwordInput.equalsIgnoreCase("")) {
          password = "guest"; // CHANGE TO guest
 
@@ -816,12 +835,13 @@ public class PresentationLayer {
          password = passwordInput;
       }
 
-      // returns true false
+      // Returns true or false.
       return dl.checkPassword(userName, password);
    }
 
    /**
-    * Constructor
+    * This function is the PresentationLayer Constructor.
+    * Constructs a fully functional PresentationLayer.
     */
    public PresentationLayer() {
       System.out.println("Connecting to the database . . .");
@@ -831,7 +851,6 @@ public class PresentationLayer {
       JLabel lblUser = new JLabel("Username -> ");
       JLabel lblPassword = new JLabel("Password -> ");
       JTextField tfUser = new JTextField("root");
-      // JTextField tfPassword = new JTextField("");
       JTextField tfPassword = new JPasswordField("");
 
       Inputbox.add(lblUser);
@@ -855,51 +874,93 @@ public class PresentationLayer {
       String passwordInput = new String();
       passwordInput = tfPassword.getText();
 
-      // set the default password to "student"
+      // Set the default password to "student".
       if (passwordInput.equalsIgnoreCase("")) {
-         password = "student"; // CHANGE TO STUDENT
+         password = "student"; // CHANGE TO STUDENT.
       } else {
          password = passwordInput;
       }
 
-      dl.connect(userName, password); // Call DataLayer
+      dl.connect(userName, password); // Call DataLayer.
 
-      // case Student v Faculty
+      // Case Student vs. Faculty.
       loggedIn = appLogin();
       if (loggedIn) {
          switch (userType) {
-            case "F": // Faculty
-               // loop faculty
-               // Who is logged in somewhere
-               // exit button
-               // options to
-               // add your interests
-               // delete your interests
-               // search by interests
-               // search by userID
-               // or browse entries
-               // entries
-               // add
-               // update
-               // delete
+            case "F": // Faculty.
+               /*
+                * Loop Faculty who is logged in.
+                * 
+                * Edit Button.
+                * - Add Your Interests.
+                * - Delete Your Interests.
+                * 
+                * Search Faculty By Interests Button.
+                * - Search all Faculty with the same interest using interestID.
+                * 
+                * Common Interests Button.
+                * - Returns all common interests on click.
+                * 
+                * Browse Entries Button.
+                * - Displays all entries on click.
+                * 
+                * Exit Button.
+                * - Exits program.
+                * 
+                * ONLY FACULTY CAN SEE OR DO THE BELOW FUNCTIONS.
+                * Add Entry Button.
+                * - Paste/Enter Abstract.
+                * - Enter interestID.
+                * 
+                * Update Entry Button.
+                * - Enter topic's new name.
+                * - Enter entryID.
+                * 
+                * Delete Entry Button.
+                * - Enter entryID.
+                * 
+                * Search Students By Interests Button.
+                * - Enter interestID.
+                */
                FacultyBox();
                break;
 
-            case "S": // Student
-               // loop Student/guest
-               // Who is logged in somewhere
-               // exit button
-               // options to
-               // add your interests
-               // delete your interests
-               // search by interests
-               // search by userID
-               // or browse entries
+            case "S": // Student.
+               /*
+                * Loop Student who is logged in.
+                * 
+                * Edit Button.
+                * - Add Your Interests.
+                * - Delete Your Interests.
+                * 
+                * Search Faculty By Interests Button.
+                * - Search all Faculty with the same interest using interestID.
+                * 
+                * Common Interests Button.
+                * - Returns all common interests on click.
+                * 
+                * Browse Entries Button.
+                * - Displays all entries on click.
+                * 
+                * Exit Button.
+                * - Exits program.
+                */
                StudentBox();
                break;
 
-            case "G":
-
+            case "G": // Guest.
+               /*
+                * Loop Guest who is logged in.
+                * 
+                * Search Faculty By Interests Button.
+                * - Search all Faculty with the same interest using interestID.
+                * 
+                * Browse Entries Button.
+                * - Displays all entries on click.
+                * 
+                * Exit Button.
+                * - Exits program.
+                */
                GuestBox();
                break;
             default:
@@ -907,11 +968,17 @@ public class PresentationLayer {
                break;
          }
       }
-   } // End of Constructor
+   } // End of Constructor.
 
+   /**
+    * Simple main function to run the project. Prints out our Group #, names, and
+    * starts PresentationLayer.
+    * 
+    * @param args Default arguments.
+    */
    public static void main(String[] args) {
-      System.out.println("Group 4");
+      System.out.println("Group 4: Adrian Marquez, Alex Leute, Evan Reighter, Michael McIntosh, Teo Luciani.");
 
-      new PresentationLayer(); // Create a new object. An Instantiation
-   } // End of main method
-} // End of Class
+      new PresentationLayer(); // Create a new object. An Instantiation.
+   } // End of main method.
+} // End of Class.
