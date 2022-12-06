@@ -14,8 +14,7 @@ import java.awt.event.*;
 public class PresentationLayer {
    String userName = "";
    String userType = "G";
-   int UserID;
-   boolean loggedIn = false;
+   boolean loggedIn;
    DataLayer dl = new DataLayer();
 
    public static Font myFontForOutput = new Font("Courier", Font.BOLD, 20);
@@ -74,19 +73,7 @@ public class PresentationLayer {
             });
 
             // List the interests
-            JLabel intLabel = new JLabel("Interests and ID's: ");
-            sframe.add(intLabel);
-            intLabel.setBounds(10, 0, 150, 30);
-
-            String result = dl.allInterests();
-            JTextArea listInterests = new JTextArea(result);
-            listInterests.setEditable(false);
-            listInterests.setBounds(10, 30, 170, 400);
-            sframe.add(listInterests);
-
-            sframe.setLayout(null); // using no layout managers
-            sframe.setSize(800, 800);
-            sframe.setVisible(true); // making the frame visible
+            listInterests(sframe);
          }
       });
 
@@ -204,19 +191,7 @@ public class PresentationLayer {
             });
 
             // List the interests
-            JLabel intLabel = new JLabel("Interests and ID's: ");
-            sframe.add(intLabel);
-            intLabel.setBounds(10, 0, 150, 30);
-
-            String result = dl.allInterests();
-            JTextArea listInterests = new JTextArea(result);
-            listInterests.setEditable(false);
-            listInterests.setBounds(10, 30, 170, 400);
-            sframe.add(listInterests);
-
-            sframe.setLayout(null); // using no layout managers
-            sframe.setSize(800, 800);
-            sframe.setVisible(true); // making the frame visible
+            listInterests(sframe);
          }
       });
 
@@ -262,19 +237,7 @@ public class PresentationLayer {
             });
 
             // List the interests
-            JLabel intLabel = new JLabel("Interests and ID's: ");
-            sframe.add(intLabel);
-            intLabel.setBounds(10, 0, 150, 30);
-
-            String result = dl.allInterests();
-            JTextArea listInterests = new JTextArea(result);
-            listInterests.setEditable(false);
-            listInterests.setBounds(10, 30, 170, 400);
-            sframe.add(listInterests);
-
-            sframe.setLayout(null); // using no layout managers
-            sframe.setSize(800, 800);
-            sframe.setVisible(true); // making the frame visible
+            listInterests(sframe);
          }
       });
 
@@ -426,19 +389,7 @@ public class PresentationLayer {
             });
 
             // List the interests
-            JLabel intLabel = new JLabel("Interests and ID's: ");
-            sframe.add(intLabel);
-            intLabel.setBounds(10, 0, 150, 30);
-
-            String result = dl.allInterests();
-            JTextArea listInterests = new JTextArea(result);
-            listInterests.setEditable(false);
-            listInterests.setBounds(10, 30, 170, 400);
-            sframe.add(listInterests);
-
-            sframe.setLayout(null); // using no layout managers
-            sframe.setSize(800, 800);
-            sframe.setVisible(true); // making the frame visible
+            listInterests(sframe);
          }
       });
 
@@ -485,19 +436,7 @@ public class PresentationLayer {
             });
 
             // List the interests
-            JLabel intLabel = new JLabel("Interests and ID's: ");
-            sframe.add(intLabel);
-            intLabel.setBounds(10, 0, 150, 30);
-
-            String result = dl.allInterests();
-            JTextArea listInterests = new JTextArea(result);
-            listInterests.setEditable(false);
-            listInterests.setBounds(10, 30, 170, 400);
-            sframe.add(listInterests);
-
-            sframe.setLayout(null); // using no layout managers
-            sframe.setSize(800, 800);
-            sframe.setVisible(true); // making the frame visible
+            listInterests(sframe);
          }
       });
 
@@ -623,19 +562,7 @@ public class PresentationLayer {
             sframe.setVisible(true); // making the frame visible
             
             // List the interests
-            JLabel intLabel = new JLabel("Interests and ID's: ");
-            sframe.add(intLabel);
-            intLabel.setBounds(10, 0, 150, 30);
-
-            String result = dl.allInterests();
-            JTextArea listInterests = new JTextArea(result);
-            listInterests.setEditable(false);
-            listInterests.setBounds(10, 30, 170, 400);
-            sframe.add(listInterests);
-
-            sframe.setLayout(null); // using no layout managers
-            sframe.setSize(800, 800);
-            sframe.setVisible(true); // making the frame visible
+            listInterests(sframe);
 
 
          }
@@ -794,22 +721,31 @@ public class PresentationLayer {
             });
 
             // List the interests
-            JLabel intLabel = new JLabel("Interests and ID's: ");
-            sframe.add(intLabel);
-            intLabel.setBounds(10, 0, 150, 30);
-
-            String result = dl.allInterests();
-            JTextArea listInterests = new JTextArea(result);
-            listInterests.setEditable(false);
-            listInterests.setBounds(10, 30, 170, 400);
-            sframe.add(listInterests);
-
-            sframe.setLayout(null); // using no layout managers
-            sframe.setSize(800, 800);
-            sframe.setVisible(true); // making the frame visible
+            listInterests(sframe);
          }
       });
 
+   }
+
+   /**
+    * List all the interests
+    *
+    * @param sframe the sframe to add the interests to.
+    */
+   private void listInterests(JFrame sframe) {
+      JLabel intLabel = new JLabel("Interests and ID's: ");
+      sframe.add(intLabel);
+      intLabel.setBounds(10, 0, 150, 30);
+
+      String result = dl.allInterests();
+      JTextArea listInterests = new JTextArea(result);
+      listInterests.setEditable(false);
+      listInterests.setBounds(10, 30, 170, 400);
+      sframe.add(listInterests);
+
+      sframe.setLayout(null); // using no layout managers
+      sframe.setSize(800, 800);
+      sframe.setVisible(true); // making the frame visible
    }
 
    // Results Box, preset object that show whatever comes out a query for any
@@ -897,11 +833,6 @@ public class PresentationLayer {
     */
    public PresentationLayer() {
       System.out.println("Connecting to the database . . .");
-
-      // // BOX TESTS
-      // StudentBox();
-      // FacultyBox();
-      // ResultBox("hello");
 
       JPanel Inputbox = new JPanel(new GridLayout(3, 2));
 
