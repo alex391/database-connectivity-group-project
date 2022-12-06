@@ -294,11 +294,12 @@ public class PresentationLayer {
             sframe.setSize(400, 300);
 
             StringBuilder resultBuilder = new StringBuilder();
+            resultBuilder.append("Name - Interest In Common - Occupation\n");
             for (String user : dl.getCommonInterests(dl.getUserID(userName))) {
                resultBuilder.append(user);
                resultBuilder.append("\n");
             }
-            String result = resultBuilder.toString() ; //name and email of these users, and what intrest they had in common
+            String result = resultBuilder.toString() ; // name of the users, what interest they had in common, and what user/occupation they are.
             JTextArea listInterests = new JTextArea(result);
             listInterests.setEditable(false);
             listInterests.setBounds(10, 30, 600, 400);
@@ -307,7 +308,6 @@ public class PresentationLayer {
             sframe.setLayout(null); // using no layout managers
             sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
-
          }
       });
 
