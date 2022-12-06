@@ -311,7 +311,7 @@ public class PresentationLayer {
       });
 
       // Search Common Interest
-      JButton searchCommonButton = new JButton("Common Interests with Faculty");
+      JButton searchCommonButton = new JButton("Common Interests");
       searchCommonButton.setBounds(80, 180, 220, 50);
       f.add(searchCommonButton);
       // Search UserID Button Listening
@@ -327,13 +327,13 @@ public class PresentationLayer {
 
             StringBuilder resultBuilder = new StringBuilder();
             for (String user : dl.getCommonInterests(dl.getUserID(userName))) {
-               resultBuilder.append(resultBuilder);
-               resultBuilder.append(" ");
+               resultBuilder.append(user);
+               resultBuilder.append("\n");
             }
             String result = resultBuilder.toString() ; //name and email of these users, and what intrest they had in common
             JTextArea listInterests = new JTextArea(result);
             listInterests.setEditable(false);
-            listInterests.setBounds(10, 30, 170, 400);
+            listInterests.setBounds(10, 30, 600, 400);
             sframe.add(listInterests);
 
             sframe.setLayout(null); // using no layout managers

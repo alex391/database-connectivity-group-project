@@ -464,13 +464,16 @@ public class DataLayer {
             for (int interestID: usersInterests) {
                 Statement interestStatement = conn.createStatement();
                 ResultSet intrestsResultSet = interestStatement
-                        .executeQuery(String.format("SELECT firstName, lastName, interest FROM users JOIN userinterests u on users.userID = u.userID JOIN interests i on i.interestID = u.interestID WHERE i.interestID = \"%d\";", interestID));
+                        .executeQuery(String.format("SELECT firstName, lastName, userType, interest FROM users JOIN userinterests u on users.userID = u.userID JOIN interests i on i.interestID = u.interestID WHERE i.interestID = \"%d\";", interestID));
                 while (intrestsResultSet.next()) {
                     String userInfo = intrestsResultSet.getString("firstName") +
                             " " +
                             intrestsResultSet.getString("lastName") +
-                            " " +
-                            intrestsResultSet.getString("interest");
+                            " - " +
+                            intrestsResultSet.getString("interest") +
+                            " - " +
+                            longUserType(intrestsResultSet.getString("userType"));
+
                     commonUsers.add(userInfo);
                 }
             }
@@ -480,6 +483,25 @@ public class DataLayer {
             e.printStackTrace();
             System.exit(1);
             return null;
+        }
+    }
+
+    /**
+     * Convert the user type code to a longer more human-readable type
+     *
+     * @param shortUserType "F", "S", or "G"
+     * @return Faculty, Student, or Guest
+     */
+    private String longUserType(String shortUserType)  {
+        switch (shortUserType) {
+            case "F":
+                return "Faculty";
+            case "S":
+                return "Student";
+            case "G":
+                return "Guest";
+            default:
+                return "Unknown user type";
         }
     }
 
