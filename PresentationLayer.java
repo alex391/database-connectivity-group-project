@@ -87,6 +87,7 @@ public class PresentationLayer {
             sframe.setLayout(null); // using no layout managers
             sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
+            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          }
       });
 
@@ -94,7 +95,7 @@ public class PresentationLayer {
       JButton browseButton = new JButton("Browse Entries");
       browseButton.setBounds(100, 130, 150, 50);
       f.add(browseButton);
-      // Search UserID Button Listening
+      // Browse Button Listening
       browseButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
 
@@ -121,6 +122,7 @@ public class PresentationLayer {
 
       f.setLayout(null); // using no layout managers
       f.setVisible(true); // making the frame visible
+      f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
 
    /// STUDENT PORTAL GUI ///
@@ -190,6 +192,7 @@ public class PresentationLayer {
             sframe.setLayout(null); // using no layout managers
             sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
+            sframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          }
       });
 
@@ -248,6 +251,7 @@ public class PresentationLayer {
             sframe.setLayout(null); // using no layout managers
             sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
+            sframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          }
       });
 
@@ -299,6 +303,7 @@ public class PresentationLayer {
 
       f.setLayout(null); // using no layout managers
       f.setVisible(true); // making the frame visible
+      f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
    
    
@@ -370,6 +375,7 @@ public class PresentationLayer {
             sframe.setLayout(null); // using no layout managers
             sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
+            sframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          }
       });
 
@@ -429,6 +435,7 @@ public class PresentationLayer {
             sframe.setLayout(null); // using no layout managers
             sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
+            sframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          }
       });
 
@@ -605,6 +612,7 @@ public class PresentationLayer {
             });
             sframe.setLayout(null); // using no layout managers
             sframe.setVisible(true); // making the frame visible
+            sframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             
             
 
@@ -660,6 +668,7 @@ public class PresentationLayer {
 
       f.setLayout(null); // using no layout managers
       f.setVisible(true); // making the frame visible
+      f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
       
       
@@ -719,6 +728,7 @@ public class PresentationLayer {
             sframe.setLayout(null); // using no layout managers
             sframe.setSize(800, 800);
             sframe.setVisible(true); // making the frame visible
+            sframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          }
       });
 
@@ -742,6 +752,7 @@ public class PresentationLayer {
 
       f.getContentPane().add(scroll);
       f.setVisible(true); // making the frame visible
+      f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
 
    /**
