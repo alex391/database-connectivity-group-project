@@ -69,7 +69,7 @@ public class DataLayer {
      * that interest.
      * 
      * @param interestID The interestID of the desired interest to search for.
-     * @return all the entries of the faculty members that have that interest.
+     * @return All the entries of the faculty members that have that interest.
      */
     public int searchEntries(int interestID) {
         int result = 0;
@@ -80,7 +80,7 @@ public class DataLayer {
             stmt.setInt(1, interestID);
             result = stmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("There was an error in the select.");
+            System.out.println("There was an error in the searchEntries select.");
             System.out.println("Error = " + e);
             e.printStackTrace();
         }
@@ -89,19 +89,20 @@ public class DataLayer {
 
     /**
      * This function returns all the Entries stored in the Entries database.
-     * @return all the Entries stored in the database.
+     * 
+     * @return All the Entries stored in the database.
      */
     public String allEntries() {
         StringBuilder result = new StringBuilder();
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(
-                "SELECT topic, GROUP_CONCAT(Users.lastName, ', ', Users.firstName SEPARATOR ' | ') AS 'name', GROUP_CONCAT(Faculty.email SEPARATOR ' | ') AS 'email' FROM entries JOIN Users USING(userID) JOIN Faculty USING(userID) GROUP BY topic;");
+                    "SELECT topic, GROUP_CONCAT(Users.lastName, ', ', Users.firstName SEPARATOR ' | ') AS 'name', GROUP_CONCAT(Faculty.email SEPARATOR ' | ') AS 'email' FROM entries JOIN Users USING(userID) JOIN Faculty USING(userID) GROUP BY topic;");
             result.append("All Entries:\n\n");
             while (rs.next()) {
-                result.append("Topic:       " + rs.getString("topic")     + "\n");
-                result.append("Author:     " + rs.getString("name")    + "\n");
-                result.append("Contact:   " + rs.getString("email")+ "\n\n");
+                result.append("Topic:       " + rs.getString("topic") + "\n");
+                result.append("Author:     " + rs.getString("name") + "\n");
+                result.append("Contact:   " + rs.getString("email") + "\n\n");
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
@@ -113,7 +114,8 @@ public class DataLayer {
 
     /**
      * This function returns all the Interests stored in the Interests database.
-     * @return all the Interests stored in the database.
+     * 
+     * @return All the Interests stored in the database.
      */
     public String allInterests() {
         StringBuilder result = new StringBuilder();
@@ -145,8 +147,9 @@ public class DataLayer {
 
     /**
      * This function returns the email(s) of the faculty member(s) being searched.
-     * @param userID the userID of the faculty members.
-     * @return the email(s) of the faculty member(s) being searched.
+     * 
+     * @param userID The userID of the faculty member or members.
+     * @return The email(s) of the faculty member(s) being searched.
      */
     public String StudentInterests(int userID) {
         String result = "";
@@ -174,7 +177,7 @@ public class DataLayer {
      * interest.
      * 
      * @param interestID The interestID of the desired interest to search for.
-     * @return all the emails of every faculty member that shares that interest.
+     * @return All the emails of every faculty member that shares that interest.
      */
 
     public String searchFaculty(int interestID) {
@@ -187,9 +190,9 @@ public class DataLayer {
                     interestID));
             result += "Faculty with the specified interest:\n\n";
             while (rs.next()) {
-                result += "Name:   " + rs.getString("name")     + "\n";
-                result += "Email:    " + rs.getString("email")    + "\n";
-                result += "Office#:  " + rs.getString("officeLoc")+ "\n\n";
+                result += "Name:   " + rs.getString("name") + "\n";
+                result += "Email:    " + rs.getString("email") + "\n";
+                result += "Office#:  " + rs.getString("officeLoc") + "\n\n";
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
@@ -198,15 +201,15 @@ public class DataLayer {
         }
         return result;
     }
-    
-     /**
+
+    /**
      * This function searches the students for a shared interest using an interestID
      * that matches it.
-     * The function will return the info of every student  that shares that
+     * The function will return the info of every student that shares that
      * interest.
      * 
      * @param interestID The interestID of the desired interest to search for.
-     * @return all the emails of every student of that interest.
+     * @return All the emails of every student of that interest.
      */
 
     public String searchStudent(int interestID) {
@@ -219,7 +222,7 @@ public class DataLayer {
                     interestID));
             result += "Students with specified interest:\n\n";
             while (rs.next()) {
-                result += "Name  : " + rs.getString("name")     + "\n";
+                result += "Name  : " + rs.getString("name") + "\n";
                 result += "Email : our database doesnt have anywhere for non-faculty emails and we realized too late. :(";
             }
         } catch (SQLException e) {
@@ -237,7 +240,7 @@ public class DataLayer {
      * 
      * @param userID The userID to use for the new entry in the database.
      * @param topic  The topic to use for the new entry in the database.
-     * @return the result of the add function whether it was successful or not.
+     * @return The result of the add function whether it was successful or not.
      */
     public int addEntry(int userID, String topic, int interestID) {
         int result = 0;
@@ -258,7 +261,8 @@ public class DataLayer {
 
     /**
      * This function allows the user to add their interests.
-     * @param userID The userID that will have interests added.
+     * 
+     * @param userID     The userID that will have interests added.
      * @param interestID The interestID to be added.
      * @return The result of the add function whether it was successful or not.
      */
@@ -280,7 +284,8 @@ public class DataLayer {
 
     /**
      * This function allows the user to delete their interests.
-     * @param userID The userID that will have interests deleted.
+     * 
+     * @param userID     The userID that will have interests deleted.
      * @param interestID The interestID to be deleted.
      * @return The result of the delete function whether it was successful or not.
      */
@@ -303,8 +308,8 @@ public class DataLayer {
     /**
      * This function deletes a faculty member by taking in their entryID.
      * 
-     * @param entryID used to delete the faculty member corresponding to that ID.
-     * @return the result of the delete function whether it was successful or not.
+     * @param entryID Used to delete the faculty member corresponding to that ID.
+     * @return The result of the delete function whether it was successful or not.
      */
     public int deleteEntry(int entryID) {
         PreparedStatement stmt;
@@ -326,11 +331,11 @@ public class DataLayer {
      * want to make to the topic.
      * The method will update the entry's topic when the user is done.
      * 
-     * @param entryID  used to edit the topic of the faculty member corresponding to
+     * @param entryID  Used to edit the topic of the faculty member corresponding to
      *                 that ID.
-     * @param newTopic the new topic that the user wants to replace the entry's
+     * @param newTopic The new topic that the user wants to replace the entry's
      *                 topic with.
-     * @return the result of the update function whether it was successful or not.
+     * @return The result of the update function whether it was successful or not.
      */
     public int updateEntry(int entryID, String newTopic) {
         PreparedStatement stmt;
@@ -351,7 +356,7 @@ public class DataLayer {
      * This function selects all the topics from
      * an entry where the userID matches.
      * 
-     * @return an array of formatted topics that match user's ID
+     * @return An array of formatted topics that match user's ID.
      */
     public String[] selectTopicsFromEntry(int userID) {
         try {
@@ -374,8 +379,8 @@ public class DataLayer {
     /**
      * This function gets the userType using the given userName.
      * 
-     * @param userName the userName to be checked for a userType.
-     * @return the userType, either "F" for
+     * @param userName The userName to be checked for a userType.
+     * @return The userType, either "F" for
      *         Faculty, "S" for Student, or "G" for Guest.
      */
     public String getUserType(String userName) {
@@ -395,7 +400,7 @@ public class DataLayer {
 
             if (type == null) {
                 System.err.println("Error in getting the topic - type is null.");
-                return "G"; // To not crash unless we have to, return G
+                return "G"; // To not crash unless we have to, return G.
             } else {
                 return type;
             }
@@ -408,9 +413,11 @@ public class DataLayer {
     }
 
     /**
-     * This function returns the userID of the userName entered. Useful for when you know a username but not their userID.
-     * @param userName the userName to get the userID of.
-     * @return the userID of that belongs to the userName.
+     * This function returns the userID of the userName entered. Useful for when you
+     * know a username, but not their userID.
+     * 
+     * @param userName The userName to get the userID of.
+     * @return The userID of that belongs to the userName.
      */
     public int getUserID(String userName) {
         if (userName.equals("guest")) {
@@ -429,7 +436,7 @@ public class DataLayer {
 
             if (type == 0) {
                 System.err.println("Error in getting the topic - type is null.");
-                return 0; // To not crash unless we have to, return G
+                return 0; // To not crash unless we have to, return G.
             } else {
                 return type;
             }
@@ -442,15 +449,16 @@ public class DataLayer {
     }
 
     /**
-     * Get all the other users that have the same interests
+     * This function returns every other user that shares the same interests.
+     * Get all the other users that have the same interests.
      *
-     * @param userID the user id of the person who is searching
-     * @return a list of the other users -
+     * @param userID The userID of the person who is currently searching.
+     * @return A list of the other users.
      */
     public List<String> getCommonInterests(int userID) {
         try {
 
-            // First, find out what interests this user has
+            // First, find out what interests this user has.
             Statement statement = conn.createStatement();
             ResultSet rs = statement
                     .executeQuery(String.format("SELECT interestID FROM userinterests WHERE userID = \"%d\";", userID));
@@ -460,11 +468,13 @@ public class DataLayer {
             }
             List<String> commonUsers = new LinkedList<>();
 
-            // Then, for all of those interests, find the other users that have that interest
-            for (int interestID: usersInterests) {
+            // Secondly, find the other users that have that same interest.
+            for (int interestID : usersInterests) {
                 Statement interestStatement = conn.createStatement();
                 ResultSet intrestsResultSet = interestStatement
-                        .executeQuery(String.format("SELECT firstName, lastName, userType, interest FROM users JOIN userinterests u on users.userID = u.userID JOIN interests i on i.interestID = u.interestID WHERE i.interestID = \"%d\";", interestID));
+                        .executeQuery(String.format(
+                                "SELECT firstName, lastName, userType, interest FROM users JOIN userinterests u on users.userID = u.userID JOIN interests i on i.interestID = u.interestID WHERE i.interestID = \"%d\";",
+                                interestID));
                 while (intrestsResultSet.next()) {
                     String userInfo = intrestsResultSet.getString("firstName") +
                             " " +
@@ -473,7 +483,6 @@ public class DataLayer {
                             intrestsResultSet.getString("interest") +
                             " - " +
                             longUserType(intrestsResultSet.getString("userType"));
-
                     commonUsers.add(userInfo);
                 }
             }
@@ -487,12 +496,13 @@ public class DataLayer {
     }
 
     /**
-     * Convert the user type code to a longer more human-readable string
+     * This function converts the userType CHAR into a verbose String name instead.
+     * Convert the user type code to a longer more human-readable string.
      *
-     * @param shortUserType "F", "S", or "G"
-     * @return Faculty, Student, or Guest
+     * @param shortUserType "F", "S", or "G".
+     * @return Faculty, Student, or Guest.
      */
-    private String longUserType(String shortUserType)  {
+    private String longUserType(String shortUserType) {
         switch (shortUserType) {
             case "F":
                 return "Faculty";
@@ -506,16 +516,17 @@ public class DataLayer {
     }
 
     /**
-     * Hashes a string with sha1
+     * This function hashes a string with SHA-1.
      *
      * @param plainText The plaintext string that is going to be converted to hash.
-     * @return the hash of that string.
+     * @return The hash of that string.
      */
     String hashString(String plainText) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");
             byte[] bytes = md.digest(plainText.getBytes(StandardCharsets.UTF_8));
-            BigInteger bi = new BigInteger(1, bytes); // Convert to a hex string. Thanks to https://stackoverflow.com/a/943963/12203444
+            BigInteger bi = new BigInteger(1, bytes); // Convert to a hex string. Thanks to
+                                                      // https://stackoverflow.com/a/943963/12203444
             return String.format("%0" + (bytes.length << 1) + "x", bi);
         } catch (NoSuchAlgorithmException e) {
             // Won't happen, because SHA-1 is guaranteed to exist.
@@ -529,9 +540,9 @@ public class DataLayer {
      * This function checks if the password is correct
      * and matches what's in the database.
      *
-     * @param userName the userName of the user.
-     * @param password the password of the user.
-     * @return true if the password matches what's in the database.
+     * @param userName The userName of the user.
+     * @param password The password of the user.
+     * @return True if the password matches what's in the database.
      *         False means that it did not match.
      */
     boolean checkPassword(String userName, String password) {
@@ -562,21 +573,22 @@ public class DataLayer {
     }
 
     /**
-     * This function returns true or false based on 
-     * if the intake user does (true) or 
+     * This function returns true or false based on if the given user does (true) or
      * does not (false) own the entry.
      * 
-     * @param userID of current user
-     * @param entryID of entry in question
-     * @return
-     * Boolean
+     * Used for confirmation so a user cannot delete another user's entry.
+     * 
+     * @param userID  Of current user.
+     * @param entryID Of entry in question.
+     * @return True or False whether the user owns or does not own the entry.
      */
-    boolean checkOwnership(int userID, int entryID){
+    boolean checkOwnership(int userID, int entryID) {
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(String.format("SELECT * FROM entries WHERE userID = \"%d\" AND entryID = \"%d\";", userID, entryID));
+            ResultSet rs = stmt.executeQuery(String
+                    .format("SELECT * FROM entries WHERE userID = \"%d\" AND entryID = \"%d\";", userID, entryID));
 
-            if (rs.next()){
+            if (rs.next()) {
                 return true;
             } else {
                 return false;
@@ -587,6 +599,5 @@ public class DataLayer {
             System.exit(1);
             return false;
         }
-        
     }
 }
