@@ -436,7 +436,7 @@ public class DataLayer {
 
             if (type == 0) {
                 System.err.println("Error in getting the topic - type is null.");
-                return 0; // To not crash unless we have to, return G.
+                return 0; // To not crash unless we have to, return 0.
             } else {
                 return type;
             }
