@@ -535,6 +535,22 @@ public class PresentationLayer {
             });
             sframe.setLayout(null); // using no layout managers
             sframe.setVisible(true); // making the frame visible
+            
+            // List the interests
+            JLabel intLabel = new JLabel("Interests and ID's: ");
+            sframe.add(intLabel);
+            intLabel.setBounds(10, 0, 150, 30);
+
+            String result = dl.allInterests();
+            JTextArea listInterests = new JTextArea(result);
+            listInterests.setEditable(false);
+            listInterests.setBounds(10, 30, 170, 400);
+            sframe.add(listInterests);
+
+            sframe.setLayout(null); // using no layout managers
+            sframe.setSize(800, 800);
+            sframe.setVisible(true); // making the frame visible
+
 
          }
       });
@@ -589,8 +605,12 @@ public class PresentationLayer {
             });
             sframe.setLayout(null); // using no layout managers
             sframe.setVisible(true); // making the frame visible
+            
+            
 
          }
+         
+         
       });
 
       // Delete Entry Button
@@ -679,8 +699,8 @@ public class PresentationLayer {
                public void actionPerformed(ActionEvent e) {
 
 
-                                //dl.searchStudent()???????
-                  String output = dl.searchFaculty(Integer.parseInt(t.getText()));
+                                
+                  String output = dl.searchStudent(Integer.parseInt(t.getText()));
                   ResultBox(output);
                }
             });
@@ -732,13 +752,26 @@ public class PresentationLayer {
       JPanel Inputbox = new JPanel(new GridLayout(3, 2));
       JLabel lblUser = new JLabel("Username -> ");
       JLabel lblPassword = new JLabel("Password -> ");
-      JTextField tfUser = new JTextField("Guest");
+      JTextField tfUser = new JTextField("");
       JTextField tfPassword = new JPasswordField("");
+      JButton b = new JButton("Guest");// Guest Button
+  
 
       Inputbox.add(lblUser);
       Inputbox.add(tfUser);
       Inputbox.add(lblPassword);
       Inputbox.add(tfPassword);
+      Inputbox.add(b); // Guest Button
+      
+      // Guest Listen
+      b.addActionListener(new ActionListener() {
+               public void actionPerformed(ActionEvent e) {
+                  
+                  tfUser.setText("Guest");
+                  tfPassword.setText("guest");
+
+               }
+            });
 
       lblUser.setFont(myFontForOutput);
       tfUser.setFont(myFontForOutput);
@@ -748,7 +781,7 @@ public class PresentationLayer {
       tfPassword.setForeground(Color.BLUE);
 
       JOptionPane.showMessageDialog(null, Inputbox,
-            "Default password is \"guest\" - This logs into interest search application",
+            "Sign in as Faculty/Student, or use Guest Button",
             JOptionPane.QUESTION_MESSAGE);
 
       userName = tfUser.getText();

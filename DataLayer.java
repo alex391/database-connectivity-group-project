@@ -191,7 +191,7 @@ public class DataLayer {
             ResultSet rs = stmt.executeQuery(String.format(
                     "SELECT faculty.email AS 'email', CONCAT_WS(', ', Users.lastName, Users.firstName) AS name, CONCAT_WS('-', faculty.buildNumber, faculty.officeNumber) AS 'officeLoc' FROM faculty JOIN userinterests USING(userID) JOIN Users USING (userID) WHERE interestID =  \"%d\";",
                     interestID));
-            result += "Faculty with a common interest:\n\n";
+            result += "Faculty with the specified interest:\n\n";
             while (rs.next()) {
                 result += "Name  : " + rs.getString("name")     + "\n";
                 result += "Email : " + rs.getString("email")    + "\n";
@@ -204,6 +204,38 @@ public class DataLayer {
         }
         return result;
     }
+    
+     /**
+     * This function searches the students for a shared interest using an interestID
+     * that matches it.
+     * The function will return the info of every student  that shares that
+     * interest.
+     * 
+     * @param interestID The interestID of the desired interest to search for.
+     * @return all the emails of every student of that interest.
+     */
+
+    public String searchStudent(int interestID) {
+        String result = "";
+        try {
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(String.format(
+                    "SELECT CONCAT_WS(', ', Users.lastName, Users.firstName) AS name FROM Users JOIN userinterests USING(userID) WHERE interestID =  \"%d\";",
+                    interestID));
+            result += "Students with a specified interest:\n\n";
+            while (rs.next()) {
+                result += "Name  : " + rs.getString("name")     + "\n";
+            }
+        } catch (SQLException e) {
+            System.out.println("There was an error in the select.");
+            System.out.println("Error = " + e);
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
 
     /**
      * This function adds an entry into the database containing userID and a topic.
