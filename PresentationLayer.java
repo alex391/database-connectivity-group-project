@@ -132,26 +132,26 @@ public class PresentationLayer {
 
       // Label
       JLabel label = new JLabel(" Student Features");
-      label.setBounds(122, 50, 150, 30);
+      label.setBounds(122, 50, 170, 30);
       f.add(label);
 
-      // Edit interests
-      JButton editButton = new JButton("Edit Your Interests");
-      editButton.setBounds(100, 80, 175, 50);
-      f.add(editButton);
-      // Edit Interest Listening
-      editButton.addActionListener(new ActionListener() {
+      // Add interests
+      JButton addButton = new JButton("Add Your Interests");
+      addButton.setBounds(100, 80, 175, 50);
+      f.add(addButton);
+      // Add Interest Listening
+      addButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
 
             // Action
 
             // Box with textarea of interest option + textbox for user input. Search button
             // to search by what user inputs.
-            JFrame sframe = new JFrame("Edit your Interest");
+            JFrame sframe = new JFrame("Add Your Interest");
             sframe.setSize(400, 300);
 
             // Add Label, box, button
-            JLabel newLabel = new JLabel("Enter your new Interest: ");
+            JLabel newLabel = new JLabel("Enter Your New Interest: ");
             sframe.add(newLabel);
             newLabel.setBounds(185, 30, 185, 30);
 
@@ -173,6 +173,64 @@ public class PresentationLayer {
 
                   dl.addInterest(dl.getUserID(userName), Integer.parseInt(t.getText()));
                   ResultBox("Interest Added");
+               }
+            });
+
+            // List the interests
+            JLabel intLabel = new JLabel("Interests and ID's: ");
+            sframe.add(intLabel);
+            intLabel.setBounds(10, 0, 150, 30);
+
+            String result = dl.allInterests();
+            JTextArea listInterests = new JTextArea(result);
+            listInterests.setEditable(false);
+            listInterests.setBounds(10, 30, 170, 400);
+            sframe.add(listInterests);
+
+            sframe.setLayout(null); // using no layout managers
+            sframe.setSize(800, 800);
+            sframe.setVisible(true); // making the frame visible
+         }
+      });
+
+      // Delete interests
+      JButton deleteButton = new JButton("Remove Your Interests");
+      deleteButton.setBounds(100, 80, 175, 50);
+      f.add(deleteButton);
+      // Delete Interest Listening
+      deleteButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+
+            // Action
+
+            // Box with textarea of interest option + textbox for user input. Search button
+            // to search by what user inputs.
+            JFrame sframe = new JFrame("Remove Your Interest");
+            sframe.setSize(400, 300);
+
+            // Add Label, box, button
+            JLabel newLabel = new JLabel("Enter Your Unwanted Interest: ");
+            sframe.add(newLabel);
+            newLabel.setBounds(185, 30, 185, 30);
+
+            JTextField t = new JTextField(16);
+            sframe.add(t);
+            t.setBounds(185, 60, 180, 30);
+
+            JButton b = new JButton("Update");
+            sframe.add(b);
+            b.setBounds(220, 100, 100, 50);
+
+            // Add Listener for search button
+            b.addActionListener(new ActionListener() {
+               public void actionPerformed(ActionEvent e) {
+
+                  // Action for search uses the textfield as a parameter
+
+                  // Result box will show the faculty with matching interest as user input
+
+                  dl.addInterest(dl.getUserID(userName), Integer.parseInt(t.getText()));
+                  ResultBox("Interest Removed");
                }
             });
 
@@ -314,24 +372,24 @@ public class PresentationLayer {
       label.setBounds(92, 50, 170, 30);
       f.add(label);
 
-      // Edit interests
-      JButton editButton = new JButton("Edit Your Interests");
-      editButton.setBounds(80, 80, 150, 50);
-      f.add(editButton);
+      // Add interests
+      JButton addButton = new JButton("Add Your Interests");
+      addButton.setBounds(80, 80, 150, 50);
+      f.add(addButton);
 
-      // Edit Interest Listening
-      editButton.addActionListener(new ActionListener() {
+      // Add Interest Listening
+      addButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
 
             // Action
 
             // Box with textarea of interest option + textbox for user input. Search button
             // to search by what user inputs.
-            JFrame sframe = new JFrame("Edit your Interest");
+            JFrame sframe = new JFrame("Add Your Interest");
             sframe.setSize(400, 300);
 
             // Add Label, box, button
-            JLabel newLabel = new JLabel("Enter your new Interest: ");
+            JLabel newLabel = new JLabel("Enter Your New Interest: ");
             sframe.add(newLabel);
             newLabel.setBounds(185, 30, 185, 30);
 
@@ -353,6 +411,64 @@ public class PresentationLayer {
 
                   dl.addInterest(dl.getUserID(userName), Integer.parseInt(t.getText()));
                   ResultBox("Interest Added");
+               }
+            });
+
+            // List the interests
+            JLabel intLabel = new JLabel("Interests and ID's: ");
+            sframe.add(intLabel);
+            intLabel.setBounds(10, 0, 150, 30);
+
+            String result = dl.allInterests();
+            JTextArea listInterests = new JTextArea(result);
+            listInterests.setEditable(false);
+            listInterests.setBounds(10, 30, 170, 400);
+            sframe.add(listInterests);
+
+            sframe.setLayout(null); // using no layout managers
+            sframe.setSize(800, 800);
+            sframe.setVisible(true); // making the frame visible
+         }
+      });
+
+      // Delete interests
+      JButton deleteButton = new JButton("Remove Your Interests");
+      deleteButton.setBounds(100, 80, 175, 50);
+      f.add(deleteButton);
+      // Delete Interest Listening
+      deleteButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+
+            // Action
+
+            // Box with textarea of interest option + textbox for user input. Search button
+            // to search by what user inputs.
+            JFrame sframe = new JFrame("Remove Your Interest");
+            sframe.setSize(400, 300);
+
+            // Add Label, box, button
+            JLabel newLabel = new JLabel("Enter Your Unwanted Interest: ");
+            sframe.add(newLabel);
+            newLabel.setBounds(185, 30, 185, 30);
+
+            JTextField t = new JTextField(16);
+            sframe.add(t);
+            t.setBounds(185, 60, 180, 30);
+
+            JButton b = new JButton("Update");
+            sframe.add(b);
+            b.setBounds(220, 100, 100, 50);
+
+            // Add Listener for search button
+            b.addActionListener(new ActionListener() {
+               public void actionPerformed(ActionEvent e) {
+
+                  // Action for search uses the textfield as a parameter
+
+                  // Result box will show the faculty with matching interest as user input
+
+                  dl.addInterest(dl.getUserID(userName), Integer.parseInt(t.getText()));
+                  ResultBox("Interest Removed");
                }
             });
 
@@ -827,7 +943,8 @@ public class PresentationLayer {
                // Who is logged in somewhere
                // exit button
                // options to
-               // edit interests
+               // add your interests
+               // delete your interests
                // search by interests
                // search by userID
                // or browse entries
@@ -843,7 +960,8 @@ public class PresentationLayer {
                // Who is logged in somewhere
                // exit button
                // options to
-               // edit interests
+               // add your interests
+               // delete your interests
                // search by interests
                // search by userID
                // or browse entries
