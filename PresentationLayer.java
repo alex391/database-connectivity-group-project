@@ -154,7 +154,7 @@ public class PresentationLayer {
             sframe.add(enterInterestText);
             enterInterestText.setBounds(185, 60, 180, 30);
 
-            JButton enterInterestButton = new JButton("Update");
+            JButton enterInterestButton = new JButton("Add");
             sframe.add(enterInterestButton);
             enterInterestButton.setBounds(220, 100, 100, 50);
 
@@ -180,7 +180,7 @@ public class PresentationLayer {
             sframe.add(removeInterestText);
             removeInterestText.setBounds(400, 60, 180, 30);
 
-            JButton removeInterestButton = new JButton("Update");
+            JButton removeInterestButton = new JButton("Remove");
             sframe.add(removeInterestButton);
             removeInterestButton.setBounds(440, 100, 100, 50);
 
@@ -192,7 +192,7 @@ public class PresentationLayer {
 
                   // Result box will show the faculty with matching interest as user input
 
-                  dl.addInterest(dl.getUserID(userName), Integer.parseInt(removeInterestText.getText()));
+                  dl.deleteInterest(dl.getUserID(userName), Integer.parseInt(removeInterestText.getText()));
                   ResultBox("Interest Removed");
                }
             });
@@ -356,7 +356,7 @@ public class PresentationLayer {
             sframe.add(enterInterestText);
             enterInterestText.setBounds(185, 60, 180, 30);
 
-            JButton enterInterestButton = new JButton("Update");
+            JButton enterInterestButton = new JButton("Add");
             sframe.add(enterInterestButton);
             enterInterestButton.setBounds(220, 100, 100, 50);
 
@@ -382,7 +382,7 @@ public class PresentationLayer {
             sframe.add(removeInterestText);
             removeInterestText.setBounds(400, 60, 180, 30);
 
-            JButton removeInterestButton = new JButton("Update");
+            JButton removeInterestButton = new JButton("Remove");
             sframe.add(removeInterestButton);
             removeInterestButton.setBounds(440, 100, 100, 50);
 
@@ -394,7 +394,7 @@ public class PresentationLayer {
 
                   // Result box will show the faculty with matching interest as user input
 
-                  dl.addInterest(dl.getUserID(userName), Integer.parseInt(removeInterestText.getText()));
+                  dl.deleteInterest(dl.getUserID(userName), Integer.parseInt(removeInterestText.getText()));
                   ResultBox("Interest Removed");
                }
             });
