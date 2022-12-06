@@ -235,7 +235,7 @@ public class DataLayer {
      * This function allows the user to add their interests.
      * @param userID The userID that will have interests added.
      * @param interestID The interestID to be added.
-     * @return the result of the add function whether it was successful or not.
+     * @return The result of the add function whether it was successful or not.
      */
     public int addInterest(int userID, int interestID) {
         int result = 0;
@@ -247,6 +247,28 @@ public class DataLayer {
             result = stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("There was an error in the insert.");
+            System.out.println("Error = " + e);
+            e.printStackTrace();
+        }
+        return (result);
+    }
+
+    /**
+     * This function allows the user to delete their interests.
+     * @param userID The userID that will have interests deleted.
+     * @param interestID The interestID to be deleted.
+     * @return The result of the delete function whether it was successful or not.
+     */
+    public int deleteInterest(int userID, int interestID) {
+        int result = 0;
+        try {
+            PreparedStatement stmt;
+            stmt = conn.prepareStatement("DELETE FROM userinterests WHERE userID = ? AND interestID = ?;");
+            stmt.setInt(1, userID);
+            stmt.setInt(2, interestID);
+            result = stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("There was an error in the delete.");
             System.out.println("Error = " + e);
             e.printStackTrace();
         }
