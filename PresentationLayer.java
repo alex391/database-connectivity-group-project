@@ -294,12 +294,12 @@ public class PresentationLayer {
             sframe.setSize(400, 300);
 
             StringBuilder resultBuilder = new StringBuilder();
-            resultBuilder.append("Name - Email - Occupation\n");
+            resultBuilder.append("Name - Interest In Common - Occupation\n");
             for (String user : dl.getCommonInterests(dl.getUserID(userName))) {
                resultBuilder.append(user);
                resultBuilder.append("\n");
             }
-            String result = resultBuilder.toString() ; // name and email of these users, and what interest they had in common
+            String result = resultBuilder.toString() ; // name of the users, what interest they had in common, what user they are.
             JTextArea listInterests = new JTextArea(result);
             listInterests.setEditable(false);
             listInterests.setBounds(10, 30, 600, 400);
