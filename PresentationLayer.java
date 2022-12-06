@@ -154,7 +154,7 @@ public class PresentationLayer {
             sframe.add(enterInterestText);
             enterInterestText.setBounds(185, 60, 180, 30);
 
-            JButton enterInterestButton = new JButton("Update");
+            JButton enterInterestButton = new JButton("Add");
             sframe.add(enterInterestButton);
             enterInterestButton.setBounds(220, 100, 100, 50);
 
@@ -167,7 +167,7 @@ public class PresentationLayer {
                   // Result box will show the faculty with matching interest as user input
 
                   dl.addInterest(dl.getUserID(userName), Integer.parseInt(enterInterestText.getText()));
-                  ResultBox("Interest Added");
+                  ResultBox("Interest Added.");
                }
             });
 
@@ -180,7 +180,7 @@ public class PresentationLayer {
             sframe.add(removeInterestText);
             removeInterestText.setBounds(400, 60, 180, 30);
 
-            JButton removeInterestButton = new JButton("Update");
+            JButton removeInterestButton = new JButton("Remove");
             sframe.add(removeInterestButton);
             removeInterestButton.setBounds(440, 100, 100, 50);
 
@@ -192,8 +192,8 @@ public class PresentationLayer {
 
                   // Result box will show the faculty with matching interest as user input
 
-                  dl.addInterest(dl.getUserID(userName), Integer.parseInt(removeInterestText.getText()));
-                  ResultBox("Interest Removed");
+                  dl.deleteInterest(dl.getUserID(userName), Integer.parseInt(removeInterestText.getText()));
+                  ResultBox("Interest Removed.");
                }
             });
 
@@ -203,7 +203,7 @@ public class PresentationLayer {
       });
 
       // Search by Interests, returns Faculty that match current users interests
-      JButton searchIntButton = new JButton("Search Faculty by Interests");
+      JButton searchIntButton = new JButton("Search Faculty By Interests");
       searchIntButton.setBounds(90, 130, 200, 50);
       f.add(searchIntButton);
       // Search Interests Button Listening
@@ -214,11 +214,11 @@ public class PresentationLayer {
 
             // Box with textarea of interest option + textbox for user input. Search button
             // to search by what user inputs.
-            JFrame sframe = new JFrame("Search for Faculty Name by Interest ID");
+            JFrame sframe = new JFrame("Search For Faculty Name By Interest ID");
             sframe.setSize(400, 300);
 
             // Add Label, box, button
-            JLabel newLabel = new JLabel("Enter The Number of Your Interest ID to Search: ");
+            JLabel newLabel = new JLabel("Enter The Number Of Your Interest ID To Search: ");
             sframe.add(newLabel);
             newLabel.setBounds(185, 30, 185, 30);
 
@@ -264,7 +264,7 @@ public class PresentationLayer {
             sframe.setSize(400, 300);
 
             StringBuilder resultBuilder = new StringBuilder();
-            resultBuilder.append("Name - Interest In Common - Occupation\n");
+            resultBuilder.append("Full Name - Interest In Common - Occupation\n");
             for (String user : dl.getCommonInterests(dl.getUserID(userName))) {
                resultBuilder.append(user);
                resultBuilder.append("\n");
@@ -356,7 +356,7 @@ public class PresentationLayer {
             sframe.add(enterInterestText);
             enterInterestText.setBounds(185, 60, 180, 30);
 
-            JButton enterInterestButton = new JButton("Update");
+            JButton enterInterestButton = new JButton("Add");
             sframe.add(enterInterestButton);
             enterInterestButton.setBounds(220, 100, 100, 50);
 
@@ -382,7 +382,7 @@ public class PresentationLayer {
             sframe.add(removeInterestText);
             removeInterestText.setBounds(400, 60, 180, 30);
 
-            JButton removeInterestButton = new JButton("Update");
+            JButton removeInterestButton = new JButton("Remove");
             sframe.add(removeInterestButton);
             removeInterestButton.setBounds(440, 100, 100, 50);
 
@@ -394,7 +394,7 @@ public class PresentationLayer {
 
                   // Result box will show the faculty with matching interest as user input
 
-                  dl.addInterest(dl.getUserID(userName), Integer.parseInt(removeInterestText.getText()));
+                  dl.deleteInterest(dl.getUserID(userName), Integer.parseInt(removeInterestText.getText()));
                   ResultBox("Interest Removed");
                }
             });
@@ -467,7 +467,7 @@ public class PresentationLayer {
             sframe.setSize(400, 300);
 
             StringBuilder resultBuilder = new StringBuilder();
-            resultBuilder.append("Name - Interest In Common - Occupation\n");
+            resultBuilder.append("Full Name - Interest In Common - Occupation\n");
             for (String user : dl.getCommonInterests(dl.getUserID(userName))) {
                resultBuilder.append(user);
                resultBuilder.append("\n");
@@ -494,11 +494,9 @@ public class PresentationLayer {
       // Search UserID Button Listening
       browseButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-
             // Action
             String result = dl.allEntries();
             ResultBox(result);
-
          }
       });
 
@@ -567,7 +565,7 @@ public class PresentationLayer {
                   // Result box will show success message if added
 
                   dl.addEntry(dl.getUserID(userName), t.getText(), Integer.parseInt(interest.getText()));
-                  ResultBox("Entry Added");
+                  ResultBox("Entry Added.");
 
                }
             });
@@ -576,7 +574,6 @@ public class PresentationLayer {
 
             // List the interests
             listInterests(sframe);
-
          }
       });
 
@@ -624,11 +621,10 @@ public class PresentationLayer {
                   // Result box will show success message if added
                   if (dl.checkOwnership(dl.getUserID(userName), Integer.parseInt(entryID.getText()))) {
                      dl.updateEntry(Integer.parseInt(entryID.getText()), t.getText());
-                     ResultBox("Entry Updated");
+                     ResultBox("Entry Updated.");
                   } else {
-                     ResultBox("You cannot edit/delete entries you do not own");
+                     ResultBox("You cannot edit/delete entries you do not own.");
                   }
-
                }
             });
             sframe.setLayout(null); // using no layout managers
@@ -672,9 +668,9 @@ public class PresentationLayer {
                   // Result box will show success message if added
                   if (dl.checkOwnership(dl.getUserID(userName), Integer.parseInt(t.getText()))) {
                      dl.deleteEntry(Integer.parseInt(t.getText()));
-                     ResultBox("Entry Deleted");
+                     ResultBox("Entry Deleted.");
                   } else {
-                     ResultBox("You cannot edit/delete entries you do not own");
+                     ResultBox("You cannot edit/delete entries you do not own.");
                   }
                }
             });
@@ -690,7 +686,7 @@ public class PresentationLayer {
       // EDIT THIS METHOD to search for "s"
 
       // Search for Students Interests
-      JButton searchStudButton = new JButton("Search Students by Interests");
+      JButton searchStudButton = new JButton("Search Students By Interests");
       searchStudButton.setBounds(330, 280, 210, 50);
       f.add(searchStudButton);
 
@@ -702,11 +698,11 @@ public class PresentationLayer {
 
             // Box with textarea of interest option + textbox for user input. Search button
             // to search by what user inputs.
-            JFrame sframe = new JFrame("Search for Student by Interest ID");
+            JFrame sframe = new JFrame("Search for Student By Interest ID");
             sframe.setSize(400, 300);
 
             // Add Label, box, button
-            JLabel newLabel = new JLabel("Enter The Number of the Interest ID to Search: ");
+            JLabel newLabel = new JLabel("Enter The Number Of The Interest ID To Search: ");
             sframe.add(newLabel);
             newLabel.setBounds(185, 30, 185, 30);
 
@@ -721,7 +717,6 @@ public class PresentationLayer {
             // Add Listener for search button
             b.addActionListener(new ActionListener() {
                public void actionPerformed(ActionEvent e) {
-
                   String output = dl.searchStudent(Integer.parseInt(t.getText()));
                   ResultBox(output);
                }
@@ -731,7 +726,6 @@ public class PresentationLayer {
             listInterests(sframe);
          }
       });
-
    }
 
    /**
@@ -841,7 +835,7 @@ public class PresentationLayer {
       tfPassword.setForeground(Color.BLUE);
 
       JOptionPane.showMessageDialog(null, Inputbox,
-            "Sign in as Faculty/Student, or use Guest Button",
+            "Sign in as Faculty/Student, or use Guest Button.",
             JOptionPane.QUESTION_MESSAGE);
 
       userName = tfUser.getText();
@@ -889,7 +883,7 @@ public class PresentationLayer {
       tfPassword.setForeground(Color.BLUE);
 
       JOptionPane.showMessageDialog(null, Inputbox,
-            "Default password is \"student\" - This logs into system studentfaculty DB",
+            "Default password is \"student\" - This logs into system studentfaculty DB.",
             JOptionPane.QUESTION_MESSAGE);
 
       String userName = tfUser.getText();
