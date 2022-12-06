@@ -94,22 +94,14 @@ public class DataLayer {
     public String allEntries() {
         StringBuilder result = new StringBuilder();
         try {
-            Statement topicStatement = conn.createStatement();
-            ResultSet topicResult = topicStatement.executeQuery("SELECT topic, userID FROM entries GROUP BY topic, userID;");
-            while (topicResult.next()) {
-                // topic - firstName lastName, firstName2 lastName2, ...
-                result.append(topicResult.getString("topic")).append(" - ");
-                Statement usersStatement = conn.createStatement();
-                ResultSet usersResult = usersStatement.executeQuery(
-                        "SELECT firstName, lastName FROM users WHERE userID = " + topicResult.getInt("userID"));
-                while (usersResult.next()) {
-                    result.append(usersResult.getString("firstName")).append(" ");
-                    result.append(usersResult.getString("lastName"));
-                    if (!usersResult.isLast()) {
-                        result.append(", ");
-                    }
-                }
-                result.append("\n");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(String.format(
+                "SELECT topic, GROUP_CONCAT(Users.lastName, ', ', Users.firstName SEPARATOR ' | ') AS 'name', GROUP_CONCAT(Faculty.email SEPARATOR ' | ') AS 'email' FROM entries JOIN Users USING(userID) JOIN Faculty USING(userID) GROUP BY topic;"));
+            result.append("All Entries:\n\n");
+            while (rs.next()) {
+                result.append("Topic  : " + rs.getString("topic")     + "\n");
+                result.append("Author : " + rs.getString("name")    + "\n");
+                result.append("Contact: " + rs.getString("email")+ "\n\n");
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
@@ -142,6 +134,7 @@ public class DataLayer {
                 }
                 result.append("\n");
             }
+
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
             System.out.println("Error = " + e);
@@ -185,23 +178,56 @@ public class DataLayer {
      */
 
     public String searchFaculty(int interestID) {
-        StringBuilder result = new StringBuilder();
+        String result = "";
         try {
 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(String.format(
-                    "SELECT faculty.email AS 'email',CONCAT_WS(',',Users.lastName,Users.firstName) AS name , faculty.officeNumber,faculty.buildNumber AS 'Office Number' FROM faculty JOIN userinterests USING(userID) JOIN Users USING (userID)WHERE faculty.userID = userID AND interestID =  \"%d\" GROUP BY faculty.userID;",
+                    "SELECT faculty.email AS 'email', CONCAT_WS(', ', Users.lastName, Users.firstName) AS name, CONCAT_WS('-', faculty.buildNumber, faculty.officeNumber) AS 'officeLoc' FROM faculty JOIN userinterests USING(userID) JOIN Users USING (userID) WHERE interestID =  \"%d\";",
                     interestID));
+            result += "Faculty with the specified interest:\n\n";
             while (rs.next()) {
-                result.append(rs.getString("email")).append("\n");
-
+                result += "Name  : " + rs.getString("name")     + "\n";
+                result += "Email   : " + rs.getString("email")    + "\n";
+                result += "Office# : " + rs.getString("officeLoc")+ "\n\n";
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
             System.out.println("Error = " + e);
             e.printStackTrace();
         }
-        return result.toString();
+        return result;
+    }
+    
+     /**
+     * This function searches the students for a shared interest using an interestID
+     * that matches it.
+     * The function will return the info of every student  that shares that
+     * interest.
+     * 
+     * @param interestID The interestID of the desired interest to search for.
+     * @return all the emails of every student of that interest.
+     */
+
+    public String searchStudent(int interestID) {
+        String result = "";
+        try {
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(String.format(
+                    "SELECT CONCAT_WS(', ', Users.lastName, Users.firstName) AS name FROM Users JOIN userinterests USING(userID) WHERE userType = 'S' AND interestID =  \"%d\";",
+                    interestID));
+            result += "Students with specified interest:\n\n";
+            while (rs.next()) {
+                result += "Name  : " + rs.getString("name")     + "\n";
+                result += "Email : our database doesnt have anywhere for non-faculty emails and we realized too late. :(";
+            }
+        } catch (SQLException e) {
+            System.out.println("There was an error in the select.");
+            System.out.println("Error = " + e);
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
@@ -490,5 +516,4 @@ public class DataLayer {
             return false;
         }
     }
-
 }
