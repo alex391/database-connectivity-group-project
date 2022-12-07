@@ -248,7 +248,7 @@ public class DataLayer {
             result += "Students with specified interest:\n\n";
             while (rs.next()) {
                 result += "Name  : " + rs.getString("name") + "\n";
-                result += "Email : our database doesnt have anywhere for non-faculty emails and we realized too late. :(";
+                result += "Email : our database doesnt have anywhere for non-faculty emails and we realized too late. :(\n\n";
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
