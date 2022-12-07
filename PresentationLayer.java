@@ -52,7 +52,7 @@ public class PresentationLayer {
             // Add Label, box, button
             JLabel newLabel = new JLabel("Enter The Number of Your Interest ID to Search: ");
             sframe.add(newLabel);
-            newLabel.setBounds(185, 30, 185, 30);
+            newLabel.setBounds(185, 30, 400, 30);
 
             JTextField t = new JTextField(16);
             sframe.add(t);
@@ -222,7 +222,7 @@ public class PresentationLayer {
             // Add Label, box, button
             JLabel newLabel = new JLabel("Enter The Number of Your Interest ID to Search: ");
             sframe.add(newLabel);
-            newLabel.setBounds(185, 30, 185, 30);
+            newLabel.setBounds(185, 30, 400, 30);
 
             JTextField t = new JTextField(16);
             sframe.add(t);
@@ -265,7 +265,7 @@ public class PresentationLayer {
             sframe.setSize(400, 300);
 
             StringBuilder resultBuilder = new StringBuilder();
-            resultBuilder.append("Full Name - Interest In Common - Occupation\n");
+            resultBuilder.append("Full Name - Interest In Common - Occupation\n\n");
             for (String user : dl.getCommonInterests(dl.getUserID(userName))) {
                resultBuilder.append(user);
                resultBuilder.append("\n");
@@ -426,7 +426,7 @@ public class PresentationLayer {
             // Add Label, box, button
             JLabel newLabel = new JLabel("Enter The Number of Your Interest ID to Search: ");
             sframe.add(newLabel);
-            newLabel.setBounds(185, 30, 185, 30);
+            newLabel.setBounds(185, 30, 400, 30);
 
             JTextField t = new JTextField(16);
             sframe.add(t);
@@ -469,7 +469,7 @@ public class PresentationLayer {
             sframe.setSize(400, 300);
 
             StringBuilder resultBuilder = new StringBuilder();
-            resultBuilder.append("Full Name - Interest In Common - Occupation\n");
+            resultBuilder.append("Full Name - Interest In Common - Occupation\n\n");
             for (String user : dl.getCommonInterests(dl.getUserID(userName))) {
                resultBuilder.append(user);
                resultBuilder.append("\n");
@@ -706,7 +706,7 @@ public class PresentationLayer {
             // Add Label, box, button
             JLabel newLabel = new JLabel("Enter The Number Of The Interest ID To Search: ");
             sframe.add(newLabel);
-            newLabel.setBounds(185, 30, 220, 30);
+            newLabel.setBounds(185, 30, 400, 30);
 
             JTextField t = new JTextField(16);
             sframe.add(t);
