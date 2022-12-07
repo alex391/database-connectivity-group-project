@@ -35,7 +35,7 @@ public class PresentationLayer {
       f.add(label);
 
       // Search by Interests, returns Faculty that match current users interests
-      JButton searchIntButton = new JButton("Search Faculty by Interests");
+      JButton searchIntButton = new JButton("Search Faculty By Interests");
       searchIntButton.setBounds(77, 80, 200, 50);
       f.add(searchIntButton);
       // Search Interests Button Listening
@@ -46,7 +46,7 @@ public class PresentationLayer {
 
             // Box with textarea of interest option + textbox for user input. Search button
             // to search by what user inputs.
-            JFrame sframe = new JFrame("Search for Faculty Name by Interest ID");
+            JFrame sframe = new JFrame("Search for Faculty Name By Interest ID");
             sframe.setSize(400, 300);
 
             // Add Label, box, button
@@ -204,7 +204,7 @@ public class PresentationLayer {
       });
 
       // Search Interests
-      JButton searchIntButton = new JButton("Search Faculty by Interests");
+      JButton searchIntButton = new JButton("Search Faculty By Interests");
       searchIntButton.setBounds(50, 130, 210, 50);
       f.add(searchIntButton);
 
@@ -216,7 +216,7 @@ public class PresentationLayer {
 
             // Box with textarea of interest option + textbox for user input. Search button
             // to search by what user inputs.
-            JFrame sframe = new JFrame("Search for Faculty Name by Interest ID");
+            JFrame sframe = new JFrame("Search for Faculty Name By Interest ID");
             sframe.setSize(400, 300);
 
             // Add Label, box, button
@@ -408,7 +408,7 @@ public class PresentationLayer {
       });
 
       // Search Interests
-      JButton searchIntButton = new JButton("Search Faculty by Interests");
+      JButton searchIntButton = new JButton("Search Faculty By Interests");
       searchIntButton.setBounds(50, 130, 210, 50);
       f.add(searchIntButton);
 
@@ -420,7 +420,7 @@ public class PresentationLayer {
 
             // Box with textarea of interest option + textbox for user input. Search button
             // to search by what user inputs.
-            JFrame sframe = new JFrame("Search for Faculty Name by Interest ID");
+            JFrame sframe = new JFrame("Search for Faculty Name By Interest ID");
             sframe.setSize(400, 300);
 
             // Add Label, box, button
