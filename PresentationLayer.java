@@ -50,7 +50,7 @@ public class PresentationLayer {
             sframe.setSize(400, 300);
 
             // Add Label, box, button
-            JLabel newLabel = new JLabel("Enter The Number of Your Interest ID to Search: ");
+            JLabel newLabel = new JLabel("Enter The Number Of The Interest ID To Search: ");
             sframe.add(newLabel);
             newLabel.setBounds(185, 30, 400, 30);
 
@@ -220,7 +220,7 @@ public class PresentationLayer {
             sframe.setSize(400, 300);
 
             // Add Label, box, button
-            JLabel newLabel = new JLabel("Enter The Number of Your Interest ID to Search: ");
+            JLabel newLabel = new JLabel("Enter The Number Of The Interest ID To Search: ");
             sframe.add(newLabel);
             newLabel.setBounds(185, 30, 400, 30);
 
@@ -424,7 +424,7 @@ public class PresentationLayer {
             sframe.setSize(400, 300);
 
             // Add Label, box, button
-            JLabel newLabel = new JLabel("Enter The Number of Your Interest ID to Search: ");
+            JLabel newLabel = new JLabel("Enter The Number Of The Interest ID To Search: ");
             sframe.add(newLabel);
             newLabel.setBounds(185, 30, 400, 30);
 
@@ -556,7 +556,7 @@ public class PresentationLayer {
 
             JButton b = new JButton("Add Entry");
             sframe.add(b);
-            b.setBounds(220, 180, 180, 50);
+            b.setBounds(190, 180, 180, 50);
 
             // Add Listener for search button
             b.addActionListener(new ActionListener() {
@@ -612,7 +612,7 @@ public class PresentationLayer {
 
             JButton b = new JButton("Update Entry");
             sframe.add(b);
-            b.setBounds(220, 180, 180, 50);
+            b.setBounds(180, 180, 180, 50);
 
             // Add Listener for search button
             b.addActionListener(new ActionListener() {
@@ -659,7 +659,7 @@ public class PresentationLayer {
 
             JButton b = new JButton("Delete Entry");
             sframe.add(b);
-            b.setBounds(220, 180, 180, 50);
+            b.setBounds(180, 180, 180, 50);
 
             // Add Listener for search button
             b.addActionListener(new ActionListener() {
@@ -736,7 +736,7 @@ public class PresentationLayer {
     * @param sframe The sframe to add the interests to.
     */
    private void listInterests(JFrame sframe) {
-      JLabel intLabel = new JLabel("Interests and ID's: ");
+      JLabel intLabel = new JLabel("Interests And ID's: ");
       sframe.add(intLabel);
       intLabel.setBounds(10, 0, 170, 30);
 
@@ -757,9 +757,9 @@ public class PresentationLayer {
     * @param sframe the sframe to add the interests to.
     */
    private void listUserInterests(JFrame sframe) {
-      JLabel intLabel = new JLabel("Current Interests and ID's: ");
+      JLabel intLabel = new JLabel("Your Current Interests And ID's: ");
       sframe.add(intLabel);
-      intLabel.setBounds(600, 0, 170, 30);
+      intLabel.setBounds(600, 0, 190, 30);
 
       String result = dl.allUserInterests(Integer.toString(dl.getUserID(userName)));
       JTextArea listUserInterests = new JTextArea(result);

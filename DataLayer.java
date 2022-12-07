@@ -155,7 +155,6 @@ public class DataLayer {
         try {
             Statement interestStatement = conn.createStatement();
             ResultSet interestResult = interestStatement.executeQuery("SELECT interests.interestID, interests.interest FROM userinterests JOIN interests USING(interestID) WHERE userID = " + user + " ORDER BY interestID;");
-            result.append("Current User interests:\n\n");
             while (interestResult.next()) {
                 // interestID - interest...
                 result.append(interestResult.getString("interestID")).append(" - ").append(interestResult.getString("interest"));
@@ -245,10 +244,10 @@ public class DataLayer {
             ResultSet rs = stmt.executeQuery(String.format(
                     "SELECT CONCAT_WS(', ', Users.lastName, Users.firstName) AS name FROM Users JOIN userinterests USING(userID) WHERE userType = 'S' AND interestID =  \"%d\";",
                     interestID));
-            result += "Students with specified interest:\n\n";
+            result += "Students With Specified Interest:\n\n";
             while (rs.next()) {
-                result += "Name  : " + rs.getString("name") + "\n";
-                result += "Email : our database doesnt have anywhere for non-faculty emails and we realized too late. :(\n\n";
+                result += "Name:  " + rs.getString("name") + "\n";
+                result += "Email:  Our database doesn't have anywhere to store non-faculty emails and we realized too late. :(\n\n";
             }
         } catch (SQLException e) {
             System.out.println("There was an error in the select.");
