@@ -52,14 +52,14 @@ an account with a username of “jHabermas” and a password of “test123”.
 
 * Use the "Search Faculty by Interests” function to filter 
 interests by an inputted interest ID number to find 
-faculty. The  application will display results according
+faculty. The application will display results according
 to which interest-corresponding number is set.
 
 * Use the "Browse Entries" function to see a collection of 
 all entries in the system.
 
 --------- Students ---------
-[  Features: Same as guest, but can also see a list of users
+[  Features: Same features as guest, but can also see a list of users
 with a common interests, and edit current interests in the database ]
 
 * Use the "Common Interests" button to filter 
@@ -90,6 +90,6 @@ entry in the GUI.
 ***FACULTY CAN ONLY UPDATE AND DELETE ENTRIES THEY OWN***
 
 * Use the "Search Students by Interests" button to filter 
-results by an inputted interest ID number to find the 
-student you are looking for. The  application will display 
+results by an inputted interestID number to find 
+students. The application will display 
 results according to which number is set.
