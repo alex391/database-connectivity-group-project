@@ -34,7 +34,7 @@ file. The user will be prompted to provide login credentials for their
 localhost database. After a successful connection to their local 
 database, the user will then be prompted to login with their 
 application credentials. Each user will have their own user type: 
-“Student”, ”Faculty”, or “Guest.” Depending on their user type, they 
+"Student", "Faculty", or "Guest." Depending on their user type, they 
 will have access to different functionality. 
 
 * To login to the Guest account, the user can simply use the "Guest"
@@ -59,8 +59,8 @@ to which interest-corresponding number is set.
 all entries in the system.
 
 --------- Students ---------
-[  Features: Same features as guest, but can also see a list of users
-with a common interests, and edit current interests in the database ]
+[  Features: Same features as guest. Students can also see a list of users
+with common interests and edit their current interests in the database ]
 
 * Use the "Common Interests" button to filter 
 users to find those your interests align with.
@@ -72,7 +72,7 @@ interests in the database.
 
                                     
 --------- Faculty ---------
-[  Features: Same as guest and student but can add, update, and
+[  Features: Same features as both guest and student. They can also add, update, and
 delete their current entries in the system. ]
 
 * Use the "Add Entry" function to add a new entry to the 
@@ -91,5 +91,5 @@ entry in the GUI.
 
 * Use the "Search Students by Interests" button to filter 
 results by an inputted interest ID number to find the 
-student you are looking for. The  application will display 
+student you are looking for. The application will display 
 results according to which number is set.
