@@ -743,9 +743,9 @@ public class PresentationLayer {
       String result = dl.allInterests();
       JTextArea listInterests = new JTextArea(result);
       listInterests.setEditable(false);
-      listInterests.setBounds(10, 30, 170, 420); //nice
+      listInterests.setBounds(10, 30, 170, 420); // nice
       sframe.add(listInterests);
-      
+
       sframe.setLayout(null); // using no layout managers
       sframe.setSize(800, 800);
       sframe.setVisible(true); // making the frame visible
@@ -765,7 +765,7 @@ public class PresentationLayer {
       JTextArea listUserInterests = new JTextArea(result);
       listUserInterests.setEditable(false);
       listUserInterests.setBounds(600, 30, 170, 420);
-      
+
       sframe.add(listUserInterests);
 
       sframe.setLayout(null); // using no layout managers
@@ -823,7 +823,7 @@ public class PresentationLayer {
       Inputbox.add(lblPassword);
       Inputbox.add(tfPassword);
       Inputbox.add(b); // Guest Button
-      
+
       // Guest Listen
       b.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
@@ -904,18 +904,19 @@ public class PresentationLayer {
 
       dl.connect(userName, password); // Call DataLayer.
 
-      //bool for loop
-      Boolean notLoggedIn = true;
-      //while loop returns user to login until sucessful attempt
-      while(notLoggedIn){
+      // Boolean for loop.
+      boolean notLoggedIn = true;
+      // While loop returns user to login until successful attempt.
+      while (notLoggedIn) {
          loggedIn = appLogin();
-         if (loggedIn){
+         if (loggedIn) {
             notLoggedIn = false;
-            System.out.println("Login success!");
+            System.out.println("Login was a success!");
+         } else {
+            System.out.println("Login failed. Please try again.");
          }
-         System.out.println("Login failed :(");
       }
-      
+
       if (loggedIn) {
          switch (userType) {
             case "F": // Faculty.

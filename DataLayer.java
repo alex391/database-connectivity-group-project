@@ -144,9 +144,10 @@ public class DataLayer {
         }
         return result.toString();
     }
-    
-     /**
-     * This function returns all the Interests stored in the Interests database that matches the current user
+
+    /**
+     * This function returns all the Interests stored in the Interests database that
+     * matches the current user
      * 
      * @return All the Interests stored in the database.
      */
@@ -154,10 +155,13 @@ public class DataLayer {
         StringBuilder result = new StringBuilder();
         try {
             Statement interestStatement = conn.createStatement();
-            ResultSet interestResult = interestStatement.executeQuery("SELECT interests.interestID, interests.interest FROM userinterests JOIN interests USING(interestID) WHERE userID = " + user + " ORDER BY interestID;");
+            ResultSet interestResult = interestStatement.executeQuery(
+                    "SELECT interests.interestID, interests.interest FROM userinterests JOIN interests USING(interestID) WHERE userID = "
+                            + user + " ORDER BY interestID;");
             while (interestResult.next()) {
                 // interestID - interest...
-                result.append(interestResult.getString("interestID")).append(" - ").append(interestResult.getString("interest"));
+                result.append(interestResult.getString("interestID")).append(" - ")
+                        .append(interestResult.getString("interest"));
                 result.append("\n");
             }
 
@@ -419,11 +423,11 @@ public class DataLayer {
             if (rs.next()) {
                 type = rs.getString("userType");
             } else {
-                System.err.println("Error in getting the topic - no more rows.");
+                System.err.println("Error in getting the user type - no more rows.");
             }
 
             if (type == null) {
-                System.err.println("Error in getting the topic - type is null.");
+                System.err.println("Error in getting the user type - type is null.");
                 return "G"; // To not crash unless we have to, return G.
             } else {
                 return type;
