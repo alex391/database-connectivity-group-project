@@ -48,7 +48,7 @@ an account with a username of "aSmith" and a password of “test1211”.
 an account with a username of “jHabermas” and a password of “test123”.
 
 --------- Guests --------- 
-[ Features: Able to Browse and Search Faculty by Interest ]
+[ Features: Able to Browse Entries and Search Faculty by Interest ]
 
 * Use the "Search Faculty by Interests” function to filter 
 interests by an inputted interest ID number to find 
@@ -60,7 +60,7 @@ all entries in the system.
 
 --------- Students ---------
 [  Features: Same as guest, but can also see a list of users
-with a common interests, and edit current interests in the database ]
+with common interests, and edit current interests in the database ]
 
 * Use the "Common Interests" button to filter 
 users to find those your interests align with.
@@ -90,6 +90,6 @@ entry in the GUI.
 ***FACULTY CAN ONLY UPDATE AND DELETE ENTRIES THEY OWN***
 
 * Use the "Search Students by Interests" button to filter 
-results by an inputted interest ID number to find the 
-student you are looking for. The  application will display 
-results according to which number is set.
+results by an inputted interest ID number to find
+students. The  application will display results according 
+to which number is set.
