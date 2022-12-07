@@ -808,19 +808,23 @@ public class PresentationLayer {
     * @return True when login matches credentials provided. False if otherwise.
     */
    public boolean appLogin() {
+      JFrame loginFrame = new JFrame("Faculty Portal");
+      loginFrame.setSize(300, 200);
+
       JPanel Inputbox = new JPanel(new GridLayout(3, 2));
       JLabel lblUser = new JLabel("Username -> ");
       JLabel lblPassword = new JLabel("Password -> ");
       JTextField tfUser = new JTextField("");
       JTextField tfPassword = new JPasswordField("");
       JButton b = new JButton("Guest"); // Guest Button
+      
 
       Inputbox.add(lblUser);
       Inputbox.add(tfUser);
       Inputbox.add(lblPassword);
       Inputbox.add(tfPassword);
       Inputbox.add(b); // Guest Button
-
+      
       // Guest Listen
       b.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
@@ -840,6 +844,7 @@ public class PresentationLayer {
             "Sign in as Faculty/Student, or use Guest Button.",
             JOptionPane.QUESTION_MESSAGE);
 
+
       userName = tfUser.getText();
       userType = dl.getUserType(userName);
       String password = new String();
@@ -853,7 +858,6 @@ public class PresentationLayer {
       } else {
          password = passwordInput;
       }
-
       // Returns true or false.
       return dl.checkPassword(userName, password);
    }
@@ -903,7 +907,16 @@ public class PresentationLayer {
       dl.connect(userName, password); // Call DataLayer.
 
       // Case Student vs. Faculty.
-      loggedIn = appLogin();
+      Boolean notLoggedIn = true;
+      while(notLoggedIn){
+         loggedIn = appLogin();
+         if (loggedIn){
+            notLoggedIn = false;
+            System.out.println("Login success!");
+         }
+         System.out.println("Login fail :(");
+      }
+      
       if (loggedIn) {
          switch (userType) {
             case "F": // Faculty.
