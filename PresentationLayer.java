@@ -906,15 +906,16 @@ public class PresentationLayer {
 
       dl.connect(userName, password); // Call DataLayer.
 
-      // Case Student vs. Faculty.
+      //bool for loop
       Boolean notLoggedIn = true;
+      //while loop returns user to login until sucessful attempt
       while(notLoggedIn){
          loggedIn = appLogin();
          if (loggedIn){
             notLoggedIn = false;
             System.out.println("Login success!");
          }
-         System.out.println("Login fail :(");
+         System.out.println("Login failed :(");
       }
       
       if (loggedIn) {
