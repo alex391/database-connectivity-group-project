@@ -1,5 +1,5 @@
-# 330-group-project
-ISTE 330 Faculty Research Database project
+# 330 Group Project
+ISTE 330 Faculty Research Database Project
 # Group members:
 Evan Reighter
 Alex Leute
