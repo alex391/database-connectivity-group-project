@@ -706,7 +706,7 @@ public class PresentationLayer {
             // Add Label, box, button
             JLabel newLabel = new JLabel("Enter The Number Of The Interest ID To Search: ");
             sframe.add(newLabel);
-            newLabel.setBounds(185, 30, 185, 30);
+            newLabel.setBounds(185, 30, 220, 30);
 
             JTextField t = new JTextField(16);
             sframe.add(t);
@@ -817,7 +817,6 @@ public class PresentationLayer {
       JTextField tfUser = new JTextField("");
       JTextField tfPassword = new JPasswordField("");
       JButton b = new JButton("Guest"); // Guest Button
-      
 
       Inputbox.add(lblUser);
       Inputbox.add(tfUser);
@@ -843,7 +842,6 @@ public class PresentationLayer {
       JOptionPane.showMessageDialog(null, Inputbox,
             "Sign in as Faculty/Student, or use Guest Button.",
             JOptionPane.QUESTION_MESSAGE);
-
 
       userName = tfUser.getText();
       userType = dl.getUserType(userName);
