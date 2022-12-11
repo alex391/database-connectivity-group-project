@@ -1,5 +1,5 @@
-# 330 Group Project
-ISTE 330 Faculty Research Database Project
+# Database Connectivity Group Project
+This is a Faculty Research Database Project from a Database Connectivity class
 # Group members:
 Evan Reighter
 Alex Leute

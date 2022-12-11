@@ -1,6 +1,5 @@
 DROP DATABASE IF EXISTS  StudentFaculty;
 
--- ISTE 330 Jim Habermas
 -- Group Project 01
 -- Created by Alex Leute, Evan Reighter, Michael McIntosh, Teo Luciani, Adrian Marquez
 
